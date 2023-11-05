@@ -3,13 +3,40 @@
 # Microservices w/ Spring Boot
 ### TOC
 [//]: # (TOC generated with https://ecotrust-canada.github.io/markdown-toc/)
-* [Microservices w/ Spring Boot](#microservices-w-spring-boot)
-  * [Definition](#definition)
-  * [Microservices are based on](#microservices-are-based-on)
-  * [Advantages of microservices](#advantages-of-microservices)
-* [Spring Cloud](#spring-cloud)
-  * [Spring Cloud is composed by :](#spring-cloud-is-composed-by)
-  * [Dynamic scale up and down of services](#dynamic-scale-up-and-down-of-services)
+- [Microservices w/ Spring Boot](#microservices-w-spring-boot)
+  - [TOC](#toc)
+  - [Microservices](#microservices)
+    - [Definition](#definition)
+    - [Microservices are based on](#microservices-are-based-on)
+    - [Advantages of microservices](#advantages-of-microservices)
+  - [Spring Cloud](#spring-cloud)
+    - [Spring Cloud is composed by](#spring-cloud-is-composed-by)
+  - [Dynamic scale up and down of services](#dynamic-scale-up-and-down-of-services)
+  - [Visibility and monitoring of microservices](#visibility-and-monitoring-of-microservices)
+  - [Spring Cloud Config](#spring-cloud-config)
+    - [On the server side](#on-the-server-side)
+    - [On the client side](#on-the-client-side)
+    - [On URL](#on-url)
+  - [Setting Dynamic Port](#setting-dynamic-port)
+    - [On REST controller](#on-rest-controller)
+    - [On POJO](#on-pojo)
+  - [Microservices communication](#microservices-communication)
+    - [Mapping using RestTemplate](#mapping-using-resttemplate)
+    - [Mapping with Feign](#mapping-with-feign)
+      - [On Application class](#on-application-class)
+      - [Create a proxy interface](#create-a-proxy-interface)
+      - [On Rest controller](#on-rest-controller)
+  - [Euraka Naming Server](#euraka-naming-server)
+      - [On POM](#on-pom)
+      - [On Application class](#on-application-class-1)
+      - [On Propreties](#on-propreties)
+      - [On Propreties](#on-propreties-1)
+  - [API Gateway](#api-gateway)
+    - [On POM](#on-pom-1)
+    - [On Propreties](#on-propreties-2)
+  - [Routing](#routing)
+    - [On Configuration class](#on-configuration-class)
+
 
 
 ## Definition
@@ -125,7 +152,7 @@ For each environment you can create a specific file with the name of the microse
 limits-service.minimum=5
 limits-service.maximum=997
 ```
-### On URL
+#### On URL
 http://localhost:8888/limits-service/default or http://localhost:8888/limits-service/dev
 ```json
 {
@@ -175,3 +202,206 @@ http://localhost:8080/limits
   "maximum": 996
 }
 ```
+## Setting Dynamic Port
+```properties
+server.port=8080
+```
+#### On REST controller
+```java
+@RestController
+public class CurrencyExchangeController {
+    //http://localhost:8000/currency-exchange/from/USD/to/INR
+    @Autowired
+    private Environment environment;
+    @GetMapping("/currency-exchange/from/{from}/to/{to}")
+    public CurrencyExchange retriveExchangeValue(@PathVariable String from, @PathVariable String to){
+        CurrencyExchange currencyExchange = new CurrencyExchange(1000L,from,to, BigDecimal.valueOf(50));
+        String port = environment.getProperty("local.server.port");
+        currencyExchange.setEnvironment(port);
+        return currencyExchange;
+    }
+}
+```
+#### On POJO
+```java
+public class CurrencyExchange {
+    private Long id;
+    private String from;
+    private String to;
+    private BigDecimal conversionMultiple;
+    private String environment;
+}
+```
+
+## Microservices communication
+
+### Mapping using RestTemplate
+
+```java
+@RestController
+public class CurrencyConversionController {
+    @GetMapping("/currency-conversion/from/{from}/to/{to}/quantity/{quantity}") // http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10
+    public CurrencyConversion calculateCurrencyConversion(@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity) {
+        HashMap<String,String> uriVariables = new HashMap<>();
+        uriVariables.put("from", from);
+        uriVariables.put("to",to);
+        ResponseEntity<CurrencyConversion> responseEntity = new RestTemplate().getForEntity("http://localhost:8080/currency-exchange/from/{from}/to/{to}",
+                CurrencyConversion.class, uriVariables);
+        CurrencyConversion currencyConversion = responseEntity.getBody();
+        return currencyConversion;
+    }
+}
+```
+### Mapping with Feign
+
+#### On Application class
+```java
+@SpringBootApplication
+@EnableFeignClients
+public class CurrencyConversionServiceApplication {}
+```
+#### Create a proxy interface
+```java
+@FeignClient(name="currency-exchange")
+public interface CurrencyExchangeProxy {
+
+  @GetMapping("/currency-exchange/from/{from}/to/{to}")
+  public CurrencyConversion retrieveExchangeValue(@PathVariable String from, @PathVariable String to);
+}
+```
+#### On Rest controller
+```java
+    //Mapping using Feign
+    @GetMapping("/currency-conversion-feign/from/{from}/to/{to}/quantity/{quantity}") // http://localhost:8100/currency-conversion-feign/from/USD/to/INR/quantity/10
+    public CurrencyConversion calculateCurrencyConversionFeign(@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity) {
+        CurrencyConversion currencyConversion = proxy.retriveExchangeValue(from,to);
+        return currencyConversion;
+    }
+```
+## Euraka Naming Server
+Eureka is a naming server. <br>
+It is used to register and discover microservices. <br>
+#### On POM
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+    <version>2.2.2.RELEASE</version>
+</dependency>
+```
+#### On Application class
+```java
+@SpringBootApplication
+@EnableEurekaServer
+public class NetflixEurekaNamingServerApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(NetflixEurekaNamingServerApplication.class, args);
+    }
+}
+```
+#### On Propreties
+in the application.properties of the naming server
+```properties
+server.port=8761
+eureka.client.register-with-eureka=false
+eureka.client.fetch-registry=false
+```
+#### On Propreties
+in the application.properties of the microservice
+```properties
+eureka.client.service-url.default-zone=http://localhost:8761/eureka
+```
+## API Gateway
+* Simple, yet effective way to route to APIs
+* Provide cross cutting concerns:
+  * **Security**
+  * **Monitoring/metrics**
+* Built on top of Spring WebFlux (Reactive Approach)
+* Features:
+  * **Match routes on any request attribute**
+  * **Define Predicates and Filters**
+  * **Integrates with Spring Cloud Discovery Client (Load Balancing)**<br><br>
+
+API Gateway is a single entry point for all clients. <br>
+It is a single point to implement : 
+* cross-cutting concerns. <br>
+* security. <br>
+* monitoring. <br>
+* routing. <br>
+* load balancing. <br>
+* fault tolerance. <br>
+* resiliency. <br><br>
+![image](microservices_images/SpringCloudGateway.png)<br><br>
+
+#### On POM
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-gateway</artifactId>
+    <version>2.2.2.RELEASE</version>
+</dependency>
+```
+#### On Propreties
+in the application.properties of the API Gateway
+```properties
+spring.application.name=api-gateway
+server.port=8765
+spring.config.import=optional:configserver:http://localhost:8888
+
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+eureka.instance.prefer-ip-address=true
+spring.cloud.config.discovery.locator.enabled=true
+spring.cloud.config.discovery.locator.lower-case-service-id=true
+```
+### Routing
+#### On Configuration class
+```java
+@Configuration
+public class ApiGatewayConfiguration {
+    @Bean
+    // http://localhost:8765/get
+    public RouteLocator gatewayRouter(RouteLocatorBuilder builder){
+        return builder.routes()
+                .route(p -> p.path("/get")
+                        .filters(f -> f.addRequestHeader("MyHeader", "MyURI")
+                                .addRequestParameter("Param", "MyValue"))
+                        .uri("http://httpbin.org:80"))
+                .route(p->p.path("/currency-exchange/**")
+                        .uri("lb://currency-exchange")) // http://localhost:8765/currency-exchange/from/USD/to/INR
+                .route(p->p.path("/currency-conversion/**")
+                        .uri("lb://currency-conversion")) // http://localhost:8765/currency-conversion/from/USD/to/INR/quantity/10
+                .route(p->p.path("/currency-conversion-feign/**")
+                        .uri("lb://currency-conversion")) // http://localhost:8765/currency-conversion-feign/from/USD/to/INR/quantity/10
+                // to rewrite the path of currency-conversion-feign to currency-conversion-new
+                .route(p->p.path("/currency-conversion-new/**")
+                        .filters(f->f.rewritePath("/currency-conversion-new/(?<segment>.*)", "/currency-conversion-feign/${segment}"))
+                        .uri("lb://currency-conversion")) // http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10
+
+                .build();
+    }
+}
+```
+#### On Propreties
+comment the following lines
+```properties
+#spring.cloud.config.discovery.locator.enabled=true
+#spring.cloud.config.discovery.locator.lower-case-service-id=true
+```
+### Logging
+on the API Gateway
+```java
+@Component
+public class LoggingFilter implements GlobalFilter {
+    private Logger logger = LoggerFactory.getLogger(LoggerFactory.class);
+    @Override
+    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        logger.info("Path of the request recived -> {}",exchange.getRequest().getPath());
+        return chain.filter(exchange);
+    }
+}
+```
+---
+# Circuit Breaker
+**Circuit Breaker** is a design pattern used in modern software development, is used to  :
+* **detect failures** and encapsulates the logic of preventing a failure from constantly recurring, during maintenance, temporary external system failure or unexpected system difficulties. <br>
+* **give stability** and prevent cascading failures in distributed systems. <br>
