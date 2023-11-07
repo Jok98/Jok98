@@ -405,3 +405,4 @@ public class LoggingFilter implements GlobalFilter {
 **Circuit Breaker** is a design pattern used in modern software development, is used to  :
 * **detect failures** and encapsulates the logic of preventing a failure from constantly recurring, during maintenance, temporary external system failure or unexpected system difficulties. <br>
 * **give stability** and prevent cascading failures in distributed systems. <br>
+### https://resilience4j.readme.io/docs/circuitbreaker
