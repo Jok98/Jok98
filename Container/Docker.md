@@ -141,5 +141,119 @@ docker run -p 5000:5000 -d -m 512m in28min/todo-rest-api-h2:1.0.0.RELEASE
 ```cmd
 docker run -p 5000:5000 -d --cpu-quota=50000 in28min/todo-rest-api-h2:1.0.0.RELEASE
 ```
+---
+# Distributed Tracing
+**Distributed Tracing** is a method used to profile and monitor applications, especially those built using a microservices architecture. <br>
+![image](Container_images/Distributed_tracing.png)
 
+## Zipkin
+**Zipkin** is a distributed tracing system. It helps gather timing data needed to troubleshoot latency problems in service architectures. <br>
+```cmd
+docker run -p 9411:9411 openzipkin/zipkin:2.23
+```
+## Observability and OpenTelemetry
 
+* Monitoring vs observability: Monitoring is reactive. Observability is proactive.
+* Monitoring is a subset of observability.
+* Observability: How well do we understand what's happening in a system?
+
+1. Step 1: Gather data: Metrics, logs, or traces
+
+2. Step 2: Get intelligence: AI/Ops and anomaly detection
+
+**OpenTelemetry**: Collection of tools, APIs, and SDKs to instrument, generate, collect, & export telemetry data (metrics, logs, & traces)<br>
+Almost all cloud platforms provide support for OpenTelemetry today!
+
+### Zipkin in application.properties
+```cmd
+spring.zipkin.base-url=http://localhost:9411
+management.tracing.sampling.probability=1.0
+logging.pattern.level=%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]
+```
+---
+# Create Docker Images for Spring Boot Microservices
+
+## On POM
+```xml
+<plugin>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-maven-plugin</artifactId>
+  <configuration>
+    <image>
+      <name>jok98/mmv3-${project.artifactId}:${project.version}</name> <!-- dockerId/prefix -->
+    </image>
+    <pullPolicy>IF_NOT_PRESENT</pullPolicy> <!-- pull image if not present -->
+  </configuration>
+</plugin>
+```
+## Maven commands
+```cmd
+spring-boot:build-image
+```
+
+## Docker Compose
+Docker compose is a tool for defining and running multi-container Docker applications.
+### docker-compose.yml
+```yml
+version: '3.7'
+
+services:
+  currency-exchange:
+    image: docker.io/jok98/mmv3-currency-exchange-service:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8000:8000"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICE-URL.DEFAULT-ZONE: http://naming-server:8761/eureka/
+      MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans
+
+  currency-conversion:
+    image: docker.io/jok98/mmv3-currency-conversion-service:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8100:8100"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICE-URL.DEFAULT-ZONE: http://naming-server:8761/eureka/
+      MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans
+
+  api-gateway:
+    image: docker.io/jok98/mmv3-api-gateway:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8765:8675"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICE-URL.DEFAULT-ZONE: http://naming-server:8761/eureka/
+      MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans
+
+  zipkin-server:
+    image: openzipkin/zipkin:2.23
+    mem_limit: 300m
+    ports:
+      - "9411:9411"
+    networks:
+      - currency-network
+    restart: always #Restart if there is a problem starting up
+
+  naming-server:
+    image: docker.io/jok98/mmv3-naming-server:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "8761:8761"
+    networks:
+      - currency-network
+
+networks:
+  currency-network:
+```
