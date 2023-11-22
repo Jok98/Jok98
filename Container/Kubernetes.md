@@ -77,3 +77,10 @@ kubectl set image deployment hello-world-rest-api hello-world-rest-api=in28min/h
 ```cmd
 kubectl get services
 ```
+
+---
+
+---
+
+# Project environment
+#### Kubernetes provides the features instead of Eureka Server and Api Gateway
