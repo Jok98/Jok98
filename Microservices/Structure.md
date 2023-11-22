@@ -256,3 +256,9 @@ public interface EntityRepository extends JpaRepository<JpaEntity, int> {
 </project>
 
 ```
+## IMPORTANT
+### The generated files must be moved to the same package of SpringBoot Application
+```xml
+                            <apiPackage>com.openapi.gen.springboot.api</apiPackage>
+                            <modelPackage>com.openapi.gen.springboot.dto</modelPackage>
+```
