@@ -11,255 +11,226 @@ info:
 #### Define the APIs
 ```yml
 paths:
-  /widgets:
+
+  /expense:
     get:
-      operationId: Identify id name
-      summary: API functionality
-      parameters: # request input parameter
-        - name: parameter name
-          in: query
-          description: parameter description
-          required: true
-          schema:
-            type: string
+      summary: Expenses List
+      operationId: getExpensesList
       responses:
         '200':
-          description: Success
+          description: ok
           content:
             application/json:
               schema:
-                $ref : '#/components/schemas/{entity name}'
+                $ref: '#/components/schemas/RetrieveExpensesResponse'
         '404':
-          description: Not found
+          description: No expenses found
 ```
 #### Define the Entities
 ```yml
 components:
   schemas:
-    Entity:
+    RetrieveExpensesResponse:
       type: object
-      discriminator:
-        propertyName: id
+      properties:
+        expenses:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpenseDTO'
+
+    ExpenseDTO:
+      type: object
+      description: Data element for Expense
+      required:
+        - email
       properties:
         id:
-          type: integer
-        descrizione:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        amount:
+          type: number
+        date:
+          type: string
+          format: date
+        category:
           type: string
 ```
 
-# Controller
-### Implements the API structure and @Override its response returning the execution of the Command of the Entity
+# POM
+## Dependencies
+```xml
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>0.2.4</version>
+		</dependency>
 
-```java
-@RestController
-public class EntityController implements WidgetsApi {
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>1.6.8</version>
+		</dependency>
 
-    @Override
-    public ResponseEntity<EntityResponse> getEntity(@NotNull @Valid String parameter) {
-        EntityCommand getEntityCommand = beanFactory.getBean(EntityCommand.class,parameter);
-        return ResponseEntity.ok(getEntityCommand.execute());    }
-}
+		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api -->
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+		</dependency>
 ```
-# Command
-```java
-@Component
-@Scope(SCOPE_PROTOTYPE) //specify that a bean should be created as a new object each time it is requested from the Spring container
-public class EntityCommand extends BaseCommand<EntityResponse> {
-
-    private final String parameter;
-
-    @Autowired
-    private EntityService entityService;
-
-    @Autowired
-    private EntityMapper entityMapper;
-
-    public EntityCommand(String parameter) {
-        this.parameter = parameter;
-    }
-    
-    @Override
-    protected EntityResponse doExecute(){
-        EntityResponse entityResponse = new EntityResponse();
-        JpaEntity jpaEntity = entityService.getEntity();
-        entityMapper.jpaEntityToEntity(entity);
-        entityResponse.setEntity(entity);
-
-        return entityResponse;
-    }
-
-}
+## Plugin
+### Need to declare in the pom plugin the settings for the code generation
+### - apiPackage: The package where the APIs will be generated
+### - modelPackage: The package where the Entities will be generated
+### They must be in same package of the springboot application class
+```xml
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>5.4.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>
+								${project.basedir}/src/main/resources/openapi/Expenses.yml
+							</inputSpec>
+							<generatorName>spring</generatorName> <!-- set the generation type-->
+							<!--							backend/Expenses/target/classes/com/projectalt96/Expenses/gen-->
+							<apiPackage>com.projectalt96.core.api</apiPackage>
+							<modelPackage>com.projectalt96.core.dto</modelPackage>
+							<supportingFilesToGenerate>
+								ApiUtil.java
+							</supportingFilesToGenerate>
+							<configOptions>
+								<delegatePattern>true</delegatePattern>
+								<serializableModel>true</serializableModel>
+							</configOptions>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 ```
-# Mapper
-```java
-@Component
-public class EntityMapper {
 
-    public Entity jpaEntityToEntity(JpaEntity jpaEntity) {
-        Entity entity = new Entity();
-        // set manually all the fields
-        entity.setId(jpaEntity.getId());
-        // etc...
-
-        return entity;
-    }
-}
-```
-# Service
+# Create and expose the APIs
+## Delegation implementation
+### The implementation of the APIs is delegated to the class ExpensesApiDelegateImpl
+### - ExpenseApiDelegate is auto generated by openapi
+### - The response is declared in the autogenerated class RetrieveExpensesResponse
 ```java
 @Service
-public class WidgetService extends CustomBaseService{
-
+public class ExpenseDelegateImpl implements ExpenseApiDelegate {
     @Autowired
-    EntityRepository entityRepository;
-    
-    public JpaEntity getEntity(){
-        JpaEntity jpaEntity = entityRepository.find();
+    private final ExpensesService expensesService;
+    @Autowired
+    ExpensesMapper expensesMapper;
 
-        return jpaEntity;
+    public ExpenseDelegateImpl(ExpensesService expensesService) {
+        this.expensesService = expensesService;
+    }
+
+    @Override
+//    http://localhost:8090/expense GET
+    public ResponseEntity<RetrieveExpensesResponse> getExpensesList() {
+        RetrieveExpensesResponse responseEntity = new RetrieveExpensesResponse();
+        List<ExpenseJpa> expenseJpaList = expensesService.getExpensesList();
+        List<ExpenseDTO> expenseDTOList = new ArrayList<>();
+        expenseJpaList.forEach(expenseJpa -> {
+            expenseDTOList.add(expensesMapper.expenseJpaEntityToExpense(expenseJpa));
+        });
+        responseEntity.setExpenses(expenseDTOList);
+        return ResponseEntity.ok(responseEntity);
     }
 }
 ```
-# Repository
+## Service
+### Retrive the data from the database
 ```java
-public interface EntityRepository extends JpaRepository<JpaEntity, int> {
+@Service
+public class ExpensesService {
+    @Autowired
+    ExpensesJpaRepository expensesJpaRepository;
+    @Autowired
+    ExpensesMapper expensesMapper;
 
+    public List<ExpenseJpa> getExpensesList(){
+        List<ExpenseJpa> expenseJpaList = expensesJpaRepository.findAll();
+        return expenseJpaList;
+    }
+    
 }
 ```
-# Pom
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.5</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-    <groupId>com.projectalt96</groupId>
-    <artifactId>Expenses</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>Expenses</name>
-    <description>Demo project for Spring Boot</description>
-    <properties>
-        <java.version>17</java.version>
-    </properties>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.openapitools</groupId>
-            <artifactId>jackson-databind-nullable</artifactId>
-            <version>0.2.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>1.6.8</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>2.2.0</version>
-        </dependency>
-
-
-        <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>2.0.1.Final</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/javax.annotation/javax.annotation-api -->
-        <dependency>
-            <groupId>javax.annotation</groupId>
-            <artifactId>javax.annotation-api</artifactId>
-            <version>1.3.2</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
-        </dependency>
-
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <image>
-                        <builder>paketobuildpacks/builder-jammy-base:latest</builder>
-                    </image>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>5.4.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <inputSpec>
-                                ${project.basedir}/src/main/resources/swagger/Expense.yml
-                            </inputSpec>
-                            <generatorName>spring</generatorName>
-                            <apiPackage>com.openapi.gen.springboot.api</apiPackage>
-                            <modelPackage>com.openapi.gen.springboot.dto</modelPackage>
-                            <supportingFilesToGenerate>
-                                ApiUtil.java
-                            </supportingFilesToGenerate>
-                            <configOptions>
-                                <delegatePattern>true</delegatePattern>
-                                <serializableModel>true</serializableModel>
-                            </configOptions>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
-</project>
-
+## Repository
+```java
+public interface ExpensesJpaRepository extends JpaRepository<ExpenseJpa,String> {
+}
 ```
-## IMPORTANT
-### The generated files must be moved to the same package of SpringBoot Application
-```xml
-                            <apiPackage>com.openapi.gen.springboot.api</apiPackage>
-                            <modelPackage>com.openapi.gen.springboot.dto</modelPackage>
+### To add new methods to the repository
+### - Spring Data JPA will auto implement the method based on the name of the method
+```java
+public interface ExpensesJpaRepository extends JpaRepository<ExpenseJpa,String> {
+    List<ExpenseJpa> findByCategory(String category);
+}
 ```
+## Mapper
+### Map the JpaEntity into DTO
+```java
+@Component
+public class ExpensesMapper {
 
+    public ExpenseDTO expenseJpaEntityToExpense(ExpenseJpa expenseEntity) {
+        ExpenseDTO expense = new ExpenseDTO();
+        expense.setId(expenseEntity.getId());
+        expense.setName(expenseEntity.getName());
+        expense.setDescription(expenseEntity.getDescription());
+        expense.setAmount(expenseEntity.getAmount());
+        expense.setDate(expenseEntity.getDate());
+        expense.setCategory(expenseEntity.getCategory());
+        return expense;
+    }
+}
+```
+## JpaEntity
+### The JpaEntity is the representation of the table in the database 
+### the pojo is auto generated by openapi so they are separated in two classes
+```java
+@Entity
+@Table(name = "expense")
+public class ExpenseJpa implements Serializable {
+    @Id
+    private String id;
+    private String name;
+    private String description;
+    private BigDecimal amount;
+    private LocalDate date;
+    private String category;
+    //getters and setters
+}
+```
