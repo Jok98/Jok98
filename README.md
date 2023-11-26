@@ -1,5 +1,5 @@
 # WIK (what I know)
-### Working in progress
+### Work in progress
 ## TOC
 
 # Languages
