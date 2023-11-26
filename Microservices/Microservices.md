@@ -312,6 +312,8 @@ in the application.properties of the microservice
 eureka.client.service-url.default-zone=http://localhost:8761/eureka
 ```
 ## API Gateway
+![image](microservices_images/Api_Gateway_architecture.png)<br><br>
+Could also integrate the load balancer. <br>
 * Simple, yet effective way to route to APIs
 * Provide cross cutting concerns:
   * **Security**
@@ -331,8 +333,27 @@ It is a single point to implement :
 * load balancing. <br>
 * fault tolerance. <br>
 * resiliency. <br><br>
-![image](microservices_images/SpringCloudGateway.png)<br><br>
+### Types of gateways
+* Developer oriented :
+  * **Zuul** : Netflix project, based on Servlet API, blocking and synchronous
+  * **Spring Cloud Gateway** : Spring project, based on Spring WebFlux, non-blocking and asynchronous
+* Software as service :
+  * **AWS API Gateway** : Amazon Web Services
 
+## Zuul
+![image](microservices_images/Zuul_Architecture.png)<br><br>
+
+## Spring Cloud Gateway
+![image](microservices_images/SpringCloudGateway.png)<br><br>
+### Properties
+* **Non-blocking** : Based on Spring WebFlux
+* **Asynchronous** : Based on Reactive Streams
+* **Event-driven** : Based on Reactor
+* **Dynamic routing** : Can be changed at runtime
+* **Supports WebSockets**
+* **Supports HTTP/2**
+* **Runs on Netty, Undertow, and Servlet 3.1+ containers**
+![image](microservices_images/Reactive_Gatway.png)<br><br>
 #### On POM
 ```xml
 <dependency>
