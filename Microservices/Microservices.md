@@ -311,6 +311,8 @@ in the application.properties of the microservice
 ```properties
 eureka.client.service-url.default-zone=http://localhost:8761/eureka
 ```
+---
+
 ## API Gateway
 ![image](microservices_images/Api_Gateway_architecture.png)<br><br>
 Could also integrate the load balancer. <br>
@@ -421,6 +423,46 @@ public class LoggingFilter implements GlobalFilter {
     }
 }
 ```
+
+---
+
+# Euraka Naming Server
+### Service registration
+- When a microservice starts up, it registers itself with the Eureka service
+  - Provides host name / IP, port and service name
+### Service discovery
+- Eureka clients can query the Eureka server to retrieve information about other microservices
+![image](microservices_images/Eureka_architecture.png)<br><br>
+![image](microservices_images/Gateway_Eureka_Service.png)<br><br>
+
+### Steps
+- Create Eureka Server
+- Configure the microservices to register with Eureka
+- Create OPenFeign Service to talk to other microservices
+- Configure Spring Cloud Gateway to use Eureka for service Discovery
+
+### On POM
+```xml
+<dependency>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+</dependency>
+```
+### On Application class
+```java
+@EnableEurekaServer
+@SpringBootApplication
+public class EurekaserverApplication {
+  public static void main(String[] args) {
+    SpringApplication.run(EurekaserverApplication.class, args);
+  }
+}
+```
+---
+# Ribbon
+- is a software load balancer
+![image](microservices_images/Ribbon_integration.png)<br><br>
+
 ---
 # Circuit Breaker
 **Circuit Breaker** is a design pattern used in modern software development, is used to  :

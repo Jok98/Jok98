@@ -98,6 +98,13 @@
 - ### Testing
     - #### JUnit
     - #### Mockito
+
+- ### Logging
+    - #### Log4j
+
+- ### OpenAPI
+    - #### OpenAPI UI
+    - #### OpenAPI Codegen
 ---
 
 # Tools
