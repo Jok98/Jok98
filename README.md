@@ -19,6 +19,7 @@
 ![Algorithm](https://img.shields.io/badge/-Algorithm-000?&logo=thealgorithms&logoColor=6DB33F)
 ![Data Structures](https://img.shields.io/badge/-Data%20Structures-000?&logo=databricks&logoColor=007396)
 ![OOP](https://img.shields.io/badge/-OOP-000?&logo=opencollective&logoColor=007396)
+![REST](https://img.shields.io/badge/-REST-000?&logo=REST&logoColor=6DB33F)
 
 ---
 
