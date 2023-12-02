@@ -458,6 +458,46 @@ public class EurekaserverApplication {
   }
 }
 ```
+# Euraka for Client
+### On POM
+```xml
+		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-eureka-client -->
+<dependency>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+  <version>4.0.3</version>
+</dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign -->
+<dependency>
+<groupId>org.springframework.cloud</groupId>
+<artifactId>spring-cloud-starter-openfeign</artifactId>
+<version>4.0.4</version>
+</dependency>
+```
+### On Application class
+```java
+@EnableFeignClients
+@SpringBootApplication
+public class ExpensesApplication {
+
+  public static void main(String[] args) {
+    SpringApplication.run(ExpensesApplication.class, args);
+  }
+
+}
+```
+### On Propreties
+```properties
+eureka.client.service-url.default-zone=http://localhost:8761/eureka
+```
+### On Config class
+```java
+@EnableDiscoveryClient
+@Configuration
+public class EurekaClientConfig {
+}
+```
 ---
 # Ribbon
 - is a software load balancer

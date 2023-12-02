@@ -12,7 +12,10 @@
 
 # Languages
 ![Java](https://img.shields.io/badge/-Java-000?&logo=Oracle&logoColor=007396)
-![SQL](https://img.shields.io/badge/-SQL-000?&logo=MySQL&logoColor=4479A1) 
+![SQL](https://img.shields.io/badge/-SQL-000?&logo=MySQL&logoColor=4479A1)
+![Markdown](https://img.shields.io/badge/-Markdown-000?&logo=Markdown&logoColor=A7DF1E)
+![JSON](https://img.shields.io/badge/-JSON-000?&logo=JSON&logoColor=F00F1E)
+![YAML](https://img.shields.io/badge/-YAML-000?&logo=YAML&logoColor=F7BF1E)
 
 ---
 # Concepts
@@ -56,13 +59,13 @@
 
 # Platforms
 ![Azure](https://img.shields.io/badge/-Azure-000?&logo=Microsoft%20Azure&logoColor=0078D4)
+![Confluence](https://img.shields.io/badge/-Confluence-000?&logo=Confluence&logoColor=172B4D)
 ![Kubernetes](https://img.shields.io/badge/-Kubernetes-000?&logo=Kubernetes&logoColor=326CE5)
 ---
 
 # Patterns
 
 ![MVC](https://img.shields.io/badge/-MVC-000?&logo=Java&logoColor=007396)
-![REST](https://img.shields.io/badge/-REST-000?&logo=REST&logoColor=6DB33F)
 ![Dependency Injection](https://img.shields.io/badge/-Dependency%20Injection-000?&logo=Java&logoColor=007396)
 ![Singleton](https://img.shields.io/badge/-Singleton-000?&logo=Java&logoColor=007396)
 ![CRUD](https://img.shields.io/badge/-CRUD-000?&logo=Java&logoColor=007396)
@@ -74,7 +77,7 @@
 # Microservices
 
 ![Api Gateway](https://img.shields.io/badge/-Api%20Gateway-000?&logo=Microservices&logoColor=6DB33F)
-  - ![Zuul](https://img.shields.io/badge/-Zuul-000?&logo=Spring&logoColor=6DB33F) ![Spring Cloud Gateway](https://img.shields.io/badge/-Spring%20Cloud%20Gateway-000?&logo=Spring&logoColor=6DB33F)
+- ![Spring Cloud Gateway](https://img.shields.io/badge/-Spring%20Cloud%20Gateway-000?&logo=Spring&logoColor=6DB33F)
 
 ![Naming Server](https://img.shields.io/badge/-Naming%20Server-000?&logo=Microservices&logoColor=6DB33F)
-  - ![Eureka](https://img.shields.io/badge/-Eureka-000?&logo=Spring&logoColor=6DB33F)
+- ![Eureka](https://img.shields.io/badge/-Eureka-000?&logo=Spring&logoColor=6DB33F)
