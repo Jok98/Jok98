@@ -232,87 +232,6 @@ public class CurrencyExchange {
     private String environment;
 }
 ```
-
-## Microservices communication
-
-### Mapping using RestTemplate
-
-```java
-@RestController
-public class CurrencyConversionController {
-    @GetMapping("/currency-conversion/from/{from}/to/{to}/quantity/{quantity}") // http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10
-    public CurrencyConversion calculateCurrencyConversion(@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity) {
-        HashMap<String,String> uriVariables = new HashMap<>();
-        uriVariables.put("from", from);
-        uriVariables.put("to",to);
-        ResponseEntity<CurrencyConversion> responseEntity = new RestTemplate().getForEntity("http://localhost:8080/currency-exchange/from/{from}/to/{to}",
-                CurrencyConversion.class, uriVariables);
-        CurrencyConversion currencyConversion = responseEntity.getBody();
-        return currencyConversion;
-    }
-}
-```
-### Mapping with Feign
-
-#### On Application class
-```java
-@SpringBootApplication
-@EnableFeignClients
-public class CurrencyConversionServiceApplication {}
-```
-#### Create a proxy interface
-```java
-@FeignClient(name="currency-exchange")
-public interface CurrencyExchangeProxy {
-
-  @GetMapping("/currency-exchange/from/{from}/to/{to}")
-  public CurrencyConversion retrieveExchangeValue(@PathVariable String from, @PathVariable String to);
-}
-```
-#### On Rest controller
-```java
-    //Mapping using Feign
-    @GetMapping("/currency-conversion-feign/from/{from}/to/{to}/quantity/{quantity}") // http://localhost:8100/currency-conversion-feign/from/USD/to/INR/quantity/10
-    public CurrencyConversion calculateCurrencyConversionFeign(@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity) {
-        CurrencyConversion currencyConversion = proxy.retriveExchangeValue(from,to);
-        return currencyConversion;
-    }
-```
-## Euraka Naming Server
-Eureka is a naming server. <br>
-It is used to register and discover microservices. <br>
-#### On POM
-```xml
-<dependency>
-    <groupId>org.springframework.cloud</groupId>
-    <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-    <version>2.2.2.RELEASE</version>
-</dependency>
-```
-#### On Application class
-```java
-@SpringBootApplication
-@EnableEurekaServer
-public class NetflixEurekaNamingServerApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(NetflixEurekaNamingServerApplication.class, args);
-    }
-}
-```
-#### On Propreties
-in the application.properties of the naming server
-```properties
-server.port=8761
-eureka.client.register-with-eureka=false
-eureka.client.fetch-registry=false
-```
-#### On Propreties
-in the application.properties of the microservice
-```properties
-eureka.client.service-url.default-zone=http://localhost:8761/eureka
-```
----
-
 ## API Gateway
 ![image](microservices_images/Api_Gateway_architecture.png)<br><br>
 Could also integrate the load balancer. <br>
@@ -376,7 +295,23 @@ eureka.instance.prefer-ip-address=true
 spring.cloud.config.discovery.locator.enabled=true
 spring.cloud.config.discovery.locator.lower-case-service-id=true
 ```
-### Routing
+### Static Routing
+#### On Configuration class
+```java
+@Configuration
+@Configuration
+public class LocalHostRouteConfig {
+  @Bean
+  public RouteLocator localHostRoutes(RouteLocatorBuilder builder) {
+
+    return builder.routes()
+            .route(r -> r.path("/expense")
+                    .uri("http://localhost:8090"))
+            .build();
+  }
+}
+```
+### Dynamic Routing
 #### On Configuration class
 ```java
 @Configuration
@@ -404,7 +339,7 @@ public class ApiGatewayConfiguration {
     }
 }
 ```
-#### On Propreties
+### On Propreties
 comment the following lines
 ```properties
 #spring.cloud.config.discovery.locator.enabled=true
@@ -425,8 +360,42 @@ public class LoggingFilter implements GlobalFilter {
 ```
 
 ---
-
 # Euraka Naming Server
+Eureka is a naming server. <br>
+It is used to register and discover microservices. <br>
+#### On POM
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+    <version>2.2.2.RELEASE</version>
+</dependency>
+```
+#### On Application class
+```java
+@SpringBootApplication
+@EnableEurekaServer
+public class NetflixEurekaNamingServerApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(NetflixEurekaNamingServerApplication.class, args);
+    }
+}
+```
+#### On Propreties
+in the application.properties of the naming server
+```properties
+server.port=8761
+eureka.client.register-with-eureka=false
+eureka.client.fetch-registry=false
+```
+#### On Propreties
+in the application.properties of the microservice
+```properties
+eureka.client.service-url.default-zone=http://localhost:8761/eureka
+```
+---
+
+## Euraka Naming Server
 ### Service registration
 - When a microservice starts up, it registers itself with the Eureka service
   - Provides host name / IP, port and service name
@@ -499,6 +468,54 @@ public class EurekaClientConfig {
 }
 ```
 ---
+## Microservices communication
+### Feign
+
+### Mapping using RestTemplate
+
+```java
+@RestController
+public class CurrencyConversionController {
+    @GetMapping("/currency-conversion/from/{from}/to/{to}/quantity/{quantity}") // http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10
+    public CurrencyConversion calculateCurrencyConversion(@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity) {
+        HashMap<String,String> uriVariables = new HashMap<>();
+        uriVariables.put("from", from);
+        uriVariables.put("to",to);
+        ResponseEntity<CurrencyConversion> responseEntity = new RestTemplate().getForEntity("http://localhost:8080/currency-exchange/from/{from}/to/{to}",
+                CurrencyConversion.class, uriVariables);
+        CurrencyConversion currencyConversion = responseEntity.getBody();
+        return currencyConversion;
+    }
+}
+```
+### Mapping with Feign
+
+#### On Application class
+```java
+@SpringBootApplication
+@EnableFeignClients
+public class CurrencyConversionServiceApplication {}
+```
+#### Create a proxy interface
+```java
+@FeignClient(name="currency-exchange")
+public interface CurrencyExchangeProxy {
+
+  @GetMapping("/currency-exchange/from/{from}/to/{to}")
+  public CurrencyConversion retrieveExchangeValue(@PathVariable String from, @PathVariable String to);
+}
+```
+#### On Rest controller
+```java
+    //Mapping using Feign
+    @GetMapping("/currency-conversion-feign/from/{from}/to/{to}/quantity/{quantity}") // http://localhost:8100/currency-conversion-feign/from/USD/to/INR/quantity/10
+    public CurrencyConversion calculateCurrencyConversionFeign(@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity) {
+        CurrencyConversion currencyConversion = proxy.retriveExchangeValue(from,to);
+        return currencyConversion;
+    }
+```
+---
+
 # Ribbon
 - is a software load balancer
 ![image](microservices_images/Ribbon_integration.png)<br><br>
