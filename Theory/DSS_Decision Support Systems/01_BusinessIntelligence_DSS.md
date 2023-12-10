@@ -1,3 +1,6 @@
+[//]: # (generate TOC for the title with # and ##)
+
+
 # Business Intelligence
 ### Definition
 Is a set of techniques and tools for the acquisition and transformation of raw data into meaningful and useful information for business analysis purposes.<br>
@@ -31,7 +34,7 @@ DDS components:
 - The data warehouse is the core of the BI system which is built for data analysis and reporting.<br>
 - Support few clients with complex queries.<br>
 
-### Components
+### Type of Components
 - **ETL** - Extract, Transform, Load, is the process of copying data from one or more sources into a destination system which represents the data differently from the source(s) or in a different context than the source(s).
 - **OLAP** - Online Analytical Processing, a category of software tools that provides analysis of data stored in a database.
 
@@ -74,4 +77,142 @@ DDS components:
 | Prestazioni per operazioni di analisi   | Prestazioni basse                                                                       | Alte prestazioni                                                                                                                                       |
 | Tipo di operazioni ottimizzate          | Ottimizzato per semplici transazioni; spesso l’aggiunta o la ricerca una singola riga   | Ottimizzato per accedere a molti dati, eseguendo anche ricerche non previste durante la creazione                                                      |
 | Previsione delle operazioni             | Le operazioni possibili sono previste in fase di progettazione                          | L’interattività è una caratteristica irrinunciabile delle sessioni di analisi e fa sì che il carico di lavoro effettivo vari continuamente nel tempo   |
+
+### Components
+- **Data Sources** - data sources are the source systems where the data to be loaded into the data warehouse is stored.
+- **Staging Area** - staging area is used to store the data extracted from the source systems before it is transformed and loaded into the data warehouse.
+- **Warehouse** - data warehouse is the central repository of data which is built for data analysis and reporting.
+- **Data Marts** - data marts are the smaller versions of data warehouses which are designed for a particular business line or functional area within an organization.
+- **Users** - users are the people who use the data warehouse to analyze the data stored in it and make decisions based on the analysis.<br>
+![image](DDS_image/DW_Components.png)
+
+### Data Sources
+- **Production data** - data from production systems such as ERP, CRM, SCM, and so on.
+- **External data** - data from external sources such as market data, industry data, and so on.
+- **Internal data** - data from internal sources such as sales data, marketing data, and so on.
+- **Legacy data** - data from legacy systems such as mainframes, flat files, and so on.<br>
+![image](DDS_image/DW_DataSources.png)
+
+### Staging Area
+- **Extract** - data is extracted from the source systems and copied to the staging area.
+- **Transform** - data is transformed to match the data warehouse schema.
+- **Load** - data is loaded into the data warehouse.<br>
+![image](DDS_image/DW_StagingArea.png)
+
+### Data Warehouse and Data Marts
+- **Read-only** - data warehouse is read-only and does not support any online transaction processing.
+- **Single or sectoral Archive** - data warehouse is a single or sectoral archive of the organization's data.
+- **Metadata** - data warehouse contains metadata in addition to raw data.<br>
+![image](DDS_image/DW_WarehouseDataMarts.png)
+
+### Users
+- **Analyses** - data warehouse is used by analysts to analyze the data stored in it.
+- **Reports** - data warehouse is used by managers to generate reports based on the data stored in it.
+- **Data Mining** - data warehouse is used by data mining experts to build data mining models based on the data stored in it.<br>
+![image](DDS_image/DW_Users.png)
+---
+
+---
+
+---
+# Data Warehouse Architecture
+![image](DDS_image/DW_Architecture.png)
+
+### Architecture Properties
+- **Separation** - between analytical processing and transaction processing to avoid interference and slowdowns.
+- **Scalability** - to be able to handle the increase in data volume and user requirements updating hardware and software.
+- **Extensibility** - to be able to integrate new operations and technologies without having to redesign the entire system.
+- **Security** - to protect strategic data from possible unauthorized or malicious access.
+- **Manageability** - to facilitate the management of the data warehouse
+
+## Types of architecture
+
+- ### Single-tier architecture
+There are no intermediate levels, data is transferred directly from the sources to the data warehouse, which is virtual and not physical.<br>
+This architecture reduces the amount of data stored, but does not separate analytical processing from transactional processing, and makes queries slower and heavier for operating systems.
+#### **Charateristics**
+- Reduce the amount of data stored
+- Virtual Data Warehouse
+- No separation between analytical processing and transaction processing
+- Queries are slower and heavier for operating systems
+
+![image](DDS_image/DW_SingleTier.png)
+
+- ### Two-tier architecture
+There are two intermediate levels, the data warehouse and the data marts.<br>
+The data warehouse is a physical repository that contains all the data integrated from the sources, while the data marts are subsets of data specific to certain users or domains.<br>
+This architecture separates analytical processing from transactional processing, but requires more storage space and can create consistency problems between data marts.
+
+![image](DDS_image/DW_TwoTier.png)
+
+- ### Three-tier architecture
+There are three intermediate levels, the staging area, the data warehouse, and the data marts.<br>
+The staging area is a temporary zone where data is cleaned, transformed, and integrated before being loaded into the data warehouse.<br>
+The data warehouse and data marts are as in the 2-level architecture. This architecture improves the quality and reliability of data, but requires even more storage space and complexity.<br>
+
+![image](DDS_image/DW_ThreeTier.png)
+
+---
+
+---
+
+---
+# Multi-dimensional Data Model
+### Definition
+The multidimensional model is part of the **OLAP** (On-Line Analytical Processing) process,<br>
+which allows data to be analyzed from different perspectives and levels of detail.<br>
+Is based on 2 main concepts:
+- **Measures**
+- **Dimensions**
+### Representation
+- The axes of the cube represent the **dimensions**
+- The cells of the cube represent the **measures** and correspond to a fact
+![image](DDS_image/MultiDimensionalModel.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
