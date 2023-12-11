@@ -169,44 +169,100 @@ Is based on 2 main concepts:
 - The cells of the cube represent the **measures** and correspond to a fact
 ![image](DDS_image/MultiDimensionalModel.png)
 
+---
 
+---
 
+---
 
+# OLAP operation (On-Line Analytical Processing)
+These are operations that allow data to be analyzed from various perspectives, using data cubes organized into dimensions and hierarchies.<br>
+### Characteristics
+- The records are organized in a multidimensional structure
+- Each dimension include several levels of abstraction (hierarchy)
+- Is possible see the data from different perspectives
+- Operation on OLAP cubes are interactive
 
+**Structure**<br>
+![image](DDS_image/OLAP_Standard.png)
+### Types of operations
+**Drill-Up/Roll-Up**
+- is the process of navigating from a lower level of data granularity to a higher level of data granularity. (Upscale hierarchy)<br>
+![image](DDS_image/OLAP_DrillUp.png)
 
+**Drill-Down/Roll-Down**
+- is the process of navigating from a higher level of data granularity to a lower level of data granularity. (Downscale hierarchy)<br>
+- Is a navigation from an aggregated record to a decomposed one.<br>
+![image](DDS_image/OLAP_DrillDown.png)
 
+**Slice**
+- Is a subset of a cube, obtained by fixing the value of one or more dimensions.<br>
+- Is a selection of a single value for one or more dimensions.<br>
+![image](DDS_image/OLAP_Slice.png)
 
+**Dice**
+- Is the operation of selecting a sub-cube of a cube on one or more dimensions.<br>
+![image](DDS_image/OLAP_Dice.png)
 
+**Pivot**
+- Is the operation of rotating the cube to view it from different perspectives.<br>
+![image](DDS_image/OLAP_Pivot.png)
 
+---
 
+---
 
+---
 
+# Logic Modeling
+### MOLAP (Multidimensional OLAP)
+- The data are stored in a multidimensional structure, usually a cube, and are pre-aggregated.
+### ROLAP (Relational OLAP)
+- The data are stored in a relational database and are not pre-aggregated.
+### HOLAP (Hybrid OLAP)
+- The data are stored in a multidimensional structure, usually a cube, and are not pre-aggregated.
 
+### Star Schema
+A logical model that represents data in a fact table and in multiple dimension tables, connected via foreign keys.<br>
+The fact table contains the measures of interest for the analysis, while the dimension tables contain the descriptive attributes of the analysis dimensions.<br>
+The star schema is simple, intuitive, and fast in queries, but it may require a lot of redundancy and storage space.
+![image](DDS_image/StarSchema.png)
 
+### Snowflake Schema
+A logical model that normalizes the dimension tables of the star schema, dividing them into multiple related tables.<br>
+The snowflake schema reduces redundancy and storage space, but increases complexity and query time.
+![image](DDS_image/SnowflakeSchema.png)
 
+---
 
+---
 
+---
 
+# CRISP-DM
+### Definition
+CRISP-DM stands for Cross Industry Standard Process for Data Mining.<br>
+A process model with six phases that describes the data science life cycle.<br>
+It is the most common methodology for data mining, analytics, and data science projects.
 
+### Phases of CRISP-DM
+- Business Understanding -> Understanding the business objectives and requirements.
+- Data Understanding -> Collecting and exploring the data.
+- Data Preparation -> Preparing the data for modeling.
+- Modeling -> Selecting and applying the modeling techniques.
+- Evaluation -> Evaluating the model.
+- Deployment -> Deploying the model.
 
+Each phase has several tasks and outputs that guide the project from start to finish.
 
+### Agile vs Waterfall
+- **Waterfall**
 
+![image](DDS_image/CRISP_DM_Waterfall.gif)
 
+- **Agile**
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![image](DDS_image/CRISP_DM_Agile.gif)
 
 
 
