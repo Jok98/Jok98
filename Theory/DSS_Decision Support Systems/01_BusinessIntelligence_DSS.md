@@ -264,6 +264,118 @@ Each phase has several tasks and outputs that guide the project from start to fi
 
 ![image](DDS_image/CRISP_DM_Agile.gif)
 
+---
+
+---
+
+---
+
+# Kimball
+### Definition
+Is a methodological approach to the design and development of data warehouse and business intelligence (DW/BI) systems.<br>
+The Kimball Lifecycle consists of 11 main activities that follow a sequential and iterative logic, involving both the technical and business aspects of the project.<br>
+
+### Lifecycle Map
+![image](DDS_image/Kimball_Lifecycle.png)
+
+1. **Project Planning** The organization’s readiness is assessed, objectives are defined, economic return is justified, and personnel are acquired.
+2. **Business Requirements Definition** Information on the activities, metrics, and data needed by system users is collected through facilitated sessions, questionnaires, interviews, and documentation.
+3. **Technical Architecture Design** Technical requirements are defined, the architectural model is created, and the stages for implementing the architecture are determined based on business requirements and current standards.
+4. **Product Selection and Installation** A matrix is created for evaluating products available on the market, suitable options are evaluated, a prototype is created if necessary, and the chosen product is selected and purchased.
+5. **Dimensional Modeling** The dimensional model of the database is created, based on star or snowflake schemas, with dimensions around one or more fact tables. The business process is selected, granularity is defined, dimensions and facts are identified.
+6. **Physical Design** Naming standards are defined, the physical model of the database, table indexes, and aggregations are determined.
+7. **ETL System Design and Development** The systems that populate the DW data are defined, through extraction, transformation, and loading (ETL) processes.
+8. **BI Applications Specification** Business intelligence (BI) applications are defined that allow users to access and analyze the DW data, through reports, dashboards, OLAP, data mining, etc. GUI standards are also defined.
+9. **BI Applications Implementation** The specified BI applications are developed and tested, following naming conventions, GUI standards, and the database structure. System performance is also checked, and any ETL issues are resolved.
+10. **Deployment** The system is released when the three main lines (technology, data, and BI applications) are completed. System users are also trained, and their feedback is monitored.
+11. **Maintenance and Growth** Support, training, and technical support are provided to system users. Development requests are also managed, and necessary changes to the system are made.
+
+---
+
+---
+
+---
+
+# ETL subset
+### Chapter 19: ETL Subsystem and Techniques (not required)
+
+### Introduction
+
+ETL (Extract, Transform, Load) is a fundamental process for building and maintaining a data warehouse. ETL is responsible for collecting data from operational sources, transforming it into a format suitable for the data warehouse, and loading it into the data warehouse.
+
+### The ETL System
+
+The ETL system is composed of three main components:
+
+* **The ETL engine** is responsible for executing the extraction, transformation, and loading tasks.
+* **The metadata repository** contains information about the data, sources, and destinations.
+* **The ETL tool suite** provides a set of tools to automate ETL tasks.
+
+### ETL Activities
+
+ETL activities can be divided into three phases:
+
+* **Extraction** involves retrieving data from operational sources.
+* **Transformation** involves modifying data into a format suitable for the data warehouse.
+* **Loading** involves transferring data into the data warehouse.
+
+### ETL Techniques
+
+There are a variety of ETL techniques that can be used to perform the extraction, transformation, and loading tasks.
+
+#### Extraction
+
+Extraction techniques can be divided into two categories:
+
+* **Direct extraction** involves retrieving data directly from the operational sources.
+* **Indirect extraction** involves retrieving data from another source, such as a data mart or an analytics system.
+
+#### Transformation
+
+Transformation techniques can be divided into two categories:
+
+* **Logical transformation** involves modifying the data structure, such as changing data types or removing unnecessary columns.
+* **Physical transformation** involves modifying the data content, such as replacing values or reconciling duplicate data.
+
+#### Loading
+
+Loading techniques can be divided into two categories:
+
+* **Batch loading** involves loading data in a single batch.
+* **Incremental loading** involves loading only the data that has changed since the last load.
+
+---
+
+---
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
