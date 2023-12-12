@@ -1,5 +1,16 @@
 # WIK (what I know)
 ### Work in progress
+
+### I've start working on myself on November 2023, still a lot to learn and to consolidate.
+### Check out :
+>- my [LinkedIn](https://www.linkedin.com/in/matteo-moi/) profile.
+
+>- my project [ProjectAlt96](https://github.com/Jok98/ProjectAlt96)(in development), trying to put in all my knowledge.
+
+>- my study [notes](https://github.com/Jok98/Jok98/), trying to update daily.
+
+
+
 ## TOC
 
 | [Languages](#languages) | [Concepts](#concepts) | [Databases](#databases) | [Frameworks](#frameworks) | [Tools](#tools) | [Platforms](#platforms) | [Patterns](#patterns) | [Microservices](#microservices) |
