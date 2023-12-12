@@ -1,7 +1,7 @@
 # WIK (what I know)
 ### Work in progress
 
-### I've start working on myself on November 2023, still a lot to learn and to consolidate.
+### I've started working on myself on November 2023, still a lot to learn and to consolidate.
 ### Check out :
 >- my [LinkedIn](https://www.linkedin.com/in/matteo-moi/) profile.
 
