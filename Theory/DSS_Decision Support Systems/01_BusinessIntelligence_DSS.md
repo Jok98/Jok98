@@ -350,14 +350,456 @@ Loading techniques can be divided into two categories:
 
 ---
 
+# ETL Design
+## ETL System Design and Development Process and Tasks
+
+The ETL (Extract, Transform, Load) process is the core of any data warehouse implementation. It is responsible for extracting data from disparate source systems, transforming it into a format compatible with the data warehouse, and loading it into the data warehouse.
+
+### ETL System Design and Development Process
+
+The ETL system design and development process is a complex task that requires careful planning and execution. The process can be broken down into the following phases:
+
+1. **Requirements gathering and analysis:**
+    - Understand the business requirements for the ETL system.
+    - Identify the source systems, data formats, and transformation rules.
+
+2. **ETL system design:**
+    - Design the architecture of the ETL system.
+    - Determine the data flow, transformation logic, and load processes.
+
+3. **ETL system development:**
+    - Develop the ETL system code using appropriate tools and technologies.
+
+4. **ETL system testing:**
+    - Test the ETL system to ensure it meets the business requirements and data quality standards.
+
+5. **ETL system deployment:**
+    - Deploy the ETL system into production and integrate it with the data warehouse.
+
+6. **ETL system monitoring and maintenance:**
+    - Monitor the ETL system performance and data quality.
+    - Implement error handling and logging mechanisms.
+    - Continuously improve the ETL system based on feedback.
+
+### Key Tasks in ETL System Design and Development
+
+1. **Define the ETL process flow:**
+    - Identify the source systems and data flow between them.
+    - Define the transformation rules for data cleansing and formatting.
+
+2. **Choose the appropriate ETL tools:**
+    - Evaluate different ETL tools based on their features, ease of use, and cost.
+    - Select the tool that aligns with the project's requirements and budget.
+
+3. **Develop the ETL code:**
+    - Write code to extract, transform, and load data from source systems to the data warehouse.
+    - Ensure code modularity and reusability for maintainability and future enhancements.
+
+4. **Design the data staging area:**
+    - Create a temporary holding area for data before loading into the data warehouse.
+    - Ensure adequate capacity to handle the volume of processed data.
+    - Implement data consistency checks before loading.
+
+5. **Implement error handling and logging:**
+    - Implement robust error detection and handling mechanisms.
+    - Capture detailed logs for troubleshooting and performance analysis.
+
+6. **Design data quality checks:**
+    - Integrate data quality checks into the ETL process to ensure data integrity.
+    - Address discrepancies, missing values, and data inconsistencies.
+
+7. **Develop the data dictionary:**
+    - Create a comprehensive document describing the data elements in the data warehouse.
+    - Define data relationships, attributes, and their meaning.
+
+8. **Document the ETL process:**
+    - Document the ETL process in detail, including process diagrams, code comments, and data dictionaries.
+    - Facilitate understanding and maintenance of the ETL system for future users.
+
+### ETL System Design and Development Best Practices
+
+1. **Follow a structured methodology:**
+    - Adhere to a defined methodology to ensure consistency and organization throughout the process.
+    - Employ a standardized approach for project management, documentation, and testing.
+
+2. **Use standardized tools and technologies:**
+    - Standardize on common tools and technologies to simplify development, deployment, and maintenance.
+    - Leverage open-source or industry-standard tools for compatibility and support.
+
+3. **Automate the ETL process as much as possible:**
+    - Automate repetitive tasks to reduce manual intervention and minimize errors.
+    - Employ scripting and scheduling mechanisms for efficient data processing.
+
+4. **Monitor the ETL system performance:**
+    - Regularly monitor ETL system performance to identify and address bottlenecks.
+    - Analyze metrics such as processing time, data volume, and error rates.
+
+5. **Continuously improve the ETL system:**
+    - Gather feedback from users and data analysts to refine the ETL system.
+    - Implement improvements based on performance data and feedback.
+
+By following these best practices, organizations can develop and maintain ETL systems that meet their business needs, ensure data quality, and support data-driven decision-making.
+
+---
+
+---
+
+---
 
 
+# Dimensional Modeling
 
+## DM 1
+## Chapter 1: Data Warehousing, Business Intelligence, and Dimensional Model Primer
 
+## Overview of Data Warehousing
 
+Data warehousing is a centralized repository of historical and current data that is integrated for analysis. It serves as a single source of truth for business intelligence (BI) purposes.
 
+## Key Components of a Data Warehouse
 
+1. **Data Mart:** A smaller, focused data warehouse that addresses a specific business unit or functional area.
 
+2. **Data Warehouse Bus:** A logical structure that organizes data in a consistent and predictable way, ensuring data integrity and consistency across the organization.
+
+3. **Dimensional Model:** A data modeling technique that organizes data into fact tables and dimension tables, enabling efficient data analysis and reporting.
+
+## Kimball Method for Dimensional Modeling
+
+A popular approach to developing data warehouses, emphasizing a star schema as the core data model and utilizing several techniques to efficiently manage and analyze data.
+
+## Chapter 2: Kimball Dimensional Modelling Techniques Overview
+
+## Core Techniques of Dimensional Modeling
+
+1. **Star Schema:** A common dimensional modeling pattern that employs a central fact table surrounded by dimension tables, simplifying data access and analysis.
+
+2. **Snowflake Schema:** A variation of the star schema that denormalizes dimension tables to improve performance, particularly for frequently queried data.
+
+3. **Slowly Changing Dimensions:** A technique for tracking changes to dimension attributes over time, maintaining historical data integrity.
+
+## Advanced Techniques for Dimensional Modeling
+
+1. **Bridge Tables:** Used to connect related dimensions, facilitating data integrity and consistency.
+
+2. **Degenerate Dimensions:** Employed for attributes that are part of the fact table, simplifying data organization.
+
+3. **Virtual Dimensions:** Create views of dimension data, enabling flexible and dynamic analysis based on specific user needs.
+
+By understanding the concepts and techniques presented in these two chapters, you will gain a solid foundation for learning more about data warehousing and dimensional modeling.
+
+---
+
+---
+
+---
+# DM 2
+## Chapter 3: Retail Sales
+
+## The Retail Sales Dimensional Model
+
+This chapter introduces the retail sales dimensional model, a sample model used in many organizations. The model is designed to support a variety of analyses, including sales, customer analysis, product analysis, and sales channel analysis.
+
+### The Retail Sales Dimensional Model
+
+The retail sales dimensional model consists of two types of tables:
+
+1. **Fact Tables:** Contain measurable data, such as sales, costs, and profits.
+
+2. **Dimension Tables:** Contain contextual information, such as products, customers, and sales channels.
+
+### Sales Fact Table
+
+The sales fact table contains measurable data about retail sales. Its fields include:
+
+1. **Date:** The date of the sale.
+
+2. **Product:** The product sold.
+
+3. **Quantity:** The quantity of product sold.
+
+4. **Unit Price:** The unit price of the product sold.
+
+5. **Total:** The total value of the sale.
+
+### Dimension Tables
+
+The retail sales dimensional model uses the following dimension tables:
+
+1. **Product Dimension:** Contains information about products sold. Its fields include:
+    * **Product ID:** The product identifier.
+
+    * **Description:** The product description.
+
+    * **Category:** The product category.
+
+    * **Brand:** The product brand.
+
+2. **Customer Dimension:** Contains information about customers who have made purchases. Its fields include:
+    * **Customer ID:** The customer identifier.
+
+    * **Customer Name:** The customer's name.
+
+    * **Address:** The customer's address.
+
+    * **Postal Code:** The customer's postal code.
+
+3. **Sales Channel Dimension:** Contains information about sales channels used. Its fields include:
+    * **Channel ID:** The channel identifier.
+
+    * **Channel Description:** The channel description.
+
+    * **Channel Type:** The type of channel (e.g., physical store, online store, etc.).
+
+### Examples of Analysis
+
+The retail sales dimensional model can be used to support a variety of analyses, including:
+
+1. **Sales Analysis:** The model can be used to analyze sales for product, customer, sales channel, or other criteria.
+
+2. **Customer Analysis:** The model can be used to analyze customer data, such as purchase history and demographic information.
+
+3. **Product Analysis:** The model can be used to analyze product data, such as sales, profits, and customer reviews.
+
+4. **Sales Channel Analysis:** The model can be used to analyze sales channel data, such as sales, costs, and customer engagement.
+
+---
+
+---
+
+---
+
+# DM 3
+## Chapter 4: Inventory
+
+## The Inventory Dimensional Model
+
+This chapter introduces the inventory dimensional model, a sample model used in many organizations. The model is designed to support a variety of analyses, including inventory management, sales planning, and purchasing planning.
+
+### The Inventory Dimensional Model
+
+The inventory dimensional model consists of two types of tables:
+
+1. **Fact Tables:** Contain measurable data, such as inventory quantities, inventory costs, and expiration dates.
+
+2. **Dimension Tables:** Contain contextual information, such as products, warehouses, and suppliers.
+
+### Inventory Fact Table
+
+The inventory fact table contains measurable data about inventory. Its fields include:
+
+1. **Date:** The date of the inventory.
+2. **Product:** The product in inventory.
+3. **Warehouse:** The warehouse where the inventory is located.
+4. **Quantity:** The available quantity of inventory.
+5. **Cost:** The unit cost of the inventory.
+6. **Expiration Date:** The expiration date of the inventory.
+
+### Dimension Tables
+
+The inventory dimensional model uses the following dimension tables:
+
+1. **Product Dimension:** Contains information about products in inventory. Its fields include:
+    * **Product ID:** The product identifier.
+    * **Description:** The product description.
+    * **Category:** The product category.
+    * **Brand:** The product brand.
+
+2. **Warehouse Dimension:** Contains information about warehouses where the inventory is located. Its fields include:
+    * **Warehouse ID:** The warehouse identifier.
+    * **Warehouse Description:** The warehouse description.
+    * **City:** The city where the warehouse is located.
+    * **State:** The state where the warehouse is located.
+
+3. **Supplier Dimension:** Contains information about suppliers from which inventory is purchased. Its fields include:
+    * **Supplier ID:** The supplier identifier.
+    * **Supplier Name:** The supplier name.
+    * **Address:** The supplier address.
+    * **Phone:** The supplier phone number.
+
+### Examples of Analysis
+
+The inventory dimensional model can be used to support a variety of analyses, including:
+
+1. **Inventory Management:** The model can be used to track available inventory quantities, inventory costs, and expiration dates.
+2. **Sales Planning:** The model can be used to plan sales based on available inventory quantities.
+3. **Purchasing Planning:** The model can be used to plan purchases based on sales forecasts and available inventory quantities.
+
+---
+
+---
+
+---
+
+# DM 4
+## Chapter 5: Procurement
+
+## The Procurement Dimensional Model
+
+This chapter introduces the procurement dimensional model, a sample model used in many organizations. The model is designed to support a variety of analyses, including procurement management, procurement planning, and supplier relationship management.
+
+### The Procurement Dimensional Model
+
+The procurement dimensional model consists of two types of tables:
+
+1. **Fact Tables:** Contain measurable data, such as procurement costs, payment terms, and delivery dates.
+
+2. **Dimension Tables:** Contain contextual information, such as products, suppliers, and contracts.
+
+### Procurement Fact Table
+
+The procurement fact table contains measurable data about procurements. Its fields include:
+
+1. **Date:** The date of the procurement.
+2. **Product:** The product procured.
+3. **Supplier:** The supplier from whom the product was procured.
+4. **Quantity:** The quantity of product procured.
+5. **Cost:** The unit cost of the product procured.
+6. **Payment Terms:** The payment terms agreed with the supplier.
+7. **Delivery Date:** The delivery date agreed with the supplier.
+
+### Dimension Tables
+
+The procurement dimensional model uses the following dimension tables:
+
+1. **Product Dimension:** Contains information about products procured. Its fields include:
+    * **Product ID:** The product identifier.
+    * **Description:** The product description.
+    * **Category:** The product category.
+    * **Brand:** The product brand.
+
+2. **Supplier Dimension:** Contains information about suppliers from whom products are procured. Its fields include:
+    * **Supplier ID:** The supplier identifier.
+    * **Supplier Name:** The supplier name.
+    * **Address:** The supplier address.
+    * **Phone:** The supplier phone number.
+
+3. **Contract Dimension:** Contains information about procurement contracts with suppliers. Its fields include:
+    * **Contract ID:** The contract identifier.
+    * **Start Date:** The start date of the contract.
+    * **End Date:** The end date of the contract.
+    * **Conditions:** The contract terms and conditions.
+
+### Examples of Analysis
+
+The procurement dimensional model can be used to support a variety of analyses, including:
+
+1. **Procurement Management:** The model can be used to track procurement costs, payment terms, and delivery dates.
+2. **Procurement Planning:** The model can be used to plan procurements based on sales forecasts and inventory levels.
+3. **Supplier Relationship Management:** The model can be used to monitor supplier performance and identify opportunities for improvement.
+
+---
+
+---
+
+---
+
+# DM 5
+## Chapter 6: Order Management
+
+## The Order Management Dimensional Model
+
+This chapter introduces the order management dimensional model, a sample model used in many organizations. The model is designed to support a variety of analyses, including sales analysis, customer relationship management, and sales forecasting.
+
+### The Order Management Dimensional Model
+
+The order management dimensional model consists of two types of tables:
+
+1. **Fact Tables:** Contain measurable data, such as sales, shipping costs, and delivery dates.
+2. **Dimension Tables:** Contain contextual information, such as products, customers, and sales channels.
+
+### Order Fact Table
+
+The order fact table contains measurable data about orders. Its fields include:
+
+1. **Date:** The date of the order.
+2. **Customer:** The customer who placed the order.
+3. **Sales Channel:** The sales channel used to place the order.
+4. **Product:** The product or products ordered.
+5. **Quantity:** The quantity of product or products ordered.
+6. **Unit Price:** The unit price of the product or products ordered.
+7. **Total:** The total value of the order.
+8. **Shipping Cost:** The shipping cost of the order.
+9. **Delivery Date:** The expected delivery date of the order.
+
+### Dimension Tables
+
+The order management dimensional model uses the following dimension tables:
+
+1. **Product Dimension:** Contains information about products ordered. Its fields include:
+    * **Product ID:** The product identifier.
+    * **Description:** The product description.
+    * **Category:** The product category.
+    * **Brand:** The product brand.
+
+2. **Customer Dimension:** Contains information about customers who placed orders. Its fields include:
+    * **ID Customer:** The customer identifier.
+    * **Name Customer:** The customer name.
+    * **Address:** The customer address.
+    * **Postal Code:** The customer postal code.
+
+3. **Sales Channel Dimension:** Contains information about sales channels used to place orders. Its fields include:
+    * **ID Channel:** The sales channel identifier.
+    * **Description Channel:** The sales channel description.
+    * **Type Channel:** The type of channel (e.g., physical store, online store, etc.).
+
+### Examples of Analysis
+
+The order management dimensional model can be used to support a variety of analyses, including:
+
+1. **Sales Analysis:** The model can be used to analyze sales by product, customer, sales channel, or other criteria.
+2. **Customer Relationship Management:** The model can be used to monitor customer interactions with the company, such as orders, product reviews, and customer service interactions.
+3. **Sales Forecasting:** The model can be used to forecast sales based on sales forecasts and market trends.
+
+---
+
+---
+
+---
+
+# Data Visualization
+The website [https://datavizcatalogue.com/](https://datavizcatalogue.com/) presents a wide range of charts, divided into categories based on the type of data they represent and the type of analysis they support.
+
+**Charts for quantitative data**
+
+* **Line charts:** Line charts are used to represent the change in data over time or based on another factor.
+* **Bar charts:** Bar charts are used to represent the distribution of data in categories.
+* **Stacked bar charts:** Stacked bar charts are similar to bar charts, but they show the distribution of data in categories and their change over time or based on another factor.
+* **Pie charts:** Pie charts are used to represent the distribution of data in percentages.
+* **Area charts:** Area charts are similar to line charts, but they show the area under the curve.
+* **Scatter plot:** Scatter charts are used to represent the relationship between two or more variables.
+* **Box plot:** Box plots are used to represent the distribution of data based on a median value, two quartiles, and two extremes.
+* **Heat map:** Heat maps are used to represent the distribution of data in a matrix.
+
+**Charts for qualitative data**
+
+* **Maps:** Maps are used to represent the distribution of data based on geographic location.
+* **Pie chart:** Pie charts are similar to bar charts, but they are used to represent qualitative data.
+* **Spider diagram:** Spider diagrams are used to represent the distribution of multiple variables based on a central value.
+* **Flow diagrams:** Flow diagrams are used to represent the sequence of events or steps.
+* **Gantt charts:** Gantt charts are used to represent the planning of activities or projects.
+
+**Charts for combined data**
+
+* **Line chart with bar:** Line charts with bar combine line and bar charts to represent the change in data over time and their distribution in categories.
+* **Bar chart with percentage:** Bar charts with percentage combine bar and pie charts to represent the distribution of data in categories and their change in percentage.
+* **Scatter plot with lines:** Scatter plots with lines combine scatter plots and line charts to represent the relationship between two or more variables and their change over time.
+
+**Other chart types**
+
+In addition to the charts listed above, there are also other types of charts, such as:
+
+* **3D charts:** 3D charts are used to represent data in three dimensions.
+* **Interactive charts:** Interactive charts allow users to interact with the data to view it differently.
+* **Animated charts:** Animated charts allow users to view the change in data over time.
+
+The choice of the type of chart to use depends on the type of data you want to represent and the analysis you want to perform. It is important to use the most appropriate chart to ensure that the data is displayed clearly and comprehensibly.
+
+Here are some tips for choosing the right chart type:
+
+* **Consider the type of data:** Charts for quantitative data are used to represent numerical data, while charts for qualitative data are used to represent non-numerical data.
+* **Consider the analysis to perform:** Some charts are better suited for certain analyses, such as line charts for representing the change in data over time or scatter plots for representing the relationship between two or more variables.
+* **Consider the audience:** The type of chart to use also depends on the audience to which the chart is intended. Some charts are easier to understand than others.
 
 
 
