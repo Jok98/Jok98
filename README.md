@@ -1,14 +1,10 @@
 # WIK (what I know)
 ### Work in progress
 ## TOC
-- [Languages](#languages)
-- [Concepts](#concepts)
-- [Databases](#databases)
-- [Frameworks](#frameworks)
-- [Tools](#tools)
-- [Platforms](#platforms)
-- [Patterns](#patterns)
-- [Microservices](#microservices)
+
+| [Languages](#languages) | [Concepts](#concepts) | [Databases](#databases) | [Frameworks](#frameworks) | [Tools](#tools) | [Platforms](#platforms) | [Patterns](#patterns) | [Microservices](#microservices) |
+|-------------------------|-----------------------|-------------------------|---------------------------|-----------------|-------------------------|-----------------------|---------------------------------|
+
 
 # Languages
 ![Java](https://img.shields.io/badge/-Java-000?&logo=Oracle&logoColor=007396)
@@ -76,8 +72,7 @@
 
 # Microservices
 
-![Api Gateway](https://img.shields.io/badge/-Api%20Gateway-000?&logo=Microservices&logoColor=6DB33F)
-- ![Spring Cloud Gateway](https://img.shields.io/badge/-Spring%20Cloud%20Gateway-000?&logo=Spring&logoColor=6DB33F)
+![Api Gateway](https://img.shields.io/badge/-Api%20Gateway-000?&logo=Microservices&logoColor=6DB33F) → ![Spring Cloud Gateway](https://img.shields.io/badge/-Spring%20Cloud%20Gateway-000?&logo=Spring&logoColor=6DB33F)
 
-![Naming Server](https://img.shields.io/badge/-Naming%20Server-000?&logo=Microservices&logoColor=6DB33F)
-- ![Eureka](https://img.shields.io/badge/-Eureka-000?&logo=Spring&logoColor=6DB33F)
+
+![Naming Server](https://img.shields.io/badge/-Naming%20Server-000?&logo=Microservices&logoColor=6DB33F) → ![Eureka](https://img.shields.io/badge/-Eureka-000?&logo=Spring&logoColor=6DB33F)
