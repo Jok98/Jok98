@@ -59,33 +59,33 @@
 ```properties
 Period : 11/2023-Present
 ```
-|     Company     | `Iriscube Reply` |   |  Architecture  | `Microservices` |
-|:---------------:|:----------------:|---|:--------------:|:---------------:|
-| Type of project |    `Banking`     |   | Working method |     `Agile`     |
+|         Company | `Iriscube Reply` |   |   |   Architecture | `Microservices` |
+|----------------:|:-----------------|---|---|---------------:|:----------------|
+| Type of project | `Banking`        |   |   | Working method | `Agile`         |
 
 ```yaml
-Mansion :
+Tasks :
   - Develop BE
   - Active communication with the FE team
   - Draw up technical documentation
 ```
 **Tech&Platforms**
 
-| `Java 17`  | `Spring&SpringBoot` |  `REST`   | `OpenAPI/Swagger` | `Maven` |    `Git`     | `Mockito` |
-|:----------:|:-------------------:|:---------:|:-----------------:|:-------:|:------------:|:---------:|
-| `IntelliJ` |      `Docker`       | `MongoDB` |     `Postman`     | `Azure` | `Confluence` |
+| `Java 17`  |   | `Spring&SpringBoot` |   |  `REST`   |   | `OpenAPI/Swagger` |   | `Maven` |   |    `Git`     |   | `Mockito` |
+|:----------:|---|:-------------------:|---|:---------:|---|:-----------------:|---|:-------:|---|:------------:|---|:---------:|
+| `IntelliJ` |   |      `Docker`       |   | `MongoDB` |   |     `Postman`     |   | `Azure` |   | `Confluence` |   |
 
 ---
 
 ```properties
 Period : 11/2022 - 10/2023
 ```
-|     Company     | `Blue Reply` |   |  Architecture  | `Monolithic` |
-|:---------------:|:------------:|---|:--------------:|:------------:|
-| Type of project | `Insurance`  |   | Working method |   `Agile`    |
+|         Company | `Blue Reply` |   |   |   Architecture | `Monolithic` |
+|----------------:|:-------------|---|---|---------------:|:-------------|
+| Type of project | `Insurance`  |   |   | Working method | `Agile`      |
 
 ```yaml
-Mansion :
+Tasks :
   - Standalone management of the project for 6 months
   - Develop FE and BE.
   - Analysis and implementation BR,CR, hotfixes.
@@ -95,9 +95,9 @@ Mansion :
 
 **Tech&Platforms**
 
-| `Java 8/17`  | `Vaadin 8/24` | `Hibernate/Jpa` |    `SQL`    |    `Maven`     |   `Git`   | `Junit` |
-|:------------:|:-------------:|:---------------:|:-----------:|:--------------:|:---------:|:-------:|
-|  `IntelliJ`  |   `DBeaver`   |  `MySQLServer`  |  `Postman`  |  `Jaspersoft`  |  `Azure`  |
+| `Java 8/17`  |   | `Vaadin 8/24` |   | `Hibernate/Jpa` |   |    `SQL`    |   |    `Maven`     |   |   `Git`   |   | `Junit` |
+|:------------:|---|:-------------:|---|:---------------:|---|:-----------:|---|:--------------:|---|:---------:|---|:-------:|
+|  `IntelliJ`  |   |   `DBeaver`   |   |  `MySQLServer`  |   |  `Postman`  |   |  `Jaspersoft`  |   |  `Azure`  |   |
 
 ---
 
@@ -107,9 +107,10 @@ Architecture : `Microservices`<br>
 `Web app for manage month expenses, with history and statistics`<br>
 **Tech&Platforms**
 
-| `Java 17`  | `Spring&SpringBoot` |    `REST`     | `OpenAPI/Swagger` | `Maven`  | `SQL/JPA` | `Mockito` | `Git` | `Angular` |
-|:----------:|:-------------------:|:-------------:|:-----------------:|:--------:|:---------:|:---------:|:-----:|:---------:|
-| `IntelliJ` |      `DBeaver`      | `MySQLServer` |     `Postman`     | `Docker` | `Github`  |           |       |           |           |
+| `Java 17`  |   | `Spring&SpringBoot` |   |    `REST`     |   | `OpenAPI/Swagger` |   | `Maven`  |   | `SQL/JPA` |   | `Mockito` |   | `Git` |   | `Angular` |
+|:----------:|---|:-------------------:|---|:-------------:|---|:-----------------:|---|:--------:|---|:---------:|---|:---------:|---|:-----:|---|:---------:|
+|            |   |                     |   |               |   |                   |   |          |   |           |   |           |   |       |   |           |
+| `IntelliJ` |   |      `DBeaver`      |   | `MySQLServer` |   |     `Postman`     |   | `Docker` |   | `Github`  |   |           |   |       |   |           |
 
 ### Studies Abroad
 
