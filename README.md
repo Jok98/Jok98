@@ -1,15 +1,15 @@
-# Matteo Moi
 
-`Sondrio` `05/02/1998` `matteo.moi1998@gmail.com`
-`Studying IT and Engineering @Ecampus.`<br>
+## Matteo Moi
+
+| `Sondrio` | `05/02/1998` | `Studying IT and Engineering @Ecampus.` | `matteo.moi1998@gmail.com` |
 
 [![LinkedIn](https://img.shields.io/badge/-LinkedIn-000?&logo=LinkedIn&logoColor=0077B5)](https://www.linkedin.com/in/matteo-moi/)
 [![Gmail](https://img.shields.io/badge/-Gmail-000?&logo=Gmail&logoColor=EA4335)](mailto:matteo.moi1998@gmail.com)
 [![GitHub](https://img.shields.io/badge/-GitHub-000?&logo=GitHub&logoColor=181717)](https://github.com/Jok98)
 [![LeetCode](https://img.shields.io/badge/-LeetCode-000?&logo=LeetCode&logoColor=FFA116)](https://leetcode.com/Jok98/)
 
->### Software Developer <br>
-> As an IT enthusiast I'm always looking for increase my knowledge in the field of software development,<br>not focusing on a specific language or technology but trying to develop a mindset capable of adapting in any environment.<br>
+>### Software Developer
+>As an IT enthusiast I'm always looking for increase my knowledge in the field of software development,<br>not focusing on a specific language or technology but trying to develop a mindset capable of adapting in any environment.<br>
 ### Tech Skills
 
 >**Languages**
@@ -59,10 +59,9 @@
 ```properties
 Period : 11/2023-Present
 ```
-|         Company | `Iriscube Reply` |   |  Architecture  | `Microservices` |
-|----------------:|:-----------------|---|:--------------:|:---------------:|
-|                 |                  |   |                |                 |
-| Type of project | `Banking`        |   | Working method |     `Agile`     |
+|     Company     | `Iriscube Reply` |   |  Architecture  | `Microservices` |
+|:---------------:|:----------------:|---|:--------------:|:---------------:|
+| Type of project |    `Banking`     |   | Working method |     `Agile`     |
 
 ```yaml
 Mansion :
@@ -72,18 +71,17 @@ Mansion :
 ```
 **Tech&Platforms**
 
-| `Java 17`  | `Spring & SpringBoot` |  `REST`   | `OpenAPI/Swagger` | `Maven` |    `Git`     | `Mockito` |
-|:----------:|:---------------------:|:---------:|:-----------------:|:-------:|:------------:|:---------:|
-|            |                       |           |                   |         |              |           |
-| `IntelliJ` |       `Docker`        | `MongoDB` |     `Postman`     | `Azure` | `Confluence` |
+| `Java 17`  | `Spring&SpringBoot` |  `REST`   | `OpenAPI/Swagger` | `Maven` |    `Git`     | `Mockito` |
+|:----------:|:-------------------:|:---------:|:-----------------:|:-------:|:------------:|:---------:|
+| `IntelliJ` |      `Docker`       | `MongoDB` |     `Postman`     | `Azure` | `Confluence` |
 
 ---
+
 ```properties
 Period : 11/2022 - 10/2023
 ```
 |     Company     | `Blue Reply` |   |  Architecture  | `Monolithic` |
 |:---------------:|:------------:|---|:--------------:|:------------:|
-|                 |              |   |                |              |
 | Type of project | `Insurance`  |   | Working method |   `Agile`    |
 
 ```yaml
@@ -99,9 +97,7 @@ Mansion :
 
 | `Java 8/17`  | `Vaadin 8/24` | `Hibernate/Jpa` |    `SQL`    |    `Maven`     |   `Git`   | `Junit` |
 |:------------:|:-------------:|:---------------:|:-----------:|:--------------:|:---------:|:-------:|
-|              |               |                 |             |                |           |         |
 |  `IntelliJ`  |   `DBeaver`   |  `MySQLServer`  |  `Postman`  |  `Jaspersoft`  |  `Azure`  |
-
 
 ---
 
