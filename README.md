@@ -1,5 +1,4 @@
-
-## Matteo Moi
+### Matteo Moi
 
 | `Sondrio` | `05/02/1998` | `Studying IT and Engineering @Ecampus.` | `matteo.moi1998@gmail.com` |
 
@@ -7,11 +6,10 @@
 [![Gmail](https://img.shields.io/badge/-Gmail-000?&logo=Gmail&logoColor=EA4335)](mailto:matteo.moi1998@gmail.com)
 [![GitHub](https://img.shields.io/badge/-GitHub-000?&logo=GitHub&logoColor=181717)](https://github.com/Jok98)
 [![LeetCode](https://img.shields.io/badge/-LeetCode-000?&logo=LeetCode&logoColor=FFA116)](https://leetcode.com/Jok98/)
-
->### Software Developer
->As an IT enthusiast I'm always looking for increase my knowledge in the field of software development,<br>not focusing on a specific language or technology but trying to develop a mindset capable of adapting in any environment.<br>
+### Software Developer
+>As an IT enthusiast I'm always looking for increase my knowledge in the field of software development,<br>
+not focusing on a specific language or technology but trying to develop a mindset capable of adapting in any environment.
 ### Tech Skills
-
 >**Languages**
 ![Java](https://img.shields.io/badge/-Java-000?&logo=Oracle&logoColor=007396)
 ![SQL](https://img.shields.io/badge/-SQL-000?&logo=MySQL&logoColor=4479A1)
@@ -26,7 +24,6 @@
 >**Databases**
 ![MySQL](https://img.shields.io/badge/-MySQL-000?&logo=MySQL&logoColor=4479A1)
 ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-000?&logo=PostgreSQL&logoColor=336791)
-![Oracle](https://img.shields.io/badge/-Oracle-000?&logo=Oracle&logoColor=F80000)
 ![MongoDB](https://img.shields.io/badge/-MongoDB-000?&logo=MongoDB&logoColor=47A248)<br><br>
 >**Frameworks**
 ![Spring](https://img.shields.io/badge/-Spring-000?&logo=Spring&logoColor=6DB33F)
@@ -54,72 +51,47 @@
 ![Api Gateway](https://img.shields.io/badge/-Api%20Gateway-000?&logo=Microservices&logoColor=6DB33F) → ![Spring Cloud Gateway](https://img.shields.io/badge/-Spring%20Cloud%20Gateway-000?&logo=Spring&logoColor=6DB33F) |
 ![Naming Server](https://img.shields.io/badge/-Naming%20Server-000?&logo=Microservices&logoColor=6DB33F) → ![Eureka](https://img.shields.io/badge/-Eureka-000?&logo=Spring&logoColor=6DB33F)
 
----
 ### Experience
-```properties
-Period : 11/2023-Present
-```
-|         Company | `Iriscube Reply` |   |   |   Architecture | `Microservices` |
-|----------------:|:-----------------|---|---|---------------:|:----------------|
-| Type of project | `Banking`        |   |   | Working method | `Agile`         |
+>Period : 11/2023-Present
 
+Company : `Iriscube Reply` | Architecture : `Microservices`<br>
+Type of project : `Banking` | Working method : `Agile`<br>
 ```yaml
 Tasks :
   - Develop BE
   - Active communication with the FE team
   - Draw up technical documentation
 ```
-**Tech&Platforms**
+**Tech&Platforms**<br>
+`Java 17` `Spring&SpringBoot` `REST` `OpenAPI/Swagger` `Maven` `Git` `Mockito` <br>
+`IntelliJ` `Docker` `MongoDB` `Postman` `Azure` `Confluence`
 
-| `Java 17`  |   | `Spring&SpringBoot` |   |  `REST`   |   | `OpenAPI/Swagger` |   | `Maven` |   |    `Git`     |   | `Mockito` |
-|:----------:|---|:-------------------:|---|:---------:|---|:-----------------:|---|:-------:|---|:------------:|---|:---------:|
-| `IntelliJ` |   |      `Docker`       |   | `MongoDB` |   |     `Postman`     |   | `Azure` |   | `Confluence` |   |
+>Period : 11/2022 - 10/2023
 
----
-
-```properties
-Period : 11/2022 - 10/2023
-```
-|         Company | `Blue Reply` |   |   |   Architecture | `Monolithic` |
-|----------------:|:-------------|---|---|---------------:|:-------------|
-| Type of project | `Insurance`  |   |   | Working method | `Agile`      |
-
+Company : `Blue Reply` | Architecture : `Monolithic`<br>
+Type of project : `Insurance` | Working method : `Agile`<br>
 ```yaml
 Tasks :
-  - Standalone management of the project for 6 months
+  - Standalone management of the project for six months
   - Develop FE and BE.
   - Analysis and implementation BR,CR, hotfixes.
   - Management of the test/production environment.
   - Technical lead for the migration of the front end framework.
 ```
 
-**Tech&Platforms**
-
-| `Java 8/17`  |   | `Vaadin 8/24` |   | `Hibernate/Jpa` |   |    `SQL`    |   |    `Maven`     |   |   `Git`   |   | `Junit` |
-|:------------:|---|:-------------:|---|:---------------:|---|:-----------:|---|:--------------:|---|:---------:|---|:-------:|
-|  `IntelliJ`  |   |   `DBeaver`   |   |  `MySQLServer`  |   |  `Postman`  |   |  `Jaspersoft`  |   |  `Azure`  |   |
-
----
+**Tech&Platforms**<br>
+`Java 8/17` `Vaadin 8/24` `Hibernate/Jpa` `SQL` `Maven` `Git` `Junit` <br>
+`IntelliJ` `DBeaver` `MySQLServer` `Postman` `Jaspersoft` `Azure`
 
 ### Personal Projects
-[ProjectAlt96](https://github.com/Jok98/ProjectAlt96)<br>
+**[ProjectAlt96](https://github.com/Jok98/ProjectAlt96)**<br>
 Architecture : `Microservices`<br>
-`Web app for manage month expenses, with history and statistics`<br>
-**Tech&Platforms**
-
-| `Java 17`  |   | `Spring&SpringBoot` |   |    `REST`     |   | `OpenAPI/Swagger` |   | `Maven`  |   | `SQL/JPA` |   | `Mockito` |   | `Git` |   | `Angular` |
-|:----------:|---|:-------------------:|---|:-------------:|---|:-----------------:|---|:--------:|---|:---------:|---|:---------:|---|:-----:|---|:---------:|
-|            |   |                     |   |               |   |                   |   |          |   |           |   |           |   |       |   |           |
-| `IntelliJ` |   |      `DBeaver`      |   | `MySQLServer` |   |     `Postman`     |   | `Docker` |   | `Github`  |   |           |   |       |   |           |
-
+Info : `Web app for manage month expenses, with history and statistics`<br>
+**Tech&Platforms**<br>
+`Java 17` `Spring&SpringBoot` `REST` `OpenAPI/Swagger` `Maven` `SQL/JPA` `Mockito` `Git` `Angular`<br>
+`IntelliJ` `VisualStudio Code` `DBeaver` `MySQLServer` `Postman` `Docker` `Github`
 ### Studies Abroad
-
-|      City      |      Period       |
-|:--------------:|:-----------------:|
-| Sapporo   (JP) | 08/2019 - 10/2019 |
-|  Fukuoka (JP)  | 07/2018 - 09/2018 |
-|   Kobe (JP)    | 06/2017- 07/2017  |
-
+`Sapporo(JP)` : 08/2019-10/2019 | `Fukuoka(JP)` : 07/2018-09/2018 | `Kobe(JP)` : 06/2017-07/2017
 
 
 
