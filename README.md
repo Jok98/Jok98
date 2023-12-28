@@ -5,7 +5,8 @@
 [![LinkedIn](https://img.shields.io/badge/-LinkedIn-000?&logo=LinkedIn&logoColor=0077B5)](https://www.linkedin.com/in/matteo-moi/)
 [![Gmail](https://img.shields.io/badge/-Gmail-000?&logo=Gmail&logoColor=EA4335)](mailto:matteo.moi1998@gmail.com)
 [![GitHub](https://img.shields.io/badge/-GitHub-000?&logo=GitHub&logoColor=181717)](https://github.com/Jok98)
-[![LeetCode](https://img.shields.io/badge/-LeetCode-000?&logo=LeetCode&logoColor=FFA116)](https://leetcode.com/Jok98/)
+
+[//]: # ([![LeetCode]&#40;https://img.shields.io/badge/-LeetCode-000?&logo=LeetCode&logoColor=FFA116&#41;]&#40;https://leetcode.com/Jok98/&#41;)
 
 ### Software Developer
 >As an IT enthusiast I'm always looking for increase my knowledge in the field of software development,<br>
@@ -58,7 +59,7 @@ not focusing on a specific language or technology but trying to develop a mindse
 ### Experience
 
 ```properties
-Period : 11/2023-Present
+Period : 10/2023-Present
 ```
 
 Company : `Iriscube Reply` | Architecture : `Microservices`<br>
@@ -74,7 +75,7 @@ Tasks :
 `IntelliJ` `Docker` `MongoDB` `Postman` `Azure` `Confluence`
 
 ```properties
-Period : 11/2022 - 10/2023
+Period : 11/2022 - 09/2023
 ```
 
 Company : `Blue Reply` | Architecture : `Monolithic`<br>
