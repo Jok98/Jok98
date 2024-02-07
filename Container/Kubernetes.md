@@ -9,14 +9,14 @@
 # Kubernetes Architecture
 ![image](Container_images/Kubernetes_architecture.png)
 ## Master Node
-Manages the cluster and is responsible for making decisions about the cluster. It has 3 components:
+Manages the cluster and is responsible for making decisions about the cluster.
 * **API Server** : kube-apiserver -> Provides a REST API to interact with the cluster
 * **Distribute Database** : Etcd -> Stores the state of the cluster
 * **Scheduler** : kube-scheduler -> Distributes work across multiple nodes
 * **Controller Manager** : kube-controller-manager -> Detects and responds to cluster events
 ![image](Container_images/Master_Node.png)
 ## Worker Node
-Runs the containers. It has 2 components:
+Runs the containers.
 * Node Agent : kubelet -> Communicates with the master node
 * Networking Component : kube-proxy -> Routes traffic to containers
 * Container Runtime : docker -> Runs containers

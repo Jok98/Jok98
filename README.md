@@ -59,10 +59,21 @@ not focusing on a specific language or technology but trying to develop a mindse
 ### Experience
 
 ```properties
-Period : 10/2023-Present
+Period : 01/2024-Present
 ```
 
-Company : `Iriscube Reply` | Architecture : `Microservices`<br>
+Company : `Objectway` | Architecture : `Microservices`<br>
+Type of project : `Fintech` | Working method : `Agile`<br>
+
+**Tech&Platforms**
+`Java 17` `Spring&SpringBoot` `REST` `Swagger` `Maven` `Git` `Mercurial` 
+`IntelliJ` `Docker` `Kubernetes` `OracleDB` `DBeaver` `MongoDB` `Postman` `Jasper` `Confluence`
+
+```properties
+Period : 08/2023-01/2024
+```
+
+Company : `Iriscube Reply(SistemItaly)` | Architecture : `Microservices`<br>
 Type of project : `Banking` | Working method : `Agile`<br>
 ```yaml
 Tasks :
@@ -75,10 +86,10 @@ Tasks :
 `IntelliJ` `Docker` `MongoDB` `Postman` `Azure` `Confluence`
 
 ```properties
-Period : 11/2022 - 09/2023
+Period : 11/2022 - 08/2023
 ```
 
-Company : `Blue Reply` | Architecture : `Monolithic`<br>
+Company : `Blue Reply(SistemItaly)` | Architecture : `Monolithic`<br>
 Type of project : `Insurance` | Working method : `Agile`<br>
 
 ```yaml
