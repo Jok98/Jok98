@@ -46,8 +46,7 @@ not focusing on a specific language or technology but trying to develop a mindse
 ![Postman](https://img.shields.io/badge/-Postman-000?&logo=Postman&logoColor=FF6C37)
 ![Docker](https://img.shields.io/badge/-Docker-000?&logo=Docker&logoColor=2496ED)
 
->**Platforms**
-<br>
+>**Platforms**<br>
 ![Azure](https://img.shields.io/badge/-Azure-000?&logo=Microsoft%20Azure&logoColor=0078D4)
 ![Confluence](https://img.shields.io/badge/-Confluence-000?&logo=Confluence&logoColor=172B4D)
 ![Kubernetes](https://img.shields.io/badge/-Kubernetes-000?&logo=Kubernetes&logoColor=326CE5)
