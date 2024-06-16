@@ -50,3 +50,12 @@
 | `tar` | `tar [options] [archive] [files]` | Create and manipulate tar archives. |
 | `gzip` | `gzip [file]` | Compress files (gzip format). |
 | `gunzip` | `gunzip [file.gz]` | Decompress gzip files. |
+
+### Add an alias for a command
+```bash
+nano ~/.bashrc
+```
+Add the following line to the end of the file:
+```bash
+alias k='kubectl'
+```

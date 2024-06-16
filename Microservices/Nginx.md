@@ -1,26 +1,27 @@
 
 
 # Set Up Kubernetes Environment For Nginx
+### Nginx config as API Gateway e Load Balancer
 1. Install docker
 2. Install kubectl
 3. Install minikube
 4. Start minikube
+```cmd
+minikube start --driver=docker
+```
 5. Enable ingress
 ```cmd
 minikube addons enable ingress
 ```
-6. Verify the ingress controller
-```cmd
-kubectl get pods -n kube-system -l app.kubernetes.io/name=ingress-nginx
-```
-7. Create a deployment yaml file for nginx
+6. Create a deployment
 ```yaml
+# kubectl apply -f nginx-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: nginx
@@ -30,37 +31,30 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:latest
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
 ```
-8. Apply the deployment yaml file
-```cmd
-kubectl apply -f nginx-deployment.yaml
-```
-9. Create a service yaml file for nginx
+7. Create a service
 ```yaml
+# kubectl apply -f nginx-service.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx-service
 spec:
-  type: NodePort
   selector:
     app: nginx
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
-      nodePort: 30007
+  type: NodePort
 ```
-10. Apply the service yaml file
-```cmd
-kubectl apply -f nginx-service.yaml
-```
-11. Create an Ingress yaml file
+8. Create an ingress
 ```yaml
+# kubectl apply -f nginx-ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -69,80 +63,68 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: nginx.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: nginx-service
-            port:
-              number: 80
+    - host: my-nginx.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-service
+                port:
+                  number: 80
 ```
-12. Apply the Ingress yaml file
+9. Apply the yaml files
 ```cmd
+kubectl apply -f nginx-deployment.yaml
+kubectl apply -f nginx-service.yaml
 kubectl apply -f nginx-ingress.yaml
 ```
-13. Get the Minikube IP
+10. Get the minikube ip
 ```cmd
 minikube ip
 ```
-14. Add the IP to the hosts file
-```text
-<minikube-ip> nginx.local
-```
-15. Verify the deployment and service
+11. Add the minikube ip to the hosts file
 ```cmd
-kubectl get deployments
-kubectl get services
+echo "{minikube-ip} my-nginx.local" | sudo tee -a /etc/hosts
 ```
-16. Get the Ingress IP
-```cmd
-kubectl get ingress
-```
-17. Get the Service list
-```cmd
-kubectl get services
-```
-18. Access the nginx service
+12. Expose the service
 ```cmd
 minikube service nginx-service --url
 ```
-# Configure Nginx
-If you want to customize the Nginx configuration, you can use a ConfigMap.
-## Create a ConfigMap YAML file: `nginx-configmap.yaml`
+## Personalize the nginx
+1. Create a config map
 ```yaml
+# kubectl apply -f nginx-configmap.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: nginx-config
 data:
   nginx.conf: |
-    events {}
+    events { }
     http {
-      server {
+    server {
         listen 80;
         location / {
-          return 200 'Hello, Kubernetes!';
-          add_header Content-Type text/plain;
+            return 301 https://github.com;
         }
-      }
+    }
     }
 ```
-## Apply the ConfigMap:
-```bash
+2. Apply the config map
+```cmd
 kubectl apply -f nginx-configmap.yaml
 ```
-## Update the Deployment to use the ConfigMap:
-nginx-deployment.yaml (updated)
+3. Modify the deployment to use the config map
 ```yaml
+# kubectl apply -f nginx-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: nginx
@@ -152,35 +134,22 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:latest
-        ports:
-        - containerPort: 80
-        volumeMounts:
-        - name: nginx-config-volume
-          mountPath: /etc/nginx/nginx.conf
-          subPath: nginx.conf
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: nginx-config-volume
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
       volumes:
-      - name: nginx-config-volume
-        configMap:
-          name: nginx-config
+        - name: nginx-config-volume
+          configMap:
+            name: nginx-config
 ```
-## Apply the updated Deployment:
-```bash
+4. Apply the deployment
+```cmd
 kubectl apply -f nginx-deployment.yaml
 ```
-## Restart the Pods:
-```bash
-kubectl rollout restart deployment nginx-deployment
-```
 
 
-## Verify the Setup
-Check the Pods:
-```cmd
-kubectl get pods
-```
-Access the Nginx Service:
-```cmd
-minikube service nginx-service --url
-```
