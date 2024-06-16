@@ -1,6 +1,3 @@
----
-geometry: margin= 1cm
----
 ### Matteo Moi | `Sondrio` | `05/02/1998` | `matteo.moi1998@gmail.com`
 
 [![LinkedIn](https://img.shields.io/badge/-LinkedIn-000?&logo=LinkedIn&logoColor=0077B5)](https://www.linkedin.com/in/matteo-moi/)
