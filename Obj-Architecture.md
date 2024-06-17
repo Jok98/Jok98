@@ -47,6 +47,7 @@ public class LoginDefaultServiceImpl implements LoginService {
 
     @Override
     public LoginResponse login( LoginRequest request ) throws AlarmCodeException {
+        // Do logic
         LoginResponse response = authenticate( request );
         return response;
     }
