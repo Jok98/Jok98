@@ -17,24 +17,18 @@ not focusing on a specific language or technology but trying to develop a mindse
 >**Languages**<br>
 ![Java](https://img.shields.io/badge/-Java-000?&logo=Oracle&logoColor=007396)
 ![SQL](https://img.shields.io/badge/-SQL-000?&logo=MySQL&logoColor=4479A1)
-![Markdown](https://img.shields.io/badge/-Markdown-000?&logo=Markdown&logoColor=A7DF1E)
-![JSON](https://img.shields.io/badge/-JSON-000?&logo=JSON&logoColor=F00F1E)
-![YAML](https://img.shields.io/badge/-YAML-000?&logo=YAML&logoColor=F7BF1E)
-> 
-> 
+>
 >**Concepts**<br>
 ![Algorithm](https://img.shields.io/badge/-Algorithm-000?&logo=thealgorithms&logoColor=6DB33F)
 ![Data Structures](https://img.shields.io/badge/-Data%20Structures-000?&logo=databricks&logoColor=007396)
 ![OOP](https://img.shields.io/badge/-OOP-000?&logo=opencollective&logoColor=007396)
 ![REST](https://img.shields.io/badge/-REST-000?&logo=REST&logoColor=6DB33F)
-> 
-> 
+>
 >**Databases**<br>
 ![MySQL](https://img.shields.io/badge/-MySQL-000?&logo=MySQL&logoColor=4479A1)
 ![Oracle](https://img.shields.io/badge/-Oracle-000?&logo=Oracle&logoColor=F80000)
 ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-000?&logo=PostgreSQL&logoColor=336791)
 ![MongoDB](https://img.shields.io/badge/-MongoDB-000?&logo=MongoDB&logoColor=47A248)
-> 
 > 
 >**Frameworks**<br>
 ![Spring](https://img.shields.io/badge/-Spring-000?&logo=Spring&logoColor=6DB33F)
@@ -44,8 +38,8 @@ not focusing on a specific language or technology but trying to develop a mindse
 ![Mockito](https://img.shields.io/badge/-Mockito-000?&logo=Mockito&logoColor=DC172A)
 ![Log4j](https://img.shields.io/badge/-Log4j-000?&logo=Apache&logoColor=D22128)
 ![OpenAPI](https://img.shields.io/badge/-OpenAPI-000?&logo=OpenAPI-Initiative&logoColor=6BA539)
-> 
-> 
+![Spark](https://img.shields.io/badge/-Spark-000?&logo=Apache%20Spark&logoColor=E25A1C)
+>
 >**Tools**<br>
 ![Maven](https://img.shields.io/badge/-Maven-000?&logo=Apache%20Maven&logoColor=C71A36)
 ![Git](https://img.shields.io/badge/-Git-000?&logo=Git&logoColor=F05032)
@@ -62,18 +56,14 @@ not focusing on a specific language or technology but trying to develop a mindse
 ![Jira](https://img.shields.io/badge/-Jira-000?&logo=Jira&logoColor=0052CC)
 ![Confluence](https://img.shields.io/badge/-Confluence-000?&logo=Confluence&logoColor=172B4D)
 > 
-> 
->**Patterns**<br>
-![MVC](https://img.shields.io/badge/-MVC-000?&logo=Java&logoColor=007396)
-![Dependency Injection](https://img.shields.io/badge/-Dependency%20Injection-000?&logo=Java&logoColor=007396)
-![Singleton](https://img.shields.io/badge/-Singleton-000?&logo=Java&logoColor=007396)
-![CRUD](https://img.shields.io/badge/-CRUD-000?&logo=Java&logoColor=007396)
-![Data Access Object](https://img.shields.io/badge/-Data%20Access%20Object-000?&logo=Java&logoColor=007396)
-> 
-> 
 >**Microservices**<br>
-![Api Gateway](https://img.shields.io/badge/-Api%20Gateway-000?&logo=Microservices&logoColor=6DB33F) ![Spring Cloud Gateway](https://img.shields.io/badge/-Spring%20Cloud%20Gateway-000?&logo=Spring&logoColor=6DB33F) ||
+![Api Gateway](https://img.shields.io/badge/-Api%20Gateway-000?&logo=Microservices&logoColor=6DB33F) ![Spring Cloud Gateway](https://img.shields.io/badge/-Spring%20Cloud%20Gateway-000?&logo=Spring&logoColor=6DB33F) 
+![Nginx](https://img.shields.io/badge/-Nginx-000?&logo=Nginx&logoColor=269539) ||
 ![Naming Server](https://img.shields.io/badge/-Naming%20Server-000?&logo=Microservices&logoColor=6DB33F) ![Eureka](https://img.shields.io/badge/-Eureka-000?&logo=Spring&logoColor=6DB33F)
+> 
+> **OS**<br>
+![Linux](https://img.shields.io/badge/-Linux-000?&logo=Linux&logoColor=FCC624)
+![Windows](https://img.shields.io/badge/-Windows-000?&logo=Windows&logoColor=0078D6)
 
 ### Experience
 
@@ -89,28 +79,12 @@ Period : 08/2023-01/2024
 - Company : `Iriscube Reply(SistemItaly)` | Architecture : `Microservices`
 - Type of project : `Banking` | Working method : `Agile`
 
-```yaml
-Tasks :
-  - Develop BE
-  - Active communication with the FE team
-  - Draw up technical documentation
-```
-
 ```properties
 Period : 11/2022 - 08/2023
 ```
 
 - Company : `Blue Reply(SistemItaly)` | Architecture : `Monolithic`
 - Type of project : `Insurance` | Working method : `Agile`
-
-```yaml
-Tasks :
-  - Standalone management of the project for six months
-  - Develop FE and BE.
-  - Analysis and implementation BR,CR, hotfixes.
-  - Management of the test/production environment.
-  - Technical lead for the migration of the front end framework.
-```
 
 ### Personal Projects
 
