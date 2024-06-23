@@ -1,64 +1,88 @@
 #!/bin/bash
-#chmod +x setup_ubuntu.sh ./setup_ubuntu.sh
+# chmod +x setup_ubuntu.sh
+# ./setup_ubuntu.sh
 
-# Function to install a package if it's not already installed
-install_if_not_present() {
-    if ! dpkg -l | grep -q "$1"; then
-        echo "$1 not found. Installing..."
-        sudo apt-get install -y "$1"
-    else
-        echo "$1 is already installed."
+# Function to log progress
+log() {
+    echo "$(date +'%Y-%m-%d %H:%M:%S') - $1"
+}
+
+# Function to ensure previous command succeeded
+check_command() {
+    if [ $? -ne 0 ]; then
+        log "Error: $1 failed."
+        exit 1
     fi
 }
 
 # Update package lists
-sudo apt-get update
+log "Updating package lists..."
+sudo apt update
+check_command "Package list update"
 
-# Install Zulu OpenJDK 17
-if ! java -version 2>&1 | grep -q "17"; then
-    echo "Java 17 (Zulu) not found. Installing..."
-    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
-    sudo apt-add-repository 'deb http://repos.azul.com/zulu/deb/ stable main'
-    sudo apt-get update
-    sudo apt-get install -y zulu-17
-else
-    echo "Java 17 (Zulu) is already installed."
+# Check and install zip and unzip
+if ! command -v zip &> /dev/null; then
+    log "Installing zip..."
+    sudo apt install -y zip
+    check_command "zip installation"
 fi
 
-# Set Java 17 as the default
-sudo update-alternatives --set java /usr/lib/jvm/zulu-17-amd64/bin/java
-sudo update-alternatives --set javac /usr/lib/jvm/zulu-17-amd64/bin/javac
-
-# Install Maven (latest stable version)
-if ! mvn -version 2>&1 | grep -q "Apache Maven"; then
-    echo "Maven not found. Installing..."
-    sudo apt-get install -y maven
-else
-    echo "Maven is already installed."
+if ! command -v unzip &> /dev/null; then
+    log "Installing unzip..."
+    sudo apt install -y unzip
+    check_command "unzip installation"
 fi
 
-# Install Git
-install_if_not_present git
+# Install SDKMAN
+if ! command -v sdk &> /dev/null; then
+    log "Installing SDKMAN..."
+    curl -s "https://get.sdkman.io" | bash
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
+    check_command "SDKMAN installation"
+fi
 
-# Install Helm
-if ! helm version 2>&1 | grep -q "Version"; then
-    echo "Helm not found. Installing..."
+# Ensure SDKMAN is sourced
+if [ -f "$HOME/.sdkman/bin/sdkman-init.sh" ]; then
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
+fi
+
+# Install Java 17 (Zulu version) via SDKMAN if not already installed
+if ! command -v java &> /dev/null; then
+    log "Installing Java 17 (Zulu)..."
+    sdk install java 17.0.6-zulu
+    sdk default java 17.0.6-zulu
+    check_command "Java 17 (Zulu) installation"
+fi
+
+# Check and install Maven
+if ! command -v mvn &> /dev/null; then
+    log "Installing Maven..."
+    sudo apt install -y maven
+    check_command "Maven installation"
+fi
+
+# Check and install Git
+if ! command -v git &> /dev/null; then
+    log "Installing Git..."
+    sudo apt install -y git
+    check_command "Git installation"
+fi
+
+# Check and install Helm
+if ! command -v helm &> /dev/null; then
+    log "Installing Helm..."
     curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
     sudo apt-get install apt-transport-https --yes
     echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
     sudo apt-get update
     sudo apt-get install -y helm
-else
-    echo "Helm is already installed."
+    check_command "Helm installation"
 fi
 
-# Install Docker
-if ! docker --version 2>&1 | grep -q "Docker version"; then
-    echo "Docker not found. Installing..."
-    sudo apt-get remove -y docker docker-engine docker.io containerd runc
-    sudo apt-get update
+# Check and install Docker
+if ! command -v docker &> /dev/null; then
+    log "Installing Docker..."
     sudo apt-get install -y \
-        apt-transport-https \
         ca-certificates \
         curl \
         gnupg \
@@ -69,41 +93,53 @@ if ! docker --version 2>&1 | grep -q "Docker version"; then
       $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     sudo apt-get update
     sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-    sudo usermod -aG docker $USER
-else
-    echo "Docker is already installed."
+    check_command "Docker installation"
 fi
 
-# Install Kubernetes and kubectl using snap
-if ! kubectl version --client 2>&1 | grep -q "Client Version"; then
-    echo "Kubernetes and kubectl not found. Installing..."
+# Install kubectl using snap
+if ! command -v kubectl &> /dev/null; then
+    log "Installing kubectl..."
     sudo snap install kubectl --classic
-    sudo snap install kubelet --classic
-    sudo snap install kubeadm --classic
-else
-    echo "Kubernetes and kubectl are already installed."
+    check_command "kubectl installation"
 fi
 
 # Install IntelliJ IDEA Community Edition
-if ! snap list intellij-idea-community 2>&1 | grep -q "intellij-idea-community"; then
-    echo "IntelliJ IDEA Community Edition not found. Installing..."
-    sudo apt-get install libxrender1 libxtst6 libxi6 libxrandr2 libxcursor1
+if ! command -v intellij-idea-community &> /dev/null; then
+    log "Installing IntelliJ IDEA Community Edition..."
     sudo snap install intellij-idea-community --classic
-else
-    echo "IntelliJ IDEA Community Edition is already installed."
+    check_command "IntelliJ IDEA installation"
 fi
 
-# Enable kubectl autocompletion
-echo "Enabling kubectl autocompletion..."
-source <(kubectl completion bash)
-echo "source <(kubectl completion bash)" >>~/.bashrc
+# Install graphical libraries necessary for IntelliJ IDEA
+log "Installing graphical libraries for IntelliJ IDEA..."
+sudo apt-get install -y libgtk-3-dev libcanberra-gtk-module
+check_command "Graphical libraries installation"
 
-# Create permanent aliases
-echo "Creating aliases..."
-echo 'alias k=kubectl' >>~/.bashrc
-echo 'alias idea="intellij-idea-community"' >>~/.bashrc
+# Set up kubectl autocompletion and alias
+if ! grep -q "alias k=kubectl" ~/.bashrc; then
+    log "Setting up kubectl autocompletion and alias..."
+    echo "source <(kubectl completion bash)" >> ~/.bashrc
+    echo "alias k=kubectl" >> ~/.bashrc
+    echo "complete -F __start_kubectl k" >> ~/.bashrc
+    check_command "kubectl alias setup"
+fi
 
-# Apply the changes to the current session
+# Set up IntelliJ IDEA alias
+if ! grep -q "alias idea='intellij-idea-community'" ~/.bashrc; then
+    log "Setting up IntelliJ IDEA alias..."
+    echo "alias idea='intellij-idea-community'" >> ~/.bashrc
+    check_command "IntelliJ IDEA alias setup"
+fi
+
+# Apply bashrc changes
+log "Applying bashrc changes..."
 source ~/.bashrc
 
-echo "All tasks completed successfully!"
+# Source the aliases in the current shell
+log "Sourcing kubectl alias in current shell..."
+alias k=kubectl
+
+log "Sourcing IntelliJ IDEA alias in current shell..."
+alias idea='intellij-idea-community'
+
+log "All specified components are installed and configured."
