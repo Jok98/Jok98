@@ -144,8 +144,6 @@ alias k=kubectl
 log "Sourcing IntelliJ IDEA alias in current shell..."
 alias idea='intellij-idea-community'
 
-log "All specified components are installed and configured."
-
 log "Installing microk8s addons."
 microk8s enable dns
 microk8s enable dashboard
@@ -157,3 +155,5 @@ log "Setting up microk8s env."
 sudo usermod -aG microk8s $USER
 #newgrp microk8s
 log "End setup."
+
+log "All specified components are installed and configured."
