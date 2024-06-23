@@ -126,6 +126,13 @@ if ! grep -q "alias k=kubectl" ~/.bashrc; then
     check_command "kubectl alias setup"
 fi
 
+# Set up microk8s kubectl alias
+if ! grep -q "alias k8=microk8s kubectl" ~/.bashrc; then
+    log "Setting up microk8s kubectl alias..."
+    echo "alias k8=microk8s kubectl" >> ~/.bashrc
+    check_command "microk8s kubectl alias setup"
+fi
+
 # Set up IntelliJ IDEA alias
 if ! grep -q "alias idea='intellij-idea-community'" ~/.bashrc; then
     log "Setting up IntelliJ IDEA alias..."
@@ -137,23 +144,16 @@ fi
 log "Applying bashrc changes..."
 source ~/.bashrc
 
-# Source the aliases in the current shell
-log "Sourcing kubectl alias in current shell..."
-alias k=kubectl
-
-log "Sourcing IntelliJ IDEA alias in current shell..."
-alias idea='intellij-idea-community'
-
 log "Installing microk8s addons."
+microk8s start
 microk8s enable dns
-microk8s enable dashboard
 microk8s enable ingress
 microk8s enable storage
+microk8s enable dashboard
 log "Addons installed."
 
 log "Setting up microk8s env."
 sudo usermod -aG microk8s $USER
 #newgrp microk8s
-log "End setup."
 
 log "All specified components are installed and configured."
