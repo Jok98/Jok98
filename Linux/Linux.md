@@ -51,6 +51,8 @@
 | `gzip` | `gzip [file]` | Compress files (gzip format). |
 | `gunzip` | `gunzip [file.gz]` | Decompress gzip files. |
 
+---
+
 ### Add an alias for a command
 ```bash
 nano ~/.bashrc
@@ -58,4 +60,22 @@ nano ~/.bashrc
 Add the following line to the end of the file:
 ```bash
 alias k='kubectl'
+```
+
+---
+
+### Create an ssh key
+```bash
+ssh-keygen -t rsa -b 4096
+```
+
+- Add SSH Key to SSH Agent
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+```
+
+- Copy SSH Key
+```bash
+cat ~/.ssh/id_rsa.pub
 ```

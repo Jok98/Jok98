@@ -129,7 +129,7 @@ fi
 # Set up microk8s kubectl alias
 if ! grep -q "alias k8=microk8s kubectl" ~/.bashrc; then
     log "Setting up microk8s kubectl alias..."
-    echo "alias k8=microk8s kubectl" >> ~/.bashrc
+    echo "alias k8='microk8s kubectl'" >> ~/.bashrc
     check_command "microk8s kubectl alias setup"
 fi
 
