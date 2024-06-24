@@ -4,30 +4,24 @@
 ```shell
 sudo apt-get install pandoc
 ```
-- `Copy the markdown file to the Wsl` :
+- `Copy markdown file to the Wsl` :
 ```shell
 cp /mnt/c/Users/username/Documents/README.md /home/username
 ```
-- `Convert the markdown file to pdf` :
+- `Convert markdown file to pdf` :
 ```shell
-pandoc -s README.md -o README.pdf
+pandoc README.md -s -o cv.pdf -V geometry:"top=1cm, bottom=1cm, left=1cm, right=1cm"
 ```
-
-- `To copy the pdf file to the Windows` :
+- `Copy the pdf file into Windows` :
 ```shell
 cp README.pdf /mnt/c/Users/username/Documents
 ```
-- `To open the pdf file in Wsl` :
+- `Open pdf file in Wsl` :
 ```shell
 zathura README.pdf
 ```
-- `To install zathura` :
+- `Install zathura` :
 ```shell
 sudo apt-get install zathura
-```
-
-- `To forcew a new page` :
-```text
-\newpage
 ```
 
