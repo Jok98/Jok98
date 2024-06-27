@@ -100,7 +100,7 @@ fi
 if ! command -v kubectl &> /dev/null; then
     log "Installing kubectl..."
     sudo snap install microk8s --classic
-    sudo snap install kubectl --classic
+#    sudo snap install kubectl --classic
 
     check_command "kubectl installation"
 fi
@@ -118,13 +118,13 @@ sudo apt-get install -y libgtk-3-dev libcanberra-gtk-module
 check_command "Graphical libraries installation"
 
 # Set up kubectl autocompletion and alias
-if ! grep -q "alias k=kubectl" ~/.bashrc; then
-    log "Setting up kubectl autocompletion and alias..."
-    echo "source <(kubectl completion bash)" >> ~/.bashrc
-    echo "alias k=kubectl" >> ~/.bashrc
-    echo "complete -F __start_kubectl k" >> ~/.bashrc
-    check_command "kubectl alias setup"
-fi
+#if ! grep -q "alias k=kubectl" ~/.bashrc; then
+#    log "Setting up kubectl autocompletion and alias..."
+#    echo "source <(kubectl completion bash)" >> ~/.bashrc
+#    echo "alias k=kubectl" >> ~/.bashrc
+#    echo "complete -F __start_kubectl k" >> ~/.bashrc
+#    check_command "kubectl alias setup"
+#fi
 
 # Set up microk8s kubectl alias
 if ! grep -q "alias k8=microk8s kubectl" ~/.bashrc; then
@@ -156,4 +156,6 @@ log "Setting up microk8s env."
 sudo usermod -aG microk8s $USER
 #newgrp microk8s
 
+log "Installing locate..."
+sudo sudo apt install plocate
 log "All specified components are installed and configured."
