@@ -15,10 +15,10 @@ such as libraries and other dependencies, and ship it all out as one package.
   * configuration files
 * You can run these docker containers the same way on any infrastructure
 ## Docker Architecture
-![image](Container_images/Docker_architecture.png)
+![image](DevOps_images/Docker_architecture.png)
 
 ## Deployments with Docker
-![image](Container_images/deployments_w_docker.png)
+![image](DevOps_images/deployments_w_docker.png)
 
 ## CMD Docker commands for images
 ### To pull an image from docker hub
@@ -146,7 +146,7 @@ docker run -p 5000:5000 -d --cpu-quota=50000 in28min/todo-rest-api-h2:1.0.0.RELE
 ---
 # Distributed Tracing
 **Distributed Tracing** is a method used to profile and monitor applications, especially those built using a microservices architecture. <br>
-![image](Container_images/Distributed_tracing.png)
+![image](DevOps_images/Distributed_tracing.png)
 
 ## Zipkin
 **Zipkin** is a distributed tracing system. It helps gather timing data needed to troubleshoot latency problems in service architectures. <br>

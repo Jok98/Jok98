@@ -7,21 +7,21 @@
 * Load Balancing -> Distribute load among multiple instance of a microservice
 
 # Kubernetes Architecture
-![image](Container_images/Kubernetes_architecture.png)
+![image](DevOps_images/Kubernetes_architecture.png)
 ## Master Node
 Manages the cluster and is responsible for making decisions about the cluster.
 * **API Server** : kube-apiserver -> Provides a REST API to interact with the cluster
 * **Distribute Database** : Etcd -> Stores the state of the cluster
 * **Scheduler** : kube-scheduler -> Distributes work across multiple nodes
 * **Controller Manager** : kube-controller-manager -> Detects and responds to cluster events
-![image](Container_images/Master_Node.png)
+![image](DevOps_images/Master_Node.png)
 ## Worker Node
 Runs the containers.
 * Node Agent : kubelet -> Communicates with the master node
 * Networking Component : kube-proxy -> Routes traffic to containers
 * Container Runtime : docker -> Runs containers
 * Pod : A group of one or more containers, with shared storage/network, and a specification for how to run the containers.
-![image](Container_images/Worker_Node.png)
+![image](DevOps_images/Worker_Node.png)
 ## Cluster
 A Kubernetes cluster is composed of a master node and a number of worker nodes.<br>
 The master node controls the state of the cluster, such as which applications are running and their container images.<br>
@@ -52,13 +52,13 @@ kubectl get pods -o wide
 ```cmd
 kubectl describe pod <pod-name>
 ```
-![image](Container_images/Pods_architecture.png)
+![image](DevOps_images/Pods_architecture.png)
 ## Replica Sets
 #### Replica sets are used to ensure that a specified number of pod replicas are running at any given time.
 ```cmd
 kubectl scale deployment hello-world-rest-api --replicas=3
 ```
-![image](Container_images/ReplicaSet.png)
+![image](DevOps_images/ReplicaSet.png)
 ## Events
 #### Events are used to track the progress of various operations in the cluster.
 ```cmd
