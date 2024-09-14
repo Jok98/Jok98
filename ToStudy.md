@@ -1,14 +1,10 @@
-## To Study
-- Kubernetes :
-    - microk8s
-    - Rancher
-    - Helm
-    - Ingress
-
-
-- SpringBoot :
-    - Bean
-    - Factory
-    - Configuration
-    - Security
-    - Jwt
+| Topic                      | Done |
+|----------------------------|------|
+| DSA                        |      |
+| Java                       |      |
+| Microservices Architecture |      |
+| DevOps                     |      |
+| Design Patterns            |      |
+| DB                         |      |
+| Network                    |      |
+| OS                         |      |
