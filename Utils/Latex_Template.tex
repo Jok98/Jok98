@@ -33,6 +33,23 @@
     captionpos=b, % Caption position: 't' for top and 'b' for bottom
 }
 
+\lstdefinelanguage{yaml}{
+    keywords={true, false, null, yes, no},
+    keywordstyle=\color{blue}\bfseries,
+    basicstyle=\ttfamily,
+    sensitive=false,
+    comment=[l]{\#},
+    commentstyle=\color{gray}\ttfamily,
+    morestring=[b]',
+    morestring=[b]",
+    stringstyle=\color{orange},
+    literate =    {---}{{\processthree}}3
+        {>}{{\textcolor{red}{>}}}1
+        {|}{{\textcolor{red}{|}}}1
+        {*}{{\textcolor{red}{*}}}1
+        {:}{{\textcolor{red}{:}}}1,
+}
+
 
 % GitHub and LinkedIn URLs
 \newcommand{\githuburl}{https://github.com/yourusername}
@@ -53,6 +70,8 @@
     \newpage
 
 % Start your notes here
+
+
     \section{Title}
 
     \subsection{Subtitle}
