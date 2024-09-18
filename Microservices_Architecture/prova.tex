@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc} % Permette l'uso dei caratteri UTF-8
+\usepackage{listings} % Pacchetto per inserire codice
+\usepackage{xcolor} % Pacchetto per colori
+
+% Configurazione del pacchetto listings per Java
+\lstset{
+    language=Java,                % Linguaggio del codice
+    basicstyle=\ttfamily\small,   % Stile del testo
+    keywordstyle=\color{blue},    % Colore delle parole chiave
+    stringstyle=\color{red},      % Colore delle stringhe
+    commentstyle=\color{green},   % Colore dei commenti
+    numbers=left,                 % Numeri di riga a sinistra
+    numberstyle=\tiny\color{gray},% Stile dei numeri di riga
+    stepnumber=1,                 % Ogni riga numerata
+    tabsize=2,                    % Dimensione del tab
+    showspaces=false,             % Non mostra gli spazi
+    showstringspaces=false,       % Non mostra gli spazi nelle stringhe
+}
+
+\title{Inserire Codice Java in LaTeX}
+\author{Il Tuo Nome}
+\date{\today}
+
+\begin{document}
+
+    \maketitle
+
+    \section{Esempio di Codice Java}
+
+    Di seguito è riportato un esempio di codice Java con i metodi in viola:
+
+    \begin{lstlisting}
+// Questo è un semplice programma Java
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+
+    private void metodoPrivato() {
+        // Metodo privato
+    }
+}
+    \end{lstlisting}
+
+\end{document}
