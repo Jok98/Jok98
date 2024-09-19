@@ -7,6 +7,10 @@
 \usepackage{geometry}
 \usepackage{fancyhdr}
 \usepackage{hyperref}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{todonotes}
 
 \pagestyle{fancy}
 
@@ -63,6 +67,53 @@
 
     \tableofcontents
     \newpage
+
+
+    \section{Spring/SpringBoot fundamental concepts}
+
+    \subsection{Inversion of Control (IoC)}
+    \textit{\textbf{Definition}}: IoC is a design principle where the control flow of a program is inverted. Instead of the application code controlling the flow, the framework takes control of the flow and instantiates and manages the lifecycle of objects.
+
+    \subsection{Dependency Injection}
+    \textit{\textbf{Definition}}: It is a technique where an object receives its dependencies from an external source(in this case Spring Framework) rather than creating them internally.
+
+    \subsubsection{Types of Injection in Spring}
+    \begin{itemize}
+        \item \textbf{Constructor Injection}
+        \begin{lstlisting}
+@Component
+class Client {
+    private final Service service;
+
+    // Constructor injection
+    @Autowired
+    public Client(Service service) {
+        this.service = service;
+    }
+        \end{lstlisting}
+        \item \textbf{Setter Injection}
+        \begin{lstlisting}
+@Component
+class Client {
+    private Service service;
+
+    // Setter injection
+    @Autowired
+    public void setService(Service service) {
+        this.service = service;
+    }
+        \end{lstlisting}
+        \item \textbf{Field Injection}
+        \begin{lstlisting}
+@Component
+class Client {
+
+    // Field injection
+    @Autowired
+    private Service service;
+        \end{lstlisting}
+
+    \end{itemize}
 
 
     \section{SpringBoot Annotation}
@@ -136,5 +187,88 @@ public class AppConfig {
     public DataSource dataSource() {
         // Configure and return the necessary JDBC DataSource
     \end{lstlisting}
+
+    \newpage
+
+
+    \section{Spring Data}
+    In Spring Data, an entity represents a database table, and a repository provides an abstraction to perform CRUD operations on the entity. Spring Data JPA automates the creation of the repository based on the interfaces you define.
+
+    \subsection{Entity}
+    The class is annotated with @Entity and the fields with annotations like @Id and @GeneratedValue to define the primary key and its auto-generation strategy.
+
+    \subsubsection{JPA}
+    \begin{lstlisting}
+@Entity
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+    private String email;
+
+    // Default constructor required by JPA
+    public User() {}
+    \end{lstlisting}
+
+    \subsubsection{Mongo}
+    \begin{lstlisting}
+@Document(collection = "users")  // Specifies the MongoDB collection name
+public class User {
+
+    @Id
+    private String id;  // MongoDB will automatically generate the `_id` field
+    private String name;
+    private String email;
+
+    // Default constructor required by Spring Data
+    public User() {}
+    \end{lstlisting}
+
+    \subsection{Repository}
+    The repository interface provides methods to interact with the database(CRUD ops) extending JpaRepository (or CrudRepository) gives these functionalities automatically.
+
+    \begin{lstlisting}
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+
+    // You can define custom query methods here
+    User findByEmail(String email);
+}
+    \end{lstlisting}
+
+    \subsubsection{Reactive Repository}
+    B ased on non-blocking I/O this interface do not
+    return objects or collections of objects; instead, return Mono and Flux objects which ones are reactive streams that are
+    capable of returning either 0...1 or 0...m entities as they become available on the stream. (Supported by Mongo, not supported by JPA)
+    \begin{lstlisting}
+@Repository
+public interface UserRepository extends ReactiveCrudRepository<User, Long> {
+
+    // You can define custom query methods here
+    Flux<User> findByEmail(String email);
+}
+    \end{lstlisting}
+
+    \subsection{Service}
+    A service layer is a common way to encapsulate business logic and handle repository interactions.
+    \begin{lstlisting}
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
+    \end{lstlisting}
+
 
 \end{document}
