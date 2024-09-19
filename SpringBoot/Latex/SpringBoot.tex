@@ -1,0 +1,140 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+\pagestyle{fancy}
+
+\geometry{margin=1in}
+
+% Java code setup
+\lstset{
+    language=Java, % Language specification
+    basicstyle=\ttfamily\small, % Code font size and type
+    keywordstyle=\color{blue}\bfseries, % Keywords color
+    stringstyle=\color{teal}, % Strings color
+    commentstyle=\color{olive}, % Comments color
+    numbers=left, % Line numbers
+    numberstyle=\tiny\color{gray}, % Line numbers style
+    stepnumber=1, % The step between two line numbers
+    numbersep=5pt, % How far the line numbers are from the code
+    backgroundcolor=\color{lightgray!10}, % Background color for the code block
+    showspaces=false, % Show spaces in the code
+    showstringspaces=false, % Don't show spaces in strings
+    tabsize=4, % Tab size
+    breaklines=true, % Line breaking
+    breakatwhitespace=true, % Break lines only at whitespace
+    frame=single, % Adds a frame around the code
+    captionpos=b, % Caption position: 't' for top and 'b' for bottom
+}
+
+\lstdefinelanguage{yaml}{
+    keywords={true, false, null, yes, no},
+    keywordstyle=\color{blue}\bfseries,
+    basicstyle=\ttfamily,
+    sensitive=false,
+    comment=[l]{\#},
+    commentstyle=\color{gray}\ttfamily,
+    morestring=[b]',
+    morestring=[b]",
+    stringstyle=\color{orange},
+    literate =    {---}{{\processthree}}3
+        {>}{{\textcolor{red}{>}}}1
+        {|}{{\textcolor{red}{|}}}1
+        {*}{{\textcolor{red}{*}}}1
+        {:}{{\textcolor{red}{:}}}1,
+}
+
+% Header configuration
+\fancyhead[L]{\href{https://github.com/Jok98}{GitHub}}
+\fancyhead[R]{\href{https://www.linkedin.com/in/matteo-moi/}{LinkedIn}}
+
+\begin{document}
+
+    \title{SpringBoot}
+    \author{Matteo Moi}
+    \date{}
+    \maketitle
+
+    \tableofcontents
+    \newpage
+
+
+    \section{SpringBoot Annotation}
+    \begin{itemize}
+        \item \textbf{@SpringBootApplication}
+        \item \textbf{@Component}
+        \item \textbf{@Configuration}
+    \end{itemize}
+
+    \subsection{@SpringBootApplication}
+    \begin{lstlisting}
+@SpringBootApplication
+public class MyApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(MyApplication.class, args);
+    }
+}
+    \end{lstlisting}
+    This annotation is a shortcut that combines three fundamental annotations in Spring :
+
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{|c|p{10cm}|}
+            \hline
+            Annotation               & Description                                                                                                                                                                            \\ \hline
+            @Configuration           & Indicates that the class can be used by the Spring IoC container as a source of bean definitions.                                                                                      \\ \hline
+            @EnableAutoConfiguration & Enables the auto-configuration, which automatically configures your application based on the dependencies you have added.                                                              \\ \hline
+            @ComponentScan           & Instructs Spring to scan the current package and its sub-packages for components, configurations, and services, allowing it to detect and register beans with the application context. \\ \hline
+        \end{tabular}
+        \label{tab:Annotation}
+    \end{table}
+
+    \subsection{@Component}
+    It is used to mark a Java class as a "component" so that Spring can automatically detect and manage the class as a bean within its Inversion of Control (IoC) container without explicit configuration.
+    \begin{lstlisting}
+@Component
+public class MyComponent {
+    public void performAction() {
+        // Business logic here
+    }
+}
+    \end{lstlisting}
+
+    \subsubsection{Specialized Stereotypes}
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{|c|p{10cm}|}
+            \hline
+            Annotation      & Description                                                                                 \\ \hline
+            @Service        & Indicates that the class holds business logic                                               \\ \hline
+            @Repository     & Indicates that the class is a Data Access Object (DAO) and will interact with the database. \\ \hline
+            @Controller     & Used in Spring MVC to denote a controller class that handles HTTP requests                  \\ \hline
+            @RestController & combines @Controller and @ResponseBody. It is used in RESTful web services                  \\ \hline
+        \end{tabular}
+        \label{tab:Annotation}
+    \end{table}
+
+    \newpage
+
+    \subsection{@Configuration}
+    Purpose :
+    \begin{itemize}
+        \item Define Beans in Java: @Configuration classes are used to define beans using methods annotated with @Bean. This enables type-safe, refactor-friendly configuration
+        \item Initialize Application Context: Acts as a source for the Spring container to generate and manage bean definitions at runtime.
+    \end{itemize}
+    \begin{lstlisting}
+@Configuration
+public class AppConfig {
+
+    @Bean
+    public DataSource dataSource() {
+        // Configure and return the necessary JDBC DataSource
+    \end{lstlisting}
+
+\end{document}
