@@ -1,5 +1,6 @@
 \documentclass[a4paper, 12pt]{article}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{listings}
@@ -270,6 +271,82 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
     \end{lstlisting}
+
+    \newpage
+
+
+    \section{Spring Cloud}
+
+    \subsection{Spring Cloud Stream}
+
+    \textit{\textbf{Definition}}: SCS provides a streaming abstraction over messaging, based on the publish and subscribe integration pattern. SCS comes with built-in support for Apache Kafka and RabbitMQ.
+
+    \subsubsection{Core concepts}
+
+    \begin{itemize}
+        \item \textbf{Message}: A data structure that's used to describe data sent to and received from a messaging system.
+        \item \textbf{Publisher(Supplier)}: Sends messages to the messaging system
+        \item \textbf{Subscriber(Consumer)}: Receives messages from the messaging system
+        \item \textbf{Destination}: Used to communicate with the messaging system.
+        Publisher use output destinations and Subscriber input destinations.
+        Destinations are mapped by specific binders to queues and topics in the underlying messaging system.
+        \item \textbf{Binder}: provides the actual integration with a specific messaging system(similar to jdbc with a specific database)
+    \end{itemize}
+
+    \subsection{System Messaging Impl}
+    \begin{itemize}
+        \item \textbf{Publisher}
+        \begin{lstlisting}
+    @Bean
+    public Supplier<String> myPublisher() {
+        return()-> new Date().toString();
+    }
+        \end{lstlisting}
+        \item \textbf{Consumer}
+        \begin{lstlisting}
+    @Bean
+    public Consumer<String> mySubscriber() {
+        return s -> System.out.println("Message received: "+s );
+    }
+        \end{lstlisting}
+        \item \textbf{Supplier/Consumer}
+        \begin{lstlisting}
+    @Bean
+    public Function<String> myProcessor() {
+        return s -> "Message received: "+s;
+    }
+        \end{lstlisting}
+
+        \item \textbf{Properties}
+        \begin{lstlisting}
+        # To make Spring aware of these functions
+        spring.cloud.function:
+            definition: myPublisher; MyProcessor; mySubscriber
+        # To tell Spring what destination to use for each function
+        spring.cloud.stream.bindings
+            myPublisher-out-0:
+                destination: myProcessor-in
+            myProcessor-in-0:
+                destination: myProcessor-in
+            myProcessor-out-0:
+                destination: myProcessor-out
+            myConsumer-in-0:
+                destination: myProcessor-out
+        \end{lstlisting}
+        Result : myPublisher -> myProcessor -> mySubscriber
+
+        On default the supplier is triggered by default every second but if you want to trigger it by an external event like a REST Api is called then:
+        \begin{lstlisting}
+    @Autowired
+    private StreamBridge streamBridge;
+
+    @PostMapping
+    void exApi(@RequestBody String body){
+    streamBridge.send("myProcessor-in-0", body);
+
+    }
+        \end{lstlisting}
+    \end{itemize}
 
 
     \section{TODO}
