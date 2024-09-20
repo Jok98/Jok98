@@ -1,0 +1,153 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{todonotes}
+
+\pagestyle{fancy}
+
+\geometry{margin=1in}
+
+% Java code setup
+\lstset{
+    language=Java, % Language specification
+    basicstyle=\ttfamily\small, % Code font size and type
+    keywordstyle=\color{blue}\bfseries, % Keywords color
+    stringstyle=\color{teal}, % Strings color
+    commentstyle=\color{olive}, % Comments color
+    numbers=left, % Line numbers
+    numberstyle=\tiny\color{gray}, % Line numbers style
+    stepnumber=1, % The step between two line numbers
+    numbersep=5pt, % How far the line numbers are from the code
+    backgroundcolor=\color{lightgray!10}, % Background color for the code block
+    showspaces=false, % Show spaces in the code
+    showstringspaces=false, % Don't show spaces in strings
+    tabsize=4, % Tab size
+    breaklines=true, % Line breaking
+    breakatwhitespace=true, % Break lines only at whitespace
+    frame=single, % Adds a frame around the code
+    captionpos=b, % Caption position: 't' for top and 'b' for bottom
+}
+%\begin{lstlisting}[language=yaml]
+\lstdefinelanguage{yaml}{
+    keywords={true, false, null, yes, no},
+    keywordstyle=\color{blue}\bfseries,
+    basicstyle=\ttfamily,
+    sensitive=false,
+    comment=[l]{\#},
+    commentstyle=\color{gray}\ttfamily,
+    morestring=[b]',
+    morestring=[b]",
+    stringstyle=\color{orange},
+    literate =    {---}{{\processthree}}3
+        {>}{{\textcolor{red}{>}}}1
+        {|}{{\textcolor{red}{|}}}1
+        {*}{{\textcolor{red}{*}}}1
+        {:}{{\textcolor{red}{:}}}1,
+}
+
+% Header configuration
+\fancyhead[L]{\href{https://github.com/Jok98}{GitHub}}
+\fancyhead[R]{\href{https://www.linkedin.com/in/matteo-moi/}{LinkedIn}}
+
+\begin{document}
+
+    \title{DevOps}
+    \author{Matteo Moi}
+    \date{}
+    \maketitle
+
+    \tableofcontents
+    \newpage
+
+
+    \section{Docker}
+    \textit{\textbf{Definition}}: is a platform that allows developers to package applications into containers—standardized units of software that include everything the application needs to run.
+    A container is actually a process in a Linux host that use Linux namespaces to provide isolation between different containers.
+
+    \subsection{How to set up an environment with Docker}
+
+    \subsubsection{Create a Dockerfile}
+    \begin{lstlisting}
+# Use a base image with Java
+FROM openjdk:17-jdk-alpine
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the compiled JAR file from the target directory to the container
+COPY target/myapp-0.0.1-SNAPSHOT.jar /app/myapp.jar
+
+# Expose the port that the Spring Boot application will run on
+EXPOSE 8080
+
+# Define the command to run the application
+ENTRYPOINT ["java", "-jar", "/app/myapp.jar"]
+
+    \end{lstlisting}
+
+    Build the Docker Image
+    \begin{lstlisting}
+docker build -t myapp:latest .
+    \end{lstlisting}
+
+    Run the Docker Container
+    \begin{lstlisting}
+docker run -p 8080:8080 myapp:latest
+    \end{lstlisting}
+    http://localhost:8080
+
+    \subsubsection{Docker Compose for Multi-Container Setup}
+    Docker Compose allows you to define and run multi-container Docker applications using a docker-compose.yml file.
+
+    \begin{lstlisting}[language=yaml]
+version: '3'
+
+services:
+  service1:
+    image: service1:latest
+    build:
+      context: ./service1
+    ports:
+      - "8081:8080"
+    networks:
+      - microservices-network
+
+  service2:
+    image: service2:latest
+    build:
+      context: ./service2
+    ports:
+      - "8082:8080"
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    driver: bridge
+
+    \end{lstlisting}
+    \begin{itemize}
+        \item \textbf{services}: Defines the microservices and their configurations.
+        \item \textbf{image}: Specifies the image for each service.
+        \item \textbf{build}: Defines the build context for each service (the directory containing the Dockerfile).
+        \item \textbf{ports}: Maps the container ports to the host machine.
+        \item \textbf{networks}: Creates an isolated network for the microservices to communicate with each other.
+    \end{itemize}
+    To start all the services
+    \begin{lstlisting}
+docker-compose up --build
+    \end{lstlisting}
+
+
+    \section{in progress...}
+\end{document}
