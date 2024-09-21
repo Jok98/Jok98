@@ -271,6 +271,137 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
     \end{lstlisting}
+    \newpage
+
+
+    \section{Spring REST}
+
+    \subsection{Java JSON Data Binding}
+    Also know as :
+    \begin{itemize}
+        \item Mapping
+        \item Serialization/Deserialization
+        \item Marshalling/Unmarshalling
+    \end{itemize}
+    Is the process to covert a json to a java pojo and vice versa,Jackson Project handles the data binding (is automatically included in SB Starter Web). It work through attributes and getter/setter method of java pojo.
+
+    \subsection{HTTP Methods and Status Codes}
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{|c|c|c|c|}
+            \hline
+            Method & Description                 & Data placement                 & Code \\ \hline
+            POST   & create new resources        & request body                   & 201  \\ \hline
+            GET    & request data                & URL parameters (query strings) & 200  \\ \hline
+            PUT    & update an existing resource & request body                   & 200  \\ \hline
+            DELETE & delete a specified resource & URL parameters (query strings) & 204  \\ \hline
+        \end{tabular}
+        \label{tab:Annotation}
+    \end{table}
+
+    \subsection{@RestController}
+    \begin{lstlisting}
+@RestController
+@RequestMapping("/api/books")
+public class BookController {
+    \end{lstlisting}
+    \begin{itemize}
+        \item \textbf{@RestController}: Indicates that the class handles REST requests and automatically serializes responses to JSON.
+        \item \textbf{@RequestMapping}("/api/books"): Sets the base URI for all endpoints in the controller.
+    \end{itemize}
+
+    \subsection{POST}
+    \begin{lstlisting}
+    // **Create a new book**
+    @PostMapping
+    public ResponseEntity<Book> createBook(@RequestBody Book book) {
+        Book savedBook = bookRepository.save(book);
+        return new ResponseEntity<>(savedBook, HttpStatus.CREATED);
+    }
+    \end{lstlisting}
+
+    \subsection{GET}
+    \begin{lstlisting}
+    // **Get all books**
+    @GetMapping
+    public List<Book> getAllBooks() {
+        return bookRepository.findAll();
+    }
+    \end{lstlisting}
+
+    \begin{lstlisting}
+    // **Get a book by ID**
+    @GetMapping("/{id}")
+    public ResponseEntity<Book> getBookById(@PathVariable Long id) {
+        Optional<Book> book = bookRepository.findById(id);
+        return book.map(value -> ResponseEntity.ok().body(value))
+                   .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+    \end{lstlisting}
+
+    \subsection{PUT}
+    \begin{lstlisting}
+    // **Update a book**
+    @PutMapping("/{id}")
+    public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book bookDetails) {
+        Optional<Book> optionalBook = bookRepository.findById(id);
+
+        if (optionalBook.isPresent()) {
+            Book book = optionalBook.get();
+            book.setTitle(bookDetails.getTitle());
+            book.setAuthor(bookDetails.getAuthor());
+            book.setIsbn(bookDetails.getIsbn());
+
+            Book updatedBook = bookRepository.save(book);
+            return ResponseEntity.ok(updatedBook);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    \end{lstlisting}
+
+    \subsection{DELETE}
+    \begin{lstlisting}
+    // **Delete a book**
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
+        Optional<Book> book = bookRepository.findById(id);
+
+        if (book.isPresent()) {
+            bookRepository.delete(book.get());
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    \end{lstlisting}
+
+    \subsection{Key Annotations}
+    \begin{itemize}
+        \item \textbf{@PathVariable}: Extracts values from the URI ex.(/api/books/1)
+        \item \textbf{@RequestBody}: Binds the HTTP request body to a transfer or domain object.
+    \end{itemize}
+
+    \subsection{Internationalization (i18n)}
+    Create a messages.properties file in the same folder of application.properties.
+    \begin{lstlisting}[language=yaml]
+good.morning.message=Good Morning
+    \end{lstlisting}
+
+    x = it | fr | de …
+    Create a messages{x}.properties for each language
+
+    \begin{lstlisting}
+
+@Autowired
+private MessageSource messageSource;
+@GetMapping(path = "/hello-world-internationalized")
+public String helloWorldInternationalized() {
+        Locale locale = LocaleContextHolder.getLocale();
+        return messageSource.getMessage("good.morning.message", null, "Default Message", locale);
+}
+    \end{lstlisting}
+
 
     \newpage
 
@@ -348,11 +479,6 @@ public class UserService {
         \end{lstlisting}
     \end{itemize}
 
-
-    \section{TODO}
-    \begin{itemize}
-        \item add to Spring data example with Generics
-    \end{itemize}
 
     \section{in progress...}
 \end{document}
