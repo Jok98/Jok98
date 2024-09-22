@@ -196,6 +196,13 @@ public class AppConfig {
 
     In Spring Data, an entity represents a database table, and a repository provides an abstraction to perform CRUD operations on the entity. Spring Data JPA automates the creation of the repository based on the interfaces you define.
 
+    \subsection{Configuration}
+    \begin{lstlisting}[language=yaml]
+spring.datasource.url= jdbc:mysql//localhost:3306/db_name
+spring.datasource.username= username
+spring.datasource.password= password
+    \end{lstlisting}
+
     \subsection{Entity}
     The class is annotated with @Entity and the fields with annotations like @Id and @GeneratedValue to define the primary key and its auto-generation strategy.
 
@@ -381,6 +388,87 @@ public class BookController {
         \item \textbf{@PathVariable}: Extracts values from the URI ex.(/api/books/1)
         \item \textbf{@RequestBody}: Binds the HTTP request body to a transfer or domain object.
     \end{itemize}
+
+    \subsection{Exception Handling}
+
+    \subsubsection{Specific Exception Handling}
+    \begin{itemize}
+        \item Error Class
+    \end{itemize}
+    \begin{lstlisting}
+public class BookErrorResponse{
+    private int status;
+    private String message;
+    private long timeStamp;
+
+    //constructor
+    //getter/setter
+}
+    \end{lstlisting}
+    \begin{itemize}
+        \item Define exception
+    \end{itemize}
+    \begin{lstlisting}
+public class BookNotFoundException extends RuntimeException {
+    public BookNotFoundException(String message){
+        super(message)
+    }
+}
+    \end{lstlisting}
+
+    \begin{itemize}
+        \item Controller
+    \end{itemize}
+    \begin{lstlisting}
+@ExceptionHandler
+public ResponseEntity<BookErrorResponse> handleException(BookNotFoundException exc){
+    BookErrorResponse error = new BookErrorResponse();
+    error.setStatus(HttpStatus.NOT_FOUND.value());
+    error.setMessage(exc.getMessage());
+    error.setTimeStamp(System.currentTimeMillis());
+    return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+}
+    \end{lstlisting}
+    \begin{itemize}
+        \item Call the exception
+    \end{itemize}
+    \begin{lstlisting}
+throw new BookNotFoundException("Book not found"+ id);
+    \end{lstlisting}
+
+    Error response :
+    \begin{lstlisting}[language=yaml]
+{
+    "status": 404,
+    "message": "Book not found 5"
+    "timeStamp": 15248923
+}
+    \end{lstlisting}
+
+    \subsubsection{Global Exception Handling}
+    The right method to manage exception :
+    \begin{itemize}
+        \item Promote reuse
+        \item Standardize exception response
+        \item Centralizes exception handling
+    \end{itemize}
+
+    \textbf{@ControllerAdvice}
+    Is similar to an interceptor/filter, can pre-process and post-process.
+    Impl : same as specific exception but the exception handling moves from the controller to a new class
+    \begin{lstlisting}
+    @ControllerAdvice
+    public class BookRestExceptionHandler {
+        @ExceptionHandler
+        public ResponseEntity<BookErrorResponse> handleException(BookNotFoundException exc){
+        BookErrorResponse error = new BookErrorResponse();
+        error.setStatus(HttpStatus.NOT_FOUND.value());
+        error.setMessage(exc.getMessage());
+        error.setTimeStamp(System.currentTimeMillis());
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+}
+    }
+    \end{lstlisting}
 
     \subsection{Internationalization (i18n)}
     Create a messages.properties file in the same folder of application.properties.
