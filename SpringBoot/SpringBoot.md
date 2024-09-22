@@ -41,20 +41,20 @@
 
 6. [`In Progress`](#in-progress)
 
-## Spring/SpringBoot fundamental concepts
+# Spring/SpringBoot fundamental concepts
 
-### Inversion of Control (IoC)
+## Inversion of Control (IoC)
 
 **Definition**: IoC is a design principle where the control flow of a program is inverted. Instead of the application
 code controlling the flow, the framework takes control of the flow and instantiates and manages the lifecycle of
 objects.
 
-### Dependency Injection
+## Dependency Injection
 
 **Definition**: It is a technique where an object receives its dependencies from an external source (in this case Spring
 Framework) rather than creating them internally.
 
-#### Types of Injection in Spring
+### Types of Injection in Spring
 
 - **Constructor Injection**
 
@@ -174,12 +174,12 @@ public class AppConfig {
 
 ---
 
-## Spring Data
+# Spring Data
 
 In Spring Data, an entity represents a database table, and a repository provides an abstraction to perform CRUD
 operations on the entity. Spring Data JPA automates the creation of the repository based on the interfaces you define.
 
-### Configuration
+## Configuration
 
 ```yaml
 spring.datasource.url= jdbc:mysql//localhost:3306/db_name
@@ -187,12 +187,12 @@ spring.datasource.username= username
 spring.datasource.password= password
 ```
 
-### Entity
+## Entity
 
 The class is annotated with @Entity and the fields with annotations like @Id and @GeneratedValue to define the primary
 key and its auto-generation strategy.
 
-#### JPA
+### JPA
 
 ```java
 
@@ -213,7 +213,7 @@ public class User {
 }
 ```
 
-#### Mongo
+### Mongo
 
 ```java
 
@@ -239,7 +239,7 @@ public class User {
 | `GenerationType.TABLE`    | Assign primary keys using an underlying database table to ensure uniqueness        |
 | `GenerationType.UUID`     | Assign primary keys using a globally unique identifier (UUID) to ensure uniqueness |
 
-### Repository
+## Repository
 
 The repository interface provides methods to interact with the database (CRUD ops). Extending JpaRepository (or
 CrudRepository) gives these functionalities automatically.
@@ -256,7 +256,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 }
 ```
 
-#### Reactive Repository
+### Reactive Repository
 
 Based on non-blocking I/O, this interface does not return objects or collections of objects; instead, it returns Mono
 and Flux objects, which are reactive streams capable of returning either 0...1 or 0...m entities as they become
@@ -272,7 +272,7 @@ public interface UserRepository extends ReactiveCrudRepository<User, Long> {
 }
 ```
 
-### Service
+## Service
 
 A service layer is a common way to encapsulate business logic and handle repository interactions.
 
@@ -296,11 +296,11 @@ public class UserService {
 
 ---
 
-## Spring REST
+# Spring REST
 
 ## Java JSON Data Binding
 
-Also know as:
+Also known as:
 
 - **Mapping**
 - **Serialization/Deserialization**
@@ -417,6 +417,25 @@ public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
 - **@PathVariable**: Extracts values from the URI, e.g., `/api/books/1`
 - **@RequestBody**: Binds the HTTP request body to a transfer or domain object.
 
+## Validation
+On pojo/entity
+```java
+public class Book{
+    private int  id;
+    @Size(min=2)
+    private String title;
+    @Past(message = "Publication date should be in the past")
+    private LocalDate publicationDate;
+    
+}
+```
+On Controller
+```java
+@PostMapping
+public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) {
+
+```
+
 ## Exception Handling
 
 ### Global Exception Handling
@@ -461,6 +480,12 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     @ExceptionHandler(BookNotFoundException.class)
     public final ResponseEntity<Object> handleBookNotFoundException(BookNotFoundException ex, WebRequest request) {
         return buildErrorResponse(ex, HttpStatus.NOT_FOUND, request);
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(
+            MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        return buildErrorResponse(ex, HttpStatus.BAD_REQUEST, request);
     }
 }
 ```
@@ -519,14 +544,14 @@ public String helloWorldInternationalized() {
 
 ---
 
-## Spring Cloud
+# Spring Cloud
 
-### Spring Cloud Stream
+## Spring Cloud Stream
 
 **Definition**: SCS provides a streaming abstraction over messaging, based on the publish and subscribe integration
 pattern. SCS comes with built-in support for Apache Kafka and RabbitMQ.
 
-#### Core concepts
+### Core concepts
 
 - **Message**: A data structure that's used to describe data sent to and received from a messaging system.
 - **Publisher (Supplier)**: Sends messages to the messaging system.
@@ -537,7 +562,7 @@ pattern. SCS comes with built-in support for Apache Kafka and RabbitMQ.
 - **Binder**: Provides the actual integration with a specific messaging system (similar to JDBC with a specific
   database).
 
-### System Messaging Implementation
+## System Messaging Implementation
 
 - **Publisher**
 
@@ -604,4 +629,4 @@ void exApi(@RequestBody String body) {
 }
 ```
 
-## in progress...
+# in progress...
