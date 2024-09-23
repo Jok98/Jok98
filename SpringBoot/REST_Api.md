@@ -158,6 +158,8 @@ public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) {
 
 ```
 
+---
+
 ## Exception Handling
 
 ### Global Exception Handling
@@ -242,7 +244,48 @@ throw new BookNotFoundException("Book not found: "+id);
 }
 ```
 
-## Internationalization (i18n)
+---
+
+## Api Documentation
+Using Springdoc OpenAPI
+
+On pom.xml
+```xml
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-ui</artifactId>
+</dependency>
+```
+Springdoc will mange automatically the documentation of the API, found in http://localhost:8080/swagger-ui.html.
+
+It could be customized with annotations
+```java
+@Operation(summary = "Get all books")
+
+@Parameter(description = "Book Id", required = true)
+
+@ApiResponse(responseCode = "200", description = "Book found")
+
+@Schema(implementation = Book.class)
+```
+
+---
+
+## Negociation Content
+
+- ### Return XML
+The client can request the response in XML format by setting the `Accept` header to `application/xml`.
+The conversion is automatic, managed by jackson library.
+
+On pom.xml
+```xml
+<dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-xml</artifactId>
+</dependency>
+```
+
+- ### Internationalization (i18n)
 
 Create a `messages.properties` file in the same folder as `application.properties`.
 
@@ -264,4 +307,6 @@ public String helloWorldInternationalized() {
 }
 ```
 
----
+Client need to set the `Accept-Language` header to the desired language.
+
+
