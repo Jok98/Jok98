@@ -309,4 +309,39 @@ public String helloWorldInternationalized() {
 
 Client need to set the `Accept-Language` header to the desired language.
 
+---
 
+## HATEOAS
+(Hypermedia as the Engine of Application State)
+
+It is a constraint of the REST application architecture. It allows the client to interact with the server through hypermedia links.
+On Controller
+```java
+@GetMapping(path = "/books/{id}")
+public EntityModel<Book> retrieveBook(@PathVariable int id) {
+    Book book = bookService.findOne(id);
+    if (book == null) {
+        throw new BookNotFoundException("id-" + id);
+    }
+    EntityModel<Book> resource = EntityModel.of(book);
+
+    WebMvcLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllBooks());
+    resource.add(linkTo.withRel("all-books"));
+
+    return resource;
+}
+```
+Response
+```json
+{
+  "id": 1,
+  "name": "Book 1",
+  "author": "Author 1",
+  "price": 1000,
+  "_links": {
+    "all-books": {
+      "href": "http://localhost:8080/books"
+    }
+  }
+}
+```
