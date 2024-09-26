@@ -5,19 +5,19 @@
 - [Java JSON Data Binding](#java-json-data-binding)
 - [@RestController](#restcontroller)
 - [POST](#post)
-  - [POST with Created Location](#post-with-created-location)
+    - [POST with Created Location](#post-with-created-location)
 - [GET](#get)
 - [PUT](#put)
 - [DELETE](#delete)
 - [Key Annotations](#key-annotations)
 - [Validation](#validation)
 - [Exception Handling](#exception-handling)
-  - [Global Exception Handling](#global-exception-handling)
-  - [Error Class](#error-class)
-  - [Create Custom Exception Handler](#create-custom-exception-handler)
-  - [Define Exception](#define-exception)
-  - [Call the Exception in any Controller](#call-the-exception-in-any-controller)
-  - [Error Response](#error-response)
+    - [Global Exception Handling](#global-exception-handling)
+    - [Error Class](#error-class)
+    - [Create Custom Exception Handler](#create-custom-exception-handler)
+    - [Define Exception](#define-exception)
+    - [Call the Exception in any Controller](#call-the-exception-in-any-controller)
+    - [Error Response](#error-response)
 - [Internationalization (i18n)](#internationalization-i18n)
 
 ## Java JSON Data Binding
@@ -140,19 +140,24 @@ public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
 - **@RequestBody**: Binds the HTTP request body to a transfer or domain object.
 
 ## Validation
+
 On pojo/entity
+
 ```java
-public class Book{
-    private int  id;
-    @Size(min=2)
+public class Book {
+    private int id;
+    @Size(min = 2)
     private String title;
     @Past(message = "Publication date should be in the past")
     private LocalDate publicationDate;
-    
+
 }
 ```
+
 On Controller
+
 ```java
+
 @PostMapping
 public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) {
 
@@ -247,18 +252,23 @@ throw new BookNotFoundException("Book not found: "+id);
 ---
 
 ## Api Documentation
+
 Using Springdoc OpenAPI
 
 On pom.xml
+
 ```xml
+
 <dependency>
     <groupId>org.springdoc</groupId>
     <artifactId>springdoc-openapi-ui</artifactId>
 </dependency>
 ```
+
 Springdoc will mange automatically the documentation of the API, found in http://localhost:8080/swagger-ui.html.
 
 It could be customized with annotations
+
 ```java
 @Operation(summary = "Get all books")
 
@@ -274,11 +284,14 @@ It could be customized with annotations
 ## Negociation Content
 
 - ### Return XML
+
 The client can request the response in XML format by setting the `Accept` header to `application/xml`.
 The conversion is automatic, managed by jackson library.
 
 On pom.xml
+
 ```xml
+
 <dependency>
     <groupId>com.fasterxml.jackson.dataformat</groupId>
     <artifactId>jackson-dataformat-xml</artifactId>
@@ -312,11 +325,15 @@ Client need to set the `Accept-Language` header to the desired language.
 ---
 
 ## HATEOAS
+
 (Hypermedia as the Engine of Application State)
 
-It is a constraint of the REST application architecture. It allows the client to interact with the server through hypermedia links.
+It is a constraint of the REST application architecture. It allows the client to interact with the server through
+hypermedia links.
 On Controller
+
 ```java
+
 @GetMapping(path = "/books/{id}")
 public EntityModel<Book> retrieveBook(@PathVariable int id) {
     Book book = bookService.findOne(id);
@@ -331,7 +348,9 @@ public EntityModel<Book> retrieveBook(@PathVariable int id) {
     return resource;
 }
 ```
+
 Response
+
 ```json
 {
   "id": 1,
@@ -351,12 +370,14 @@ Response
 ## Customize Response
 
 - ### Customize field name
+
 `@JsonIgnoreProperties("book_id")`
 On pojo/entity
+
 ```java
-public class Book{
+public class Book {
     @JsonProperty("book_id")
-    private int  id;
+    private int id;
     //...
 }
 ```
@@ -371,19 +392,23 @@ Same filter for all requests
 
 `@JsonIgnore`
 On pojo/entity
+
 ```java
-public class Book{
+public class Book {
     @JsonIgnore
-    private int  id;
+    private int id;
     //...
 }
 ```
+
 `@JsonIgnoreProperties(value = {"book_id", "author"})`
 On pojo/entity
+
 ```java
+
 @JsonIgnoreProperties(value = {"book_id", "author"})
-public class Book{
-    private int  id;
+public class Book {
+    private int id;
     private String author;
     //...
 }
@@ -396,16 +421,21 @@ Customize filtering for a bean for specific REST API
 `@JsonFilter("BookFilter")`
 
 On pojo/entity
+
 ```java
+
 @JsonFilter("BookFilter")
-public class Book{
-    private int  id;
+public class Book {
+    private int id;
     private String name;
     //...
 }
 ```
+
 On controller
+
 ```java
+
 @GetMapping(path = "/books/{id}")
 public MappingJacksonValue retrieveBook(@PathVariable int id) {
     Book book = bookService.findOne(id);
@@ -419,3 +449,29 @@ public MappingJacksonValue retrieveBook(@PathVariable int id) {
     return mapping;
 }
 ```
+
+---
+
+## Actuactor
+
+Actuator is a Spring Boot module that provides monitoring and management capabilities.
+It provides a number of built-in endpoints that can be used to monitor and interact with your application.
+Most common endpoints:
+
+| Endpoint              | Description                                                           |
+|-----------------------|-----------------------------------------------------------------------|
+| `/actuator/health`    | Shows application health information.                                 |
+| `/actuator/info`      | Displays arbitrary application info.                                  |
+| `/actuator/metrics`   | Shows metrics information for the current application.                |
+| `/actuator/httptrace` | Displays HTTP trace information.                                      |
+| `/actuator/beans`     | Displays a complete list of all the Spring beans in your application. |
+
+To expose all endpoints, add the following to `application.properties`:
+
+```properties
+management.endpoints.web.exposure.include=*
+```
+
+To access the endpoints, go to `http://localhost:8080/actuator`.
+
+
