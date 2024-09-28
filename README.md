@@ -108,6 +108,7 @@ Microservices & Architecture
 - **Fukuoka (JP)**: 07/2018 - 09/2018
 - **Kobe (JP)**: 06/2017 - 07/2017
 
+---
 
 <head>
 <style>
