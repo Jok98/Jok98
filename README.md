@@ -163,16 +163,16 @@
     text-align: center;
   }
 
-    h3 {
+  h3 {
     text-align: center;
     font-size: 12px;
     color: MidnightBlue;
-    }
+  }
 
-h4{
+  h4 {
     text-align: center;
     font-size: 10px;
-}
+  }
 
   /* Center the table on the page */
   table {
