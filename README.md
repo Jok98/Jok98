@@ -112,6 +112,7 @@ Microservices & Architecture
 <head>
 <style>
  body{
+    border: 1 px solid black;
      align-items: center;
      font-size: 8 px;
 }
