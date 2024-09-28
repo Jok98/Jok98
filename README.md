@@ -110,16 +110,17 @@ Microservices & Architecture
 
 ---
 
-<head>
 <style>
  body{
+   	background-color: gray;
+    color: white;
     border: 1 px solid black;
-     align-items: center;
-     font-size: 8 px;
+    align-items: center;
 }
    h1, h2 {
     color: #f5d507;
     text-align: center;
+    font-size: 12 px;
 }
 /* Center the table on the page */
  table {
@@ -145,4 +146,3 @@ Microservices & Architecture
 
  
 </style>
-</head>>
