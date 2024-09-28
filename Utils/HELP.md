@@ -1,9 +1,17 @@
 ## Convert Markdown to PDF
 ### On Wsl
+- `Install texlive` :
+```shell
+sudo apt-get install texlive-latex-base
+sudo apt-get install texlive-fonts-recommended
+sudo apt-get install texlive-fonts-extra
+sudo apt-get install texlive-latex-extra
+````
 - `Install pandoc` :
 ```shell
 sudo apt-get install pandoc
 ```
+
 - `Copy markdown file to the Wsl` :
 ```shell
 cp /mnt/c/Users/username/Documents/README.md /home/username

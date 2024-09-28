@@ -1,6 +1,6 @@
 # Matteo Moi - Software Developer
 
-`Location: Sondrio, Italy` | `Date of Birth: 05/02/1998` | `Email: matteo.moi1998@gmail.com`
+Location: Sondrio, Italy | Date of Birth: 05/02/1998 | Email: matteo.moi1998@gmail.com
 
 ## [LinkedIn](https://www.linkedin.com/in/matteo-moi/) | [GitHub](https://github.com/Jok98)
 
@@ -22,50 +22,57 @@
 
 ## Technical Skills
 
-- ### Languages & Frameworks
+<table border="1">
+  <tr>
+    <td>
+Languages & Frameworks 
 
-|                                 |                                                  |
-|---------------------------------|--------------------------------------------------|
-| Backend                         | `Java` `Spring&SpringBoot` `Hibernate`           |
-| Testing                         | `JUnit`  `Mockito`                               |
-| Databases                       | `MySQL` `PostgreSQL` `Oracle` `MongoDB`          |
-| DevOps & Cloud                  | `Docker` `Kubernetes` `Jenkins` `GitLab` `Azure` |
-| Version Control & Collaboration | `Git` `Jira` `Confluence`                        |
+|                                 |                                                                |
+|---------------------------------|----------------------------------------------------------------|
+| Backend                         | Java <br/> Spring&SpringBoot <br/> Hibernate                   |
+| Testing                         | JUnit  <br/> Mockito                                           |
+| Databases                       | MySQL <br/> PostgreSQL <br/> Oracle <br/> MongoDB              |
+| DevOps & Cloud                  | Docker <br/> Kubernetes <br/> Jenkins <br/> GitLab <br/> Azure |
+| Version Control & Collaboration | Git <br/> Jira <br/> Confluence                                |
 
-- ### Microservices & Architecture
+</td>
+    <td>
+Microservices & Architecture
 
-|                                  |                                            |
-|----------------------------------|--------------------------------------------|
-| API Gateway                      | `Spring Cloud Gateway` `Nginx`             |
-| Service Discovery                | `Netflix Eureka` `Zookeeper`               |
-| Centralized Configuration        | `Spring Cloud Config`                      |
-| Circuit Breaker                  | `Resilience4j`                             |
-| Asynchronous Communication       | `Apache Kafka`                             |
-| Distributed Logging & Tracing    | `Spring Cloud` `Zipkin`                    |
-| Security                         | `Spring Security` `OAuth2` `JWT`           |
-| Containerization & Orchestration | `Docker` `Kubernetes`                      |
-| Testing & CI/CD                  | `JUnit` `Mockito` `Jenkins` `GitLab CI/CD` |
-| Monitoring & Alerting            | `Prometheus` `Grafana`                     |
+|                                  |                                                      |
+|----------------------------------|------------------------------------------------------|
+| API Gateway                      | Spring Cloud <br/> Gateway Nginx                     |
+| Service Discovery                | Netflix Eureka <br/> Zookeeper                       |
+| Centralized Configuration        | Spring Cloud Config                                  |
+| Circuit Breaker                  | Resilience4j                                         |
+| Asynchronous Communication       | Apache Kafka                                         |
+| Distributed Logging & Tracing    | Spring Cloud Zipkin                                  |
+| Security                         | Spring Security <br/> OAuth2 <br/>JWT                |
+| Containerization & Orchestration | Docker <br/>Kubernetes                               |
+| Testing & CI/CD                  | JUnit <br/> Mockito <br/> Jenkins <br/> GitLab CI/CD |
+| Monitoring & Alerting            | Prometheus <br/> Grafana                             |
 
-- ### Operating Systems : `Linux` | `Windows`
+</td>
+  </tr>
+</table>
 
 ---
 
 ## Professional Experience
 
-> **Objectway** `01/2024 - Present`
+> **Objectway** 01/2024 - Present
 
 - **Architecture**: Microservices
 - **Industry**: Fintech
 - **Working Method**: Agile (Scrum)
 
-> **Iriscube Reply (SistemItaly)** `08/2023 - 01/2024`
+> **Iriscube Reply (SistemItaly)** 08/2023 - 01/2024
 
 - **Architecture**: Microservices
 - **Industry**: Banking
 - **Working Method**: Agile
 
-> **Blue Reply (SistemItaly)** `11/2022 - 08/2023`
+> **Blue Reply (SistemItaly)** 11/2022 - 08/2023
 
 - **Architecture**: Monolithic
 - **Industry**: Insurance
@@ -101,3 +108,36 @@
 - **Fukuoka (JP)**: 07/2018 - 09/2018
 - **Kobe (JP)**: 06/2017 - 07/2017
 
+<style>
+ body{
+     align-items: center;
+     font-size: 8 px;
+}
+   h1, h2 {
+    color: #f5d507;
+    text-align: center;
+}
+/* Center the table on the page */
+ table {
+     margin-left: auto;
+     margin-right: auto;
+     border-collapse: collapse;
+}
+/* Center the text inside table headers and cells */
+ th, td {
+     text-align: center;
+     vertical-align: middle;
+     padding: 10px;
+    /* Adds padding inside cells */
+}
+/* Optional: Adds a border around the table and cells */
+ table, th, td {
+     border: 1px solid black;
+}
+/* Optional: Adds style to headers (bold is default for <th>) */
+ th {
+     font-weight: bold;
+}
+
+ 
+</style>
