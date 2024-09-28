@@ -1,3 +1,7 @@
+---
+title: "CV"
+---
+
 # Matteo Moi - Software Developer
 
 Location: Sondrio, Italy | Date of Birth: 05/02/1998 | Email: matteo.moi1998@gmail.com
@@ -110,39 +114,4 @@ Microservices & Architecture
 
 ---
 
-<style>
- body{
-   	background-color: gray;
-    color: white;
-    border: 1 px solid black;
-    align-items: center;
-}
-   h1, h2 {
-    color: #f5d507;
-    text-align: center;
-    font-size: 12 px;
-}
-/* Center the table on the page */
- table {
-     margin-left: auto;
-     margin-right: auto;
-     border-collapse: collapse;
-}
-/* Center the text inside table headers and cells */
- th, td {
-     text-align: center;
-     vertical-align: middle;
-     padding: 10px;
-    /* Adds padding inside cells */
-}
-/* Optional: Adds a border around the table and cells */
- table, th, td {
-     border: 1px solid black;
-}
-/* Optional: Adds style to headers (bold is default for <th>) */
- th {
-     font-weight: bold;
-}
-
- 
-</style>
+<style> body{ align-items: center; font-size: 8px; } h1, h2 { color: #f5d507; text-align: center; } /* Center the table on the page */ table { margin-left: auto; margin-right: auto; border-collapse: collapse; } /* Center the text inside table headers and cells */ th, td { text-align: center; vertical-align: middle; padding: 10px; /* Adds padding inside cells */ } /* Optional: Adds a border around the table and cells */ table, th, td { border: 1px solid black; } /* Optional: Adds style to headers (bold is default for ) */ th { font-weight: bold; } </style> >
