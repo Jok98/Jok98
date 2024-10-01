@@ -88,3 +88,13 @@ Trigger a refresh by calling the /actuator/refresh endpoint
 ```bash
 curl -X POST http://localhost:8080/actuator/refresh
 ```
+
+## Profiles
+
+To use profiles, we need to create a file named `application-{profile}.properties` in the repository.
+
+To use a profile as default, we need to add the following line to the `application.properties` file.
+```properties
+spring.profiles.active=dev
+```
+
