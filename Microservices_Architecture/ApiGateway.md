@@ -33,3 +33,75 @@ requests and routing them to the appropriate backend services.
 - **Netflix Zuul**
 - **Spring Cloud Gateway**
 - **Kong**
+
+
+## Spring Cloud Gateway
+
+Is built on top of Spring WebFlux(Reactive Approach) and provides a simple and powerful way to route requests, filter them, and handle cross-cutting concerns such as security, monitoring, and logging.
+
+### Dependencies
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-gateway</artifactId>
+</dependency>
+```
+
+### Properties
+
+```yaml
+spring.application.name: api-gateway
+server.port: 8765
+
+eureka.client.service-url.defaultZone: http://localhost:8761/eureka
+```
+
+To call a service registered in Eureka, you can use the following URL pattern:
+
+```
+http://localhost:8765/{service-name}/{uri}
+```
+
+### Configuration
+
+```java
+@Configuration
+public class GatewayConfig {
+
+    @Bean
+    public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
+        return builder.routes()
+                .route("service1", r -> r.path("/service1/**")
+                        .uri("lb://service1"))
+                .route("service2", r -> r.path("/service2-new/**")
+                        .filters(f -> f.rewritePath(
+                                "/service2-new/(?<segment>.*)", 
+                                "/service2/${segment}"))
+                        .uri("lb://service2"))
+                .build();
+    }
+}
+```
+- The RouteLocatorBuilder is used to build the routes.
+- The routes() method initializes the route building process.
+- Each route is defined using the route method, which takes a route ID and a lambda expression.
+- The lambda expression specifies the path that the route should match and the URI to which the request should be forwarded
+- .uri("lb://service1")) : Indicates that the request should be forwarded to a service named `service2` registered in Eureka.
+- The filter rewrites the incoming request path from /service2-new/** to /service2/**. 
+
+### Global Filters
+
+```java
+@Component
+public class LogFilter implements GlobalFilter {
+
+    private static final Logger logger = LoggerFactory.getLogger(LogFilter.class);
+
+    @Override
+    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        logger.info("Path: " + exchange.getRequest().getPath());
+        return chain.filter(exchange);
+    }
+}
+```
