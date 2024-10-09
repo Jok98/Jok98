@@ -30,7 +30,7 @@ allowing it to run consistently across different computing environments.
 | `docker-compose down`                                   | Stop and remove containers defined in a docker-compose.yml file.  |
 
 ## Components
-
+- **DockerFile :** is a text file that contains instructions to build a Docker image.
 - **Image :** is a package (set of bytes) representing specific version of the app. Is downloaded from Docker Hub by default if it is not available locally.
 - **Container :** is a running instance of a Docker image.
   - **Host-port :** is the exposed port on the host machine.
@@ -44,4 +44,68 @@ allowing it to run consistently across different computing environments.
 - **Standardization**: Docker provides a standard way to package applications and their dependencies.
 
 
+## Dockerfile
 
+```dockerfile
+# First stage: Build the application
+FROM maven:3.8.1-openjdk-11-slim AS build
+WORKDIR /home/app
+COPY . /home/app
+RUN mvn -f /home/app/pom.xml clean package
+
+# Second stage: Run the application
+FROM zulu-openjdk:17
+VOLUME /tmp
+EXPOSE 8080
+COPY --from=build /home/app/target/*.jar app.jar
+ENTRYPOINT ["sh", "-c", "java -jar /app.jar"]
+```
+
+- `FROM` : specifies the base image.
+- `WORKDIR` : sets the working directory inside the container.
+- `COPY` : copies the build project to the container. COPY source destination
+- `RUN` : executes a command inside the container.
+- `VOLUME` : creates a mount point for a volume.
+- `EXPOSE` : exposes a port on which the application is running.
+- `ENTRYPOINT` : specifies the command to run when the container starts.
+
+
+### Layer Caching
+
+```dockerfile
+FROM maven:3.8.1-openjdk-11-slim AS build
+WORKDIR /home/app
+# Copy the pom.xml file to cache the dependencies
+COPY ./pom.xml /home/app/pom.xml
+RUN mvn -f /home/app/pom.xml clean package
+
+# Copy the source code to build the application
+COPY . /home/app
+RUN mvn -f /home/app/pom.xml clean package
+
+FROM zulu-openjdk:17
+VOLUME /tmp
+EXPOSE 8080
+COPY --from=build /home/app/target/*.jar app.jar
+ENTRYPOINT ["sh", "-c", "java -jar /app.jar"]
+```
+### Example Console Logs
+
+```cmd
+Sending build context to Docker daemon  79.36MB
+Step 1/10 : FROM maven:3.8.1-openjdk-11-slim AS build
+ ---> 1a2b3c4d5e6f
+Step 2/10 : WORKDIR /home/app
+ ---> Using cache
+ ---> 7a8b9c0d1e2f
+Step 3/10 : COPY ./pom.xml /home/app/pom.xml
+ ---> Using cache
+ ---> 3c4d5e6f7a8b
+Step 4/10 : RUN mvn -f /home/app/pom.xml clean package
+```
+
+### Create an Image with Spring Boot
+It will create a very efficient image with a minimal OS layer and only the necessary dependencies.
+```cmd
+spring-boot:build-image
+```
