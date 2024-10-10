@@ -30,19 +30,21 @@ allowing it to run consistently across different computing environments.
 | `docker-compose down`                                   | Stop and remove containers defined in a docker-compose.yml file.  |
 
 ## Components
+
 - **DockerFile :** is a text file that contains instructions to build a Docker image.
-- **Image :** is a package (set of bytes) representing specific version of the app. Is downloaded from Docker Hub by default if it is not available locally.
+- **Image :** is a package (set of bytes) representing specific version of the app. Is downloaded from Docker Hub by
+  default if it is not available locally.
 - **Container :** is a running instance of a Docker image.
-  - **Host-port :** is the exposed port on the host machine.
-  - **Container-port :** is the port on which the application is running inside the container.
+    - **Host-port :** is the exposed port on the host machine.
+    - **Container-port :** is the port on which the application is running inside the container.
 - **Registry :** is a collection of repositories of Docker images.
-- 
+-
+
 ## Advatages
 
 - **Isolation**: Containers run in isolation and do not interfere with each other.
 - **Portability**: Containers can run on any machine that has Docker installed.
 - **Standardization**: Docker provides a standard way to package applications and their dependencies.
-
 
 ## Dockerfile
 
@@ -69,7 +71,6 @@ ENTRYPOINT ["sh", "-c", "java -jar /app.jar"]
 - `EXPOSE` : exposes a port on which the application is running.
 - `ENTRYPOINT` : specifies the command to run when the container starts.
 
-
 ### Layer Caching
 
 ```dockerfile
@@ -89,6 +90,7 @@ EXPOSE 8080
 COPY --from=build /home/app/target/*.jar app.jar
 ENTRYPOINT ["sh", "-c", "java -jar /app.jar"]
 ```
+
 ### Example Console Logs
 
 ```cmd
@@ -105,7 +107,102 @@ Step 4/10 : RUN mvn -f /home/app/pom.xml clean package
 ```
 
 ### Create an Image with Spring Boot
+
 It will create a very efficient image with a minimal OS layer and only the necessary dependencies.
+
 ```cmd
 spring-boot:build-image
+```
+
+## Create Container Image
+
+### Pom.xml
+
+```xml
+
+<build>
+    <plugins>
+        <plugin>
+            <goupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+                <image>
+                    <name>docker.io/dockerUsername/image-name-${project.artifactId}:${project.version}</name>
+                </image>
+                <pullPolicy>IF_NOT_PRESENT</pullPolicy>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
+
+To build
+
+```cmd
+spring-boot:build-image
+```
+
+## Docker Compose
+
+Allows to define and run multi-container Docker applications using a YAML file.
+
+### docker-compose.yml
+
+```yaml
+version: '3.8'
+
+services:
+  app-name:
+    image: docker.io/dockerUsername/image-name-${project.artifactId}:${project.version}
+    mem_limit: 700m
+    ports:
+      - "8080:8080"
+    networks:
+      - network-name
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://naming-server:8761/eureka
+      MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411
+
+  api-gateway:
+    image: docker.io/dockerUsername/api-gateway-${project.artifactId}:${project.version}
+    mem_limit: 700m
+    ports:
+      - "8765:8765"
+    networks:
+      - network-name
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://naming-server:8761/eureka
+      MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411
+      
+  naming-server:
+    image: docker.io/dockerUsername/naming-server-${project.artifactId}:${project.version}
+    mem_limit: 700m
+    ports:
+      - "8761:8761"
+    networks:
+      - network-name
+        
+  zipkin-server:
+    image: openzipkin/zipkin:2.23
+    mem_limit: 300m
+    ports:
+      - "9411:9411"
+    networks:
+      - currency-network
+    restart: always #Restart if there is a problem starting up
+
+networks:
+  network-name:
+
+
+```
+
+### Run Docker Compose
+
+```cmd
+docker-compose up
 ```
