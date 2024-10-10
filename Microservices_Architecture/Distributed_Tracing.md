@@ -47,3 +47,38 @@ docker run -d -p 9411:9411 openzipkin/zipkin
 ```
 
 - Open `http://localhost:9411/zipkin/` in your browser to access the Zipkin dashboard.
+
+## Trace ID between Microservices
+- ### **Feign**
+
+### Dependencies
+```xml
+<dependency>
+    <groupId>io.github.openfeign</groupId>
+    <artifactId>feign-micrometer</artifactId>
+</dependency>
+```
+
+- ### **RestTemplate**
+
+### Configuration
+```java
+@Configuration(proxyBeanMethods = false)
+public class RestTemplateConfig {
+    @Bean
+    public RestTemplateBuilder restTemplateBuilder() {
+        return new RestTemplateBuilder();
+    }
+}
+```
+
+### Controller
+```java
+@Autowired
+private RestTemplate restTemplate;
+
+@GetMapping("/call")
+public String callService() {
+    return restTemplate.getForObject("http://localhost:8081/service", String.class);
+}
+```
