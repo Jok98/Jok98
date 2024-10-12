@@ -21,18 +21,27 @@ Is a container orchestration platform for the management of containerized applic
     - **AKS**: Azure Kubernetes Service.
     - **EKS**: Elastic Kubernetes Service.
 
-## Components
 
-- **Master Node**: Control plane that manages the cluster.
-    - **API Server**: Frontend for the Kubernetes control plane.
-    - **Scheduler**: Assigns workloads to nodes.
-    - **Controller Manager**: Monitors the state of the cluster.
-    - **etcd**: Key-value store for all cluster data.
+## Kubernetes Api Objects
 
-- **Kubelet**
-  - Function: The primary node agent.
-  - Role: Ensures containers are running in pods.
-  - Operation: Receives pod specifications from the API server and manages the containers via the container runtime (e.g., Docker, containerd).
+K8s defines apis for managing its resources that are :
+### `Node` 
+It represents a server virtual or physical in the `cluster`
+
+### `Pod` 
+It represents the smallest possible deployable component, usually consisting in a single container<br>
+but can also be multiple containers that share same IP and port range (cnts can communicate with each other at localhost level)
+
+### `Deployment`
+is used to upgrade and deploy Pods.<br>
+it hands over the responsibility of creating and monitoring the pods to a `ReplicaSet`.<br>
+When a `Deployment` is created its role is just to create a `ReplicaSet` to manage the pods.
+
+### `ReplicaSet`
+It is responsible for ensuring that a specified number of pod replicas are running at any given time.<br>
+If a pod goes down, the `ReplicaSet` will create a new one to replace it.
+
+
 
 # Milestone to achieve
 
