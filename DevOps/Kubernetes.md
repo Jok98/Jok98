@@ -26,7 +26,7 @@ Is a container orchestration platform for the management of containerized applic
 
 K8s defines apis for managing its resources that are :
 ### `Node` 
-It represents a server virtual or physical in the `cluster`
+It represents a server, virtual or physical in the `cluster`
 
 ### `Pod` 
 It represents the smallest possible deployable component, usually consisting in a single container<br>
@@ -34,12 +34,42 @@ but can also be multiple containers that share same IP and port range (cnts can 
 
 ### `Deployment`
 is used to upgrade and deploy Pods.<br>
-it hands over the responsibility of creating and monitoring the pods to a `ReplicaSet`.<br>
-When a `Deployment` is created its role is just to create a `ReplicaSet` to manage the pods.
+it hands over the responsibility of creating and monitoring the `pods` to a `ReplicaSet`.<br>
+When a `Deployment` is created its role is just to create a `ReplicaSet` to manage the `pods`.
 
 ### `ReplicaSet`
-It is responsible for ensuring that a specified number of pod replicas are running at any given time.<br>
-If a pod goes down, the `ReplicaSet` will create a new one to replace it.
+It is responsible for ensuring that a specified number of `pod` replicas are running at any given time.<br>
+If a `pod` goes down, the `ReplicaSet` will create a new one to replace it.
+
+### `Service`
+It is an abstraction which defines a logical set of `pods` and a policy by which to access them.<br>
+A `Service` is assigned an IP address and a DNS name, which never changes, even if the `pods` behind the service are replaced.<br>
+A `Service` provides a stable endpoint for the `pods` that it manages.<br>
+By default, a `Service` is exposed inside the `cluster`, but it can also be exposed outside the `cluster`.<br>
+A `Service` is defined using a YAML file, which specifies the type of `service`, the selector, and the ports.<br>
+
+### `Ingress`
+It manages external access to the services in a `cluster`, typically HTTP/HTTPS.<br>
+It can route traffic to different `services` based on the URL path or host in the HTTP header.<br>
+
+### `Namespace`
+Is used to group and isolate resources in a `cluster`.<br>
+The name of the resources must be unique within a `namespace`, but not across `namespaces`.<br>
+
+### `ConfigMap`
+Is used to store configuration used by pods.<br>
+`ConfigMap` can be mapped into a running `pod` as environment variables or files.<br>
+
+### `Secret`
+It is used to store sensitive data, such as passwords, OAuth tokens, and SSH keys.<br>
+`Secrets` are stored in `base64` encoded format, but they are not encrypted.<br>
+It can be read by anyone with full access to the `cluster`.<br>
+
+### `DaemonSet`
+Are used to automatically distribute a copy of a `pod` on each node and keep it running.
+
+
+
 
 
 
