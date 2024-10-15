@@ -68,8 +68,22 @@ It can be read by anyone with full access to the `cluster`.<br>
 ### `DaemonSet`
 Are used to automatically distribute a copy of a `pod` on each node and keep it running.
 
+## Run Time Components
 
+- ## Master Node
+### `Api Server`
+The entry point to the control plane.<br>
+It exposes the `Kubernetes API` (ex. kubectl)
 
+### `etcd`
+Is a distributed key-value store for all `cluster` data.
+
+### `Controller Manager`
+It contains a number of controllers that continuously evaluate the desired state versus the current state of the objects defined in the `etcd` database.<br>
+
+### `Scheduler`
+Is responsible for assigning newly created `pods` to a `node` with available capacity.<br>
+Affinity rules can be used to control how `Pods` are assigned to `Nodes`.
 
 
 
