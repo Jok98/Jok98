@@ -85,6 +85,26 @@ It contains a number of controllers that continuously evaluate the desired state
 Is responsible for assigning newly created `pods` to a `node` with available capacity.<br>
 Affinity rules can be used to control how `Pods` are assigned to `Nodes`.
 
+- ## Data Plane
+### `Kubelet`
+It is an agent that runs on each `node` in the `cluster`.<br>
+Ensure that `pods` are running and healthy on the `node`.<br>
+It acts as a conduit between the API server and the container runtime on its node.
+
+### ` Kubeproxy`
+Is deployed as a `DaemonSet` on each `node` in the `cluster`.<br>
+It enables the `service` concept in `Kubernetes` and is capable of forwarding traffic to the correct `pod`.
+
+### `Container Runtime`
+Is the software that is responsible for running containers (support for Docker engine was removed).<br>
+As today can be used any implementation of the Kubernetes Container Runtime Interface (CRI) such as `containerd` or `CRI-O`.
+
+### `Kubernetes DNS`
+Is a DNS server that runs in the `cluster` and provides DNS-based service discovery.<br>
+It assigns a DNS name to each `service` and `pod` in the `cluster`.<br>
+The `DNS` server is typically deployed as a `Deployment` and a `Service`.
+
+---
 
 
 # Milestone to achieve
