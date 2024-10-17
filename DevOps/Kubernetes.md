@@ -1,3 +1,33 @@
+## Table of Contents
+- [Kubernetes](#kubernetes)
+  - [Features](#features)
+  - [Container Orchestration Platforms](#container-orchestration-platforms)
+  - [Kubernetes Api Objects](#kubernetes-api-objects)
+    - [Node](#node)
+    - [Pod](#pod)
+    - [Deployment](#deployment)
+    - [ReplicaSet](#replicaset)
+    - [Service](#service)
+    - [Ingress](#ingress)
+    - [Namespace](#namespace)
+    - [ConfigMap](#configmap)
+    - [Secret](#secret)
+    - [DaemonSet](#daemonset)
+  - [Run Time Components](#run-time-components)
+    - [Master Node](#master-node)
+      - [Api Server](#api-server)
+      - [etcd](#etcd)
+      - [Controller Manager](#controller-manager)
+      - [Scheduler](#scheduler)
+    - [Data Plane](#data-plane)
+      - [Kubelet](#kubelet)
+      - [Kubeproxy](#kubeproxy)
+      - [Container Runtime](#container-runtime)
+      - [Kubernetes DNS](#kubernetes-dns)
+  - [Sequence of Events](#sequence-of-events)
+  - [Milestone to achieve](#milestone-to-achieve)
+  - [Hierarchy](#hierarchy)
+
 # Kubernetes
 
 Is a container orchestration platform for the management of containerized applications.
@@ -106,6 +136,25 @@ The `DNS` server is typically deployed as a `Deployment` and a `Service`.
 
 ---
 
+## Sequence of Events
+1. A user uses `kubectl` to send in a new desired state to Kubernetes, containing manifests declaring a new `Deployment`, `Service`, `Ingress`, etc. object.<br><br>
+2. The `Ingress` defines a route to the `Service` object and the `Service` is defined to select `Pods` that are configured by the Deployment.<br><br>
+3. `kubectl` talks to the `API Server` and it stores the new desired state in `etcd` database.<br><br>
+4. Various `Controllers` will react to the creation of the new object and take the following actions:<br>
+    - For the `Deployment` :
+      - New `ReplicaSet` and `Pod` will be registered in the `API Server`.
+      - The `Scheduler` will see the new `Pod` and schedule it to the appropriate `worker node`.
+      - On the `worker node`, the `Kubelet` agent will launch containers as described by the `Pod`.<br>
+      - The `Kubelet` will use the `Container Runtime` on the `worker node` to manage the container.<br><br>
+
+    - For the `Service` :
+      - A `DNS` name will be registered in the `Kubernetes DNS` server. for the `Service`.<br>
+      - The `Kube-Proxy` will be able to route requests that us ethe `DNS` to one of the available `Pods`.<br><br>
+      
+    - For the `Ingress` :
+      - The `Ingress Controller` will set up routes according to the `Ingress` object and be ready to accept requests from the outside.<br>
+      - External request that match the routes defined by the `Ingress` will be forwarded by the `Ingress` Controller to the appropriate `Service`.<br>
+        These requests will be forwarded by the `Kube-Proxy` to the appropriate `Pod`.<br>
 
 # Milestone to achieve
 
