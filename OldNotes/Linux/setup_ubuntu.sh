@@ -54,11 +54,11 @@ if ! command -v java &> /dev/null; then
     check_command "Java 17 (Zulu) installation"
 fi
 
-# Check and install Maven
+# Check and install Maven via SDKMAN
 if ! command -v mvn &> /dev/null; then
-    log "Installing Maven..."
-    sudo apt install -y maven
-    check_command "Maven installation"
+    log "Installing Maven via SDKMAN..."
+    sdk install maven
+    check_command "Maven installation via SDKMAN"
 fi
 
 # Check and install Git
