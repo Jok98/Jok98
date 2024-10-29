@@ -207,8 +207,12 @@ secrets:
 This definition will render two Secrets, named a-secret and another-secret.<br> 
 The range function assigns the current Secret name and its map to the variables `$secretName` and `$secretMap`.
 
-
-
+to see the output:
+```shell
+for f in components/*; do helm dependency update $f; done
+helm dependency update environments/dev-env
+helm template environments/dev-env -s templates/secrets.yaml
+```
 
 
 
