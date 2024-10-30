@@ -281,10 +281,15 @@ spec:
 - `ports` `{{ toYaml .Values.service.ports | indent 4 }}` set the ports of the service.
 - `selector` `{{ include "common.name" . }}` this is used to select the Pods that the service will route traffic to.
 
-to see the output:
+to see the standard output:
 ```shell
 helm dependency update components/product
 helm template components/product -s templates/service.yaml
+```
+to see the output with the override values:
+```shell
+helm dependency update components/gateway
+helm template components/gateway -s templates/service.yaml
 ```
 
 
