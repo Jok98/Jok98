@@ -40,12 +40,35 @@ subtopic:
 
 ## 02/11/24
 
-|            |                                |
+`session 1`
+
+| Study      |                                |
 |------------|--------------------------------|
 | Source     | Microservices with Spring Boot |
-| Page       | 412 - 426                      |
-| Time       | 20:30                          |
-| Study time |                                |
-| Break      |                                |
-| Break time |                                |
+| Page       | 412 - 417                      |
+| Time       | 20:30 - 21:15                  |
+| Study time | 45m                            |
+| Break      | /                              |
+| Break time | /                              |
 
+```yaml
+topic: "Helm"
+subtopic:
+  - "The Deployment template"
+  - "Example of using the Deployment template"
+```
+
+`session 2`
+
+| Work       |          |
+|------------|----------|
+| Time       | 21:45 -  |
+| Study time | 45m      |
+| Break      | /        |
+| Break time | /        |
+
+```yaml
+task: "Reorganize the notes"
+subtask:
+    - "Reorganize the notes based on the topics hierarchy"
+```
