@@ -37,3 +37,15 @@ subtopic:
   - "The Service template"
   - "Example of using the Service template"
 ```
+
+## 02/11/24
+
+|            |                                |
+|------------|--------------------------------|
+| Source     | Microservices with Spring Boot |
+| Page       | 412 - 426                      |
+| Time       | 20:30                          |
+| Study time |                                |
+| Break      |                                |
+| Break time |                                |
+
