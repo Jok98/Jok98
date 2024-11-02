@@ -125,27 +125,22 @@
 
 ## Personal Projects
 
-#### [ProjectAlt96](https://github.com/Jok98/ProjectAlt96) ( Ongoing )
+I've developed several personal projects to improve my skills and knowledge focusing on :
 
-- **Architecture**: Microservices
-- **Description**: A web application for managing monthly expenses, with a history and statistics dashboard.
-- **Technologies**: Java, Spring Boot, MongoDB, Docker
-- **Key Achievements**:
-    - Designed and implemented a scalable architecture with multiple services handling different tasks (expense
-      management, reporting, user authentication).
-    - Developed a microservices communication system using Eureka and Spring Cloud Gateway, ensuring seamless
-      interaction between services.
-    - Created a reporting tool with real-time expense analytics, providing users with actionable insights on their
-      spending habits.
+|      |             |               |        |
+|------|-------------|---------------|--------|
+| Java | Spring Boot | Microservices | DevOps |
+
+**[Study Notes](https://github.com/Jok98/Jok98)**
+On this GitHub repository, I upload notes about my daily studies and overall knowledge, mainly focused on IT and software development.
 
 ---
 
 ## International Experience
 
-> **Japan (Cultural Studies & Language Immersion)** <br>
+> **Japan (Studying language and culture at international schools)** <br>
 > Developed strong adaptability and problem-solving skills through immersion in diverse cultural settings. <br>
-> Gained proficiency in Japanese and strengthened cross-cultural communication skills, beneficial for collaborating with
-> global teams.
+> Gained proficiency in Japanese and English, strengthened cross-cultural communication skills
 
 - **Sapporo (JP)**: 08/2019 - 10/2019
 - **Fukuoka (JP)**: 07/2018 - 09/2018
