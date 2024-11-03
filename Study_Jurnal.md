@@ -60,15 +60,26 @@ subtopic:
 
 `session 2`
 
-| Work       |          |
-|------------|----------|
-| Time       | 21:45 -  |
-| Study time | 45m      |
-| Break      | /        |
-| Break time | /        |
+| Work       |               |
+|------------|---------------|
+| Time       | 21:45 - 23:30 |
+| Study time | 1h 30m        |
+| Break      | /             |
+| Break time | /             |
 
 ```yaml
 task: "Reorganize the notes"
 subtask:
-    - "Reorganize the notes based on the topics hierarchy"
+  - "Reorganize the notes based on the topics hierarchy"
 ```
+
+## 03/11/24
+
+| Study      |                                |
+|------------|--------------------------------|
+| Source     | Microservices with Spring Boot |
+| Page       | 417 - 420                      |
+| Time       | 19:45 - 20:30                  |
+| Study time | 45m                            |
+| Break      | /                              |
+| Break time | /                              |
