@@ -4,12 +4,14 @@
 ```shell
 sudo apt-get install pandoc
 ```
-- Install weasyprint :
+
+- Convert md to html :
 ```shell
-sudo apt-get install weasyprint
+pandoc README.md -o README.html
 ```
-- Convert markdown file to pdf :
+
+- Convert html to pdf :
 ```shell
- pandoc README.md -s -o cv.pdf --pdf-engine=weasyprint -V geometry:"top=0cm, bottom=1cm, left=1cm, right=1cm" --metadata title="cv"
+google-chrome --headless --no-pdf-header-footer --print-to-pdf=cv.pdf README.html
 ```
 

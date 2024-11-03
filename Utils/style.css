@@ -1,0 +1,44 @@
+body {
+  align-items: center;
+  font-size: 10px;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+  font-size: 14px;
+  color: MidnightBlue;
+}
+
+h4 {
+  text-align: center;
+  font-size: 12px;
+}
+
+/* Center the table on the page */
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  border: none; /* Remove the external border of the table */
+}
+
+/* Center the text inside table headers and cells */
+th, td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px; /* Adds padding inside cells */
+  border: 1px solid black; /* Add internal borders to table headers and cells */
+  font-size: 8px;
+}
+
+/* Optional: Adds style to headers (bold is default for <th>) */
+th {
+  font-weight: bold;
+}
+
+
+

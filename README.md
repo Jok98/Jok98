@@ -4,11 +4,8 @@
 
 ## [LinkedIn](https://www.linkedin.com/in/matteo-moi/) | [GitHub](https://github.com/Jok98)
 
-## BIO
-
-> As an IT enthusiast I'm always looking for increase my knowledge in the field of software development,
-> not focusing on a specific language or technology but trying to develop a mindset capable of adapting in any
-> environment.
+> As an IT enthusiast I'm always looking for increase my knowledge in the field of software development, <br>
+> not focusing on a specific language or technology but trying to develop a mindset capable of adapting in any environment.
 >
 > Started studying programming independently in 2016, deepening and enhancing my skills at university and through
 > participation in various professional training courses.
@@ -125,10 +122,7 @@
 
 ## Personal Projects
 
-I've developed several personal projects to improve my skills and knowledge focusing on :
-
-|      |             |               |        |
-|------|-------------|---------------|--------|
+I have been developing several personal projects to improve my skills and knowledge focusing on :
 | Java | Spring Boot | Microservices | DevOps |
 
 **[Study Notes](https://github.com/Jok98/Jok98)**
@@ -146,48 +140,4 @@ On this GitHub repository, I upload notes about my daily studies and overall kno
 - **Fukuoka (JP)**: 07/2018 - 09/2018
 - **Kobe (JP)**: 06/2017 - 07/2017
 
----
-
-<style>
-  body {
-    align-items: center;
-    font-size: 8px;
-  }
-
-  h1, h2 {
-    text-align: center;
-  }
-
-  h3 {
-    text-align: center;
-    font-size: 12px;
-    color: MidnightBlue;
-  }
-
-  h4 {
-    text-align: center;
-    font-size: 10px;
-  }
-
-  /* Center the table on the page */
-  table {
-    margin-left: auto;
-    margin-right: auto;
-    border-collapse: collapse;
-    border: none; /* Remove the external border of the table */
-  }
-
-  /* Center the text inside table headers and cells */
-  th, td {
-    text-align: center;
-    vertical-align: middle;
-    padding: 10px; /* Adds padding inside cells */
-    border: 1px solid black; /* Add internal borders to table headers and cells */
-  }
-
-  /* Optional: Adds style to headers (bold is default for <th>) */
-  th {
-    font-weight: bold;
-  }
-</style>
-
+<link rel="stylesheet" type="text/css" href="Utils/style.css">
