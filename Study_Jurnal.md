@@ -38,6 +38,8 @@ subtopic:
   - "Example of using the Service template"
 ```
 
+---
+
 ## 02/11/24
 
 `session 1`
@@ -73,7 +75,11 @@ subtask:
   - "Reorganize the notes based on the topics hierarchy"
 ```
 
+---
+
 ## 03/11/24
+
+`session 1`
 
 | Study      |                                |
 |------------|--------------------------------|
@@ -83,3 +89,27 @@ subtask:
 | Study time | 45m                            |
 | Break      | /                              |
 | Break time | /                              |
+
+```yaml
+topic: "Helm"
+subtopic:
+  - "The Component Charts"
+  - "The Environment Chart"
+```
+
+`session 2`
+
+| Study      |                                |
+|------------|--------------------------------|
+| Source     | Microservices with Spring Boot |
+| Page       | 420 - 436                      |
+| Time       | 23:00 - 00:30                  |
+| Study time | 1h 30m                         |
+| Break      | /                              |
+| Break time | /                              |
+
+```yaml
+topic: "Kubernetes"
+subtopic:
+  - "Deploying to kubernetes"
+```
