@@ -113,3 +113,33 @@ topic: "Kubernetes"
 subtopic:
   - "Deploying to kubernetes"
 ```
+
+---
+
+## 04/11/24
+
+| Work       |               |
+|------------|---------------|
+| Time       | 21:00 - 21:30 |
+| Study time | 30m           |
+| Break      | /             |
+| Break time | /             |
+
+```yaml
+task: "Create a schema of the architecture"
+```
+
+---
+
+## 05/11/24
+
+| Work       |               |
+|------------|---------------|
+| Time       | 20:00 - 21:00 |
+| Study time | 1h            |
+| Break      | /             |
+| Break time | /             |
+
+```yaml
+task: "Create a schema of the architecture"
+```
