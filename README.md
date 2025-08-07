@@ -1,6 +1,8 @@
 ---
 layout: cv
 title: Resume
+css:
+  - "cv_style.css"
 ---
 
 # Matteo Moi - Senior Software Engineer
