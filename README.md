@@ -1,11 +1,16 @@
 # Matteo Moi - Software Engineer
-
-**Location:** Sondrio, Italy  
 **Email:** [matteo.moi1998@gmail.com](mailto:matteo.moi1998@gmail.com)  
 [LinkedIn](https://www.linkedin.com/in/matteo-moi/) • [GitHub](https://github.com/Jok98) • [Personal Website](https://jok98.github.io)
 
 ## About Me
-IT enthusiast always seeking to broaden my knowledge in software development. I document my learning journey on [my site](https://jok98.github.io) and [GitHub](https://github.com/Jok98/Jok98.github.io).
+> As an IT enthusiast I'm always looking for increase my knowledge in the field of software development.
+>
+> Started studying programming independently in 2016, deepening and enhancing my skills at university and through
+> participation in various professional training courses.
+>
+> I make daily notes documenting my studies and knowledge development.<br>
+> 
+> These notes are regularly uploaded to my [site](https://jok98.github.io) and [GitHub](https://github.com/Jok98/Jok98.github.io).
 
 ## Tech Stack
 <table>
@@ -89,23 +94,4 @@ IT enthusiast always seeking to broaden my knowledge in software development. I 
   </tr>
 </table>
 
-## Education
-- **Bachelor's Degree in Computer Science** - Ecampus University (ongoing)
-- **Self-directed Learning** - Continuous professional development since 2016
-
-## Learning Notes
-I regularly document studies and discoveries, sharing them on my [website](https://jok98.github.io) and [GitHub notes repository](https://github.com/Jok98/Jok98.github.io).
-
-## Languages
-- **Italian**: Native
-- **English**: Professional working proficiency
-- **Japanese**: Intermediate
-
-## Soft Skills
-- Problem Solving
-- Communication
-- Teamwork
-- Adaptability
-- Time Management
-- Leadership
 
