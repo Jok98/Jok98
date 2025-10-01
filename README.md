@@ -12,16 +12,16 @@
         <br>Java
       </td>
       <td align="center" width="80">
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/spring/spring-original.svg" alt="Spring" width="40" height="40" />
-        <br>Spring
-      </td>
-      <td align="center" width="80">
         <img src="https://cdn.simpleicons.org/springboot/6DB33F" alt="Spring Boot" width="40" height="40" />
         <br>Spring Boot
       </td>
       <td align="center" width="80">
         <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/hibernate/hibernate-plain.svg" alt="Hibernate" width="40" height="40" />
         <br>Hibernate
+      </td>
+      <td align="center" width="80">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="Spring" width="40" height="40" />
+        <br>C
       </td>
     </tr>
     <tr>
