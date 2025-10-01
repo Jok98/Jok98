@@ -52,12 +52,12 @@
         <br>Jenkins
       </td>
       <td align="center" width="80">
-        <img src="https://about.gitlab.com/images/press/logo/png/gitlab-logo-500.png" alt="Gitlab" width="40" height="40" />
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/gitlab/gitlab-original.svg" alt="Gitlab" width="40" height="40" />
         <br>Gitlab ci/cd
       </td>
         <td align="center" width="80">
             <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg" alt="Git" width="40" height="40" />
-            <br>Github action
+            <br>GitHub action
         </td>
     </tr>
     <tr>
