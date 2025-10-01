@@ -131,3 +131,7 @@
     </tr>
   </tbody>
 </table>
+
+[![EHY](https://github-readme-stats.vercel.app/api?username=Jok98&include_all_commits=true&count_private=true&hide_border=true&show_icons=true&bg_color=30,2eb67d,36c5f0)](https://github.com/Jok98/github-readme-stats)
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Jok98&hide_border=true&layout=compact&bg_color=315,8e44ad,9b59b6,be93d4&text_color=ffffff&title_color=d8b7ff)](https://github.com/Jok98/github-readme-stats)
