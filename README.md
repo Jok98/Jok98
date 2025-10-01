@@ -13,8 +13,6 @@
 
 ## Tech Stack
 
-<!-- Tech Stack -->
-
 <table>
   <tbody>
     <tr>
@@ -22,8 +20,6 @@
         <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="Java" width="40" height="40" />
         <br>Java
       </td>
-    </tr>
-    <tr>
       <td align="center" width="80">
         <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/spring/spring-original.svg" alt="Spring" width="40" height="40" />
         <br>Spring
@@ -36,6 +32,42 @@
         <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/hibernate/hibernate-plain.svg" alt="Hibernate" width="40" height="40" />
         <br>Hibernate
       </td>
+    </tr>
+    <tr>
+      <td align="center" width="80">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/rabbitmq/rabbitmq-original.svg" alt="RabbitMQ" width="40" height="40" />
+        <br>RabbitMQ
+      </td>
+      <td align="center" width="80">
+        <img src="https://cdn.simpleicons.org/apachekafka/F54927" alt="Kafka" width="40" height="40" />
+        <br>Kafka
+      </td>
+      <td align="center" width="80">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/prometheus/prometheus-original.svg" alt="Grafana" width="40" height="40" />
+        <br>Prometheus
+      </td>
+      <td align="center" width="80">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/grafana/grafana-original.svg" alt="Grafana" width="40" height="40" />
+        <br>Grafana
+      </td>
+    </tr>
+    <tr>
+      <td align="center" width="80">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/maven/maven-original.svg" alt="Maven" width="40" height="40" />
+        <br>Maven
+      </td>
+      <td align="center" width="80">
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/jenkins/jenkins-original.svg" alt="Jenkins" width="40" height="40" />
+        <br>Jenkins
+      </td>
+      <td align="center" width="80">
+        <img src="https://about.gitlab.com/images/press/logo/png/gitlab-logo-500.png" alt="Gitlab" width="40" height="40" />
+        <br>Gitlab ci/cd
+      </td>
+        <td align="center" width="80">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg" alt="Git" width="40" height="40" />
+            <br>Github action
+        </td>
     </tr>
     <tr>
       <td align="center" width="80">
@@ -57,54 +89,6 @@
     </tr>
     <tr>
       <td align="center" width="80">
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/rabbitmq/rabbitmq-original.svg" alt="RabbitMQ" width="40" height="40" />
-        <br>RabbitMQ
-      </td>
-      <td align="center" width="80">
-        <img src="https://cdn.simpleicons.org/apachekafka/231F20" alt="Kafka" width="40" height="40" />
-        <br>Kafka
-      </td>
-    </tr>
-    <tr>
-      <td align="center" width="80">
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/maven/maven-original.svg" alt="Maven" width="40" height="40" />
-        <br>Maven
-      </td>
-      <td align="center" width="80">
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/jenkins/jenkins-original.svg" alt="Jenkins" width="40" height="40" />
-        <br>Jenkins
-      </td>
-    </tr>
-    <tr>
-      <td align="center" width="80">
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" alt="Git" width="40" height="40" />
-        <br>Git
-      </td>
-      <td align="center" width="80">
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original.svg" alt="GitHub" width="40" height="40" />
-        <br>GitHub
-      </td>
-      <td align="center" width="80">
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/gitlab/gitlab-original.svg" alt="GitLab" width="40" height="40" />
-        <br>GitLab
-      </td>
-    </tr>
-    <tr>
-      <td align="center" width="80">
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/prometheus/prometheus-original.svg" alt="Prometheus" width="40" height="40" />
-        <br>Prometheus
-      </td>
-      <td align="center" width="80">
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/grafana/grafana-original.svg" alt="Grafana" width="40" height="40" />
-        <br>Grafana
-      </td>
-    </tr>
-    <tr>
-      <td align="center" width="80">
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/rancher/rancher-original.svg" alt="Rancher" width="40" height="40" />
-        <br>Rancher
-      </td>
-      <td align="center" width="80">
         <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker" width="40" height="40" />
         <br>Docker
       </td>
@@ -112,22 +96,13 @@
         <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes" width="40" height="40" />
         <br>Kubernetes
       </td>
-    </tr>
-    <tr>
       <td align="center" width="80">
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="Linux" width="40" height="40" />
-        <br>Linux
+        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/rancher/rancher-original.svg" alt="Rancher" width="40" height="40" />
+        <br>Rancher
       </td>
-      <td align="center" width="80">
-        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/intellij/intellij-original.svg" alt="IntelliJ IDEA" width="40" height="40" />
-        <br>IntelliJ IDEA
-      </td>
-    </tr>
-    <tr>
-      <td align="center" width="80">
-        <img src="https://cdn.simpleicons.org/junit5/25A162" alt="JUnit" width="40" height="40" />
-        <br>JUnit
-      </td>
+        <td align="center" width="80">
+        <img src="https://istio.io/latest/img/istio-logo.svg" alt="Istio" width="40" height="40" />
+        <br>Istio
     </tr>
   </tbody>
 </table>
