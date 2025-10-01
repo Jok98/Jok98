@@ -2,15 +2,6 @@
 **Email:** <a href="mailto:matteo.moi1998@gmail.com">matteo.moi1998@gmail.com</a>  
 <a href="https://www.linkedin.com/in/matteo-moi/">LinkedIn</a> • <a href="https://github.com/Jok98">GitHub</a> • <a href="https://jok98.github.io">Personal Website</a>
 
-## About Me
-<blockquote>
-  <p>As an IT enthusiast I'm always looking for increase my knowledge in the field of software development.</p>
-  <p>Started studying programming independently in 2016, deepening and enhancing my skills at university and through
-  participation in various professional training courses.</p>
-  <p>I make daily notes documenting my studies and knowledge development.<br>
-  These notes are regularly uploaded to my <a href="https://jok98.github.io">site</a> and <a href="https://github.com/Jok98/Jok98.github.io">GitHub</a>.</p>
-</blockquote>
-
 ## Tech Stack
 
 <table>
