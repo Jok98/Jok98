@@ -2,8 +2,6 @@
 **Email:** <a href="mailto:matteo.moi1998@gmail.com">matteo.moi1998@gmail.com</a>  
 <a href="https://www.linkedin.com/in/matteo-moi/">LinkedIn</a> • <a href="https://github.com/Jok98">GitHub</a> • <a href="https://jok98.github.io">Personal Website</a>
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Jok98&hide_border=true&layout=compact&bg_color=0d1117,1f2937,374151&text_color=ffffff&title_color=58a6ff)](https://github.com/Jok98/github-readme-stats)
-
 ## Tech Stack
 
 <table>
